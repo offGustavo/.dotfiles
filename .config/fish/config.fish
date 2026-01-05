@@ -110,5 +110,9 @@ alias ll='eza -l  --color=always --group-directories-first --icons=always --hype
 alias lt='eza -aT --color=always --group-directories-first --icons=always --hyperlink' # tree listing
 alias l.="eza -a | grep -e '^\.'" # show only dotfiles
 
+# Dotfiles
+alias dotman='/usr/bin/git --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
+alias dotman-tui='/usr/bin/lazygit --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
+
 # Append common directories for executable files to $PATH
 fish_add_path ~/.local/bin ~/.cargo/bin ~/Applications/depot_tools

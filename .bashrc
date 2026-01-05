@@ -27,4 +27,5 @@ export ZOXIDE_EXCLUDE='/tmp/*'
 eval "$(zoxide init bash)"
 
 # Dotfiles 
-alias config='/usr/bin/git --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
+alias dotman='/usr/bin/git --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
+alias dotman-tui='/usr/bin/lazygit --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
