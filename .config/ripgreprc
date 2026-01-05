@@ -1,0 +1,9 @@
+--no-heading
+--column
+--hidden
+--smart-case
+--glob=!.git/*
+--glob=!node_modules/*
+--glob=!target/*
+--max-columns=150
+--max-columns-preview
