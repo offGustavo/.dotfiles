@@ -22,7 +22,6 @@
     ;;   mctl 193
     ;;   )
 
-
 (defsrc
  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
@@ -36,10 +35,13 @@
    ;; (grv ret)   @bas 100 all-released() 
    ;; (grv spc)   @gam 100 all-released() 
    ;; (lsft rsft) caps 100 all-released() 
-   (m ,)       [ 100 all-released   () 
-   (, .)       ] 100 all-released   () 
-   (. /)       \ 100 all-released   ()
-   (' c)       RA-, 100 all-released())
+   (v c)  S-[ 50 all-released()
+   (c x)  S-] 50 all-released()
+   (x z)  S-\ 50 all-released()
+   (m ,)    [ 50 all-released()
+   (, .)    ] 50 all-released()
+   (. /)    \ 50 all-released()
+   (' c) RA-, 50 all-released())  
 
    (defalias
     ;; Definer as layer
