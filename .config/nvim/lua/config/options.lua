@@ -124,3 +124,6 @@ vim.o.timeout = false
 vim.o.laststatus = 3
 
 vim.o.cursorline = false
+
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
