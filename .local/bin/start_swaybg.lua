@@ -14,12 +14,15 @@ local wallpapers = {
 		-- },
 		{
 			name = "A Girl with Purple Flowers",
-      path = "/home/gustavo/Pictures/Wallpapers/dharmx-Walls/anime/a_cartoon_of_a_girl_standing_under_a_tree_with_purple_flowers.png",
+			path = "/home/gustavo/Pictures/Wallpapers/dharmx-Walls/anime/a_cartoon_of_a_girl_standing_under_a_tree_with_purple_flowers.png",
 		},
-
 		{
 			name = "Tokyo Night",
 			path = "/home/gustavo/Pictures/Wallpapers/tokyo-nigth-wallpapers/night/os/arch_01_1920x1080.png",
+		},
+		{
+			name = "The Path of Giants",
+			path = "/home/gustavo/Pictures/Wallpapers/my/The-Path-of-Giants.png",
 		},
 	},
 }
@@ -144,7 +147,7 @@ local function start_swaybg(wallpaper_path)
 	file:close()
 
 	-- -- Mata o swaybg se estiver rodando
-	-- kill_swaybg_if_running()
+	kill_swaybg_if_running()
 
 	-- Inicia o swaybg com o wallpaper
 	local cmd = "swaybg -i '" .. wallpaper_path .. "' -m fill &"

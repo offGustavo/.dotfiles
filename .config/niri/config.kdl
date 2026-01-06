@@ -376,8 +376,8 @@ layout {
 spawn-at-startup "sh" "-c" "systemctl --user start gnome-keyring-daemon.service"
 // spawn-at-startup "sh" "-c" "sleep 1 && waybar -c ~/.config/niri/waybar/config.jsonc  -s ~/.config/niri/waybar/style.css"
 // spawn-at-startup "sh" "-c" "sleep 1 && /usr/bin/swaybg -i ~/Pictures/Wallpapers/my/The-Path-of-Giants.png"
-spawn-at-startup "sh" "-c" "sleep 1 && ~/.config/hypr/scripts/toggle-waybar.sh"
-spawn-at-startup "sh" "-c" "sleep 1 && ~/.config/hypr/scripts/start_swaybg.lua"
+spawn-at-startup "sh" "-c" "sleep 1 && ~/.config/waybar/scripts/toggle-waybar.sh"
+spawn-at-startup "sh" "-c" "sleep 1 && ~/.local/bin/start_swaybg.lua"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
