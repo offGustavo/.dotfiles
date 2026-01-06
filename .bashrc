@@ -1,6 +1,13 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Change go PATH
+export GOPATH="$HOME/.go"
+export GOBIN="$GOPATH/bin"
+export PATH="$GOBIN:$PATH"
+
+
+
 alias ls="ls --color=auto"
 alias grep="grep --color=auto --exclude-dir=.git --exclude-dir=node_modules"
 

@@ -114,5 +114,10 @@ alias l.="eza -a | grep -e '^\.'" # show only dotfiles
 alias dotman='/usr/bin/git --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
 alias dotman-tui='/usr/bin/lazygit --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
 
+# Change go PATH
+set -x GOPATH "$HOME/.go"
+set -x GOBIN "$GOPATH/bin"
+
 # Append common directories for executable files to $PATH
-fish_add_path ~/.local/bin ~/.cargo/bin ~/Applications/depot_tools
+fish_add_path ~/.local/bin ~/.cargo/bin ~/Applications/depot_tools $HOME/.go/bin
+
