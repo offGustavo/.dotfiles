@@ -12,10 +12,14 @@ vim.cmd([[
 
   " Desabilita sintaxe padrão que captura átomos após (
   syntax clear lispAtom
+  syntax clear lispNumber
+  syntax clear LispFunc
+  syntax clear lispAtomMark
+
 
   " Captura qualquer função no formato (word
   " Usa lookbehind para capturar apenas o nome da função após o (
-  syntax match kanataFunc /\v\(@<=[A-Za-z0-9_-]+/ containedin=lispExpr,lispList
+  syntax match kanataFunc /\v\(@<=[A-Za-z0-9_-]{3,}/ containedin=lispExpr,lispList
 
   " Aplica highlight
   highlight def link kanataFunc LispFunc
@@ -30,6 +34,9 @@ vim.cmd([[
 
   " Aplica highlight para aliases
   highlight def link kanataAlias Define
+
+  syntax match kanataComp /\v\C((S-|RA-)+)([A-Za-z0-9_]+|.)/ containedin=ALLBUT,lispComment
+  highlight def link kanataComp Constant
 
   " ===============
   " Kanata Comments
@@ -51,3 +58,5 @@ vim.cmd([[
 vim.bo.commentstring = ";; %s"
 
 vim.wo.foldmethod = "indent"
+
+
