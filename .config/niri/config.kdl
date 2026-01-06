@@ -730,6 +730,8 @@ binds {
     Mod+Shift+f { fullscreen-window; }
     Mod+Shift+Ctrl+f { toggle-windowed-fullscreen;}
 
+    Mod+Shift+M { maximize-window-to-edges; }
+
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".
     Mod+Ctrl+f { expand-column-to-available-width; }
