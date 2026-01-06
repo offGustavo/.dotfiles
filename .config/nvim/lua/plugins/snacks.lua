@@ -54,7 +54,7 @@ return {
     explorer = {
       replace_netrw = false,
     },
-    input = { enabled = false },
+    input = { enabled = true },
     picker = {
       sources = {
         grep = { hidden = true, layout = ivy_like },

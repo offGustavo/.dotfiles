@@ -95,29 +95,8 @@ if vim.fn.executable("rg") then
   vim.o.findfunc = "v:lua.RgFindFiles"
 end
 
--- Better Cd with Zoxide
-if vim.fn.executable("zoxide") == 1 then
-  vim.api.nvim_create_user_command("Z", function(opts)
-    local target = opts.args
-    if target == "" then
-      vim.cmd("cd ~")
-      return
-    end
-    local handle = io.popen("zoxide query " .. vim.fn.shellescape(target))
-    if handle then
-      local result = handle:read("*l")
-      handle:close()
-      if result and #result > 0 then
-        vim.cmd("cd " .. vim.fn.fnameescape(result))
-        print("Changed directory to: " .. result)
-      else
-        print("zoxide: no match for '" .. target .. "'")
-      end
-    else
-      print("Failed to run zoxide")
-    end
-  end, { nargs = "?" })
-end
+
+vim.o.timeout = false
 
 -- vim.o.winborder = "rounded"
 
@@ -143,3 +122,5 @@ end
 -- }
 
 vim.o.laststatus = 3
+
+vim.o.cursorline = false

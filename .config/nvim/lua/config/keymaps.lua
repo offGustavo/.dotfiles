@@ -298,7 +298,6 @@ vim.keymap.set("n", "[<Tab>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 -- vim.keymap.set("n", "<leader>t]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 -- vim.keymap.set("n", "<leader>t[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
--- vim.o.timeout = false
 local tmux_prefix = "<A-p>"
 local map = vim.keymap.set
 local modes = { "n", "x", "i", "t" }
@@ -420,6 +419,8 @@ vim.keymap.set("n", "<leader>of", ":find ", { desc = "Find" })
 vim.keymap.set("n", "<leader>og", ":grep ", { desc = "Grep" })
 vim.keymap.set("n", "<leader>or", ":grep <cword><cr>:cope<Cr>", { desc = "Find Function/Decaration/References" })
 vim.keymap.set("n", "<leader>o/", ":LiveGrep  %:h<left><left><left><left>") -- Custom Autocmd
+
+vim.keymap.set("n", "<leader><S-z>", ":TCD ", { desc = "Tab Cd with Zoxide" })
 
 ----------
 -- Make --
