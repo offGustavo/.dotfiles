@@ -58,7 +58,7 @@ return {
 
   {
     "nendix/zen.nvim",
-    lazy = false,
+    lazy = true,
     priority = 1000,
   },
 
@@ -67,8 +67,15 @@ return {
   },
 
   {
-    dir = "~/Projects/shibuya.nvim/"
-  }
+    dir = "~/Projects/shibuya.nvim/",
+  },
+
+  {
+    "serhez/teide.nvim",
+    lazy = true,
+    priority = 1000,
+    opts = {},
+  },
 
   --   { "EdenEast/nightfox.nvim" } -- lazy
 }

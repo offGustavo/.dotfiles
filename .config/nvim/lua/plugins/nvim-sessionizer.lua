@@ -1,6 +1,6 @@
 return {
   "offGustavo/nvim-sessionizer",
-  -- enabled = false,
+  enabled = false,
   -- dir = "~/Projects/nvim-sessionizer/",
   config = function()
   require("nvim-sessionizer").setup({

@@ -11,22 +11,22 @@ return {
 
     -- Command to show logs
     vim.api.nvim_create_user_command("BaleiaLogs", vim.g.baleia.logger.show, { bang = true })
-
-    vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-      pattern = "*.txt",
-      callback = function()
-        vim.g.baleia.automatically(vim.api.nvim_get_current_buf())
-      end,
-    })
-
-    vim.api.nvim_create_autocmd({ "BufReadPost" }, {
-      pattern = "quickfix",
-      callback = function()
-        vim.api.nvim_set_option_value("modifiable", true, { buf = buffer })
-        vim.g.baleia.automatically(vim.api.nvim_get_current_buf())
-        vim.api.nvim_set_option_value("modified", false, { buf = buffer })
-        vim.api.nvim_set_option_value("modifiable", false, { buf = buffer })
-      end,
-    })
+    --
+    -- vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+    --   pattern = "*.txt",
+    --   callback = function()
+    --     vim.g.baleia.automatically(vim.api.nvim_get_current_buf())
+    --   end,
+    -- })
+    --
+    -- vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+    --   pattern = "quickfix",
+    --   callback = function()
+    --     vim.api.nvim_set_option_value("modifiable", true, { buf = buffer })
+    --     vim.g.baleia.automatically(vim.api.nvim_get_current_buf())
+    --     vim.api.nvim_set_option_value("modified", false, { buf = buffer })
+    --     vim.api.nvim_set_option_value("modifiable", false, { buf = buffer })
+    --   end,
+    -- })
   end,
 }

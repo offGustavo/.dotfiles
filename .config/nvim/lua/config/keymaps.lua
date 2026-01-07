@@ -35,9 +35,9 @@ end, { silent = true, desc = "Open Dashboard" })
 ----------------
 ---- Normal neovim Mode to Terminal
 ---- Remap default C-/ Lazyvim
-vim.keymap.set({ "n", "t", "i", "v" }, "<c-/>", function()
-  Snacks.terminal("tmux", { cwd = vim.uv.cwd() })
-end, { silent = true, desc = "Open Float Terminal" })
+-- vim.keymap.set({ "n", "t", "i", "v" }, "<c-/>", function()
+--   Snacks.terminal("tmux", { cwd = vim.uv.cwd() })
+-- end, { silent = true, desc = "Open Float Terminal" })
 
 -- vim.keymap.set({ "n", "t", "i", "v" }, "<leader>tf", function()
 --   Snacks.terminal("zellij")
