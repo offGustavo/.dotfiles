@@ -801,8 +801,9 @@ binds {
 
     // Scripts
     Mod+b { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/bluetooth.sh"; }
-    Mod+Ctrl+b { spawn "sh" "-c" "$HOME/.config/hypr/scripts/toggle-waybar.sh"; }
-    Mod+Alt+b { spawn "sh" "-c" "$HOME/.config/hypr/scripts/toggle-dark-mode.sh"; }
+    Mod+Ctrl+b { spawn "sh" "-c" "$HOME/.config/waybar/scripts/toggle-waybar.sh"; }
+    Mod+Alt+b { spawn "sh" "-c" "$HOME/.local/bin/toggle-dark-mode.sh"; }
+    Mod+Alt+W { spawn "sh" "-c" "$HOME/.local/bin/start_swaybg.lua"; }
     Mod+n { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/network.lua"; }
     Mod+v { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/sound.sh"; }
     Mod+p { spawn "sh" "-c" "/home/gustavo/.config/niri/scripts/monitors.sh"; }

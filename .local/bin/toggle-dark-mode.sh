@@ -15,9 +15,9 @@ start_sway() {
   kill_if_running swaybg 
   local wallpaper_name="$1"
   if [[ -n "$wallpaper_name" ]]; then
-    ~/.config/hypr/scripts/start_swaybg.lua -n "$wallpaper_name"
+    start_swaybg.lua -n "$wallpaper_name"
   else
-    ~/.config/hypr/scripts/start_swaybg.lua
+    start_swaybg.lua
   fi
 }
 

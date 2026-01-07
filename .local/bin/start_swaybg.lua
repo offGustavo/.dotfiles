@@ -6,6 +6,11 @@ local wallpapers = {
 			name = "Tokyo Night (day)",
 			path = "/home/gustavo/Pictures/Wallpapers/dharmx-Walls/anime/vinland-saga-manga-5120x2880-14832.jpg",
 		},
+
+    {
+      name = "02",
+      path = "/home/gustavo/Pictures/Wallpapers/dharmx-Walls/anime/a_train_going_through_a_lake.jpg"
+    }
 	},
 	Dark = {
 		-- {
