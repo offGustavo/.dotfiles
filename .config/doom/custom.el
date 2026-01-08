@@ -5,7 +5,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(counsel-ffdata dmenu exwm-firefox-core exwm-firefox-evil fzf hyprlang-ts-mode))
+   '(counsel-ffdata dmenu exwm-firefox-core exwm-firefox-evil fzf hyprlang-ts-mode
+                    multiple-cursors))
  '(warning-suppress-log-types '((emacs))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

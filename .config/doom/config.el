@@ -21,7 +21,7 @@
 (setq doom-font (font-spec :family "JetBrainsMonoNL NF" :size 16 :weight 'regular)
       doom-variable-pitch-font (font-spec :family "JetBrainsMonoNL NF" :size 16)
       doom-symbol-font (font-spec :family "JetBrainsMonoNL NF")
-      doom-big-font (font-spec :family "JetBrainsMonoNL NF" :size 24))
+      doom-big-font (font-spec :family "JetBrainsMonoNL NF" :size 28))
 ;;
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
@@ -48,14 +48,14 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Notes/Org/")
 
-;; (custom-set-faces!
-;;  '(markdown-header-delimiter-face :foreground "#565f89" :height 0.9) ;; darker gray
-;;  '(markdown-header-face-1 :height 1.8 :foreground "#7aa2f7" :weight extra-bold :inherit markdown-header-face) ;; blue
-;;  '(markdown-header-face-2 :height 1.4 :foreground "#9ece6a" :weight extra-bold :inherit markdown-header-face) ;; green
-;;  '(markdown-header-face-3 :height 1.2 :foreground "#e0af68" :weight extra-bold :inherit markdown-header-face) ;; yellow
-;;  '(markdown-header-face-4 :height 1.15 :foreground "#ff9e64" :weight bold :inherit markdown-header-face) ;; orange
-;;  '(markdown-header-face-5 :height 1.1 :foreground "#bb9af7" :weight bold :inherit markdown-header-face) ;; purple
-;;  '(markdown-header-face-6 :height 1.05 :foreground "#7dcfff" :weight semi-bold :inherit markdown-header-face)) ;; cyan
+(custom-set-faces!
+ '(markdown-header-delimiter-face :foreground "#565f89" :height 0.9) ;; darker gray
+ '(markdown-header-face-1 :height 1.8 :foreground "#7aa2f7" :weight extra-bold :inherit markdown-header-face) ;; blue
+ '(markdown-header-face-2 :height 1.4 :foreground "#9ece6a" :weight extra-bold :inherit markdown-header-face) ;; green
+ '(markdown-header-face-3 :height 1.2 :foreground "#e0af68" :weight extra-bold :inherit markdown-header-face) ;; yellow
+ '(markdown-header-face-4 :height 1.15 :foreground "#ff9e64" :weight bold :inherit markdown-header-face) ;; orange
+ '(markdown-header-face-5 :height 1.1 :foreground "#bb9af7" :weight bold :inherit markdown-header-face) ;; purple
+ '(markdown-header-face-6 :height 1.05 :foreground "#7dcfff" :weight semi-bold :inherit markdown-header-face)) ;; cyan
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -163,119 +163,129 @@
 ;; Disable breadcrumb
 (add-hook 'lsp-mode-hook (lambda () (lsp-headerline-breadcrumb-mode -1)))
 
-(require 'exwm)
-;; Set the initial workspace number.
-(setq exwm-workspace-number 4)
-;; Make class name the buffer name.
-(add-hook 'exwm-update-class-hook
-  (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
+;; (require 'exwm)
+;; ;; Set the initial workspace number.
+;; (setq exwm-workspace-number 4)
+;; ;; Make class name the buffer name.
+;; (add-hook 'exwm-update-class-hook
+;;   (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
 
-;; Global keybindings.
-(setq exwm-input-global-keys
-      `(([?\s-r] . exwm-reset) ;; s-r: Reset (to line-mode).
-        ([?\s-w] . exwm-workspace-switch) ;; s-w: Switch workspace.
-        ([?\s-&] . (lambda (cmd) ;; s-&: Launch application.
-                     (interactive (list (read-shell-command "$ ")))
-                     (start-process-shell-command cmd nil cmd)))
-        ([?\s-d] . (lambda (cmd) ;; s-&: Launch application.
-                     (interactive (list (read-shell-command "$ ")))
-                     (start-process-shell-command cmd nil cmd)))
+;; ;; Global keybindings.
+;; (setq exwm-input-global-keys
+;;       `(([?\s-r] . exwm-reset) ;; s-r: Reset (to line-mode).
+;;         ([?\s-w] . exwm-workspace-switch) ;; s-w: Switch workspace.
+;;         ([?\s-&] . (lambda (cmd) ;; s-&: Launch application.
+;;                      (interactive (list (read-shell-command "$ ")))
+;;                      (start-process-shell-command cmd nil cmd)))
+;;         ([?\s-d] . (lambda (cmd) ;; s-&: Launch application.
+;;                      (interactive (list (read-shell-command "$ ")))
+;;                      (start-process-shell-command cmd nil cmd)))
 
-        ;; ([?\s-D] . (lambda (cmd) ;; s-&: Launch application.
-        ;;              (interactive (list (read-shell-command "$ ")))
-        ;;              (start-process-shell-command cmd nil cmd)))
-        ;; (exwm-input-set-key (kbd "s-r") (lambda () (start-process "rofi" nil "rofi" "-show" "run")))
-        ;; ([?\s-D]
-        ;;  . (lambda ()
-        ;;      ;; s-d: Launch application via rofi
-        ;;      (interactive)
-        ;;      (let ((cmd (string-trim
-        ;;                  (shell-command-to-string
-        ;;                   "rofi -show drun -run-shell-command '{cmd}'"))))
-        ;;        (when (and cmd (not (string-empty-p cmd)))
-        ;;          (start-process-shell-command cmd nil cmd)))))
-        ;; s-N: Switch to certain workspace.
-        ,@(mapcar (lambda (i)
-                    `(,(kbd (format "s-%d" i)) .
-                      (lambda ()
-                        (interactive)
-                        (exwm-workspace-switch-create ,i))))
-                  (number-sequence 0 9))))
+;;         ;; ([?\s-D] . (lambda (cmd) ;; s-&: Launch application.
+;;         ;;              (interactive (list (read-shell-command "$ ")))
+;;         ;;              (start-process-shell-command cmd nil cmd)))
+;;         ;; (exwm-input-set-key (kbd "s-r") (lambda () (start-process "rofi" nil "rofi" "-show" "run")))
+;;         ;; ([?\s-D]
+;;         ;;  . (lambda ()
+;;         ;;      ;; s-d: Launch application via rofi
+;;         ;;      (interactive)
+;;         ;;      (let ((cmd (string-trim
+;;         ;;                  (shell-command-to-string
+;;         ;;                   "rofi -show drun -run-shell-command '{cmd}'"))))
+;;         ;;        (when (and cmd (not (string-empty-p cmd)))
+;;         ;;          (start-process-shell-command cmd nil cmd)))))
+;;         ;; s-N: Switch to certain workspace.
+;;         ,@(mapcar (lambda (i)
+;;                     `(,(kbd (format "s-%d" i)) .
+;;                       (lambda ()
+;;                         (interactive)
+;;                         (exwm-workspace-switch-create ,i))))
+;;                   (number-sequence 0 9))))
 
-(defun exwm-change-screen-hook ()
-  (let ((xrandr-output-regexp "\n\\([^ ]+\\) connected ")
-        default-output)
-    (with-temp-buffer
-      (call-process "xrandr" nil t nil)
-      (goto-char (point-min))
-      (re-search-forward xrandr-output-regexp nil 'noerror)
-      (setq default-output (match-string 1))
-      (forward-line)
-      (if (not (re-search-forward xrandr-output-regexp nil 'noerror))
-          (call-process "xrandr" nil nil nil "--output" default-output "--auto")
-        (call-process
-         "xrandr" nil nil nil
-         "--output" (match-string 1) "--primary" "--auto"
-         "--output" default-output "--off")
-        (setq exwm-randr-workspace-monitor-plist (list 0 (match-string 1)))))))
+;; (defun exwm-change-screen-hook ()
+;;   (let ((xrandr-output-regexp "\n\\([^ ]+\\) connected ")
+;;         default-output)
+;;     (with-temp-buffer
+;;       (call-process "xrandr" nil t nil)
+;;       (goto-char (point-min))
+;;       (re-search-forward xrandr-output-regexp nil 'noerror)
+;;       (setq default-output (match-string 1))
+;;       (forward-line)
+;;       (if (not (re-search-forward xrandr-output-regexp nil 'noerror))
+;;           (call-process "xrandr" nil nil nil "--output" default-output "--auto")
+;;         (call-process
+;;          "xrandr" nil nil nil
+;;          "--output" (match-string 1) "--primary" "--auto"
+;;          "--output" default-output "--off")
+;;         (setq exwm-randr-workspace-monitor-plist (list 0 (match-string 1)))))))
 
-(use-package! exwm-evil
-  :after exwm
-  :config
-  (add-hook 'exwm-manage-finish-hook #'enable-exwm-evil-mode)
-  (cl-pushnew 'escape exwm-input-prefix-keys)
+;; (use-package! exwm-evil
+;;   :after exwm
+;;   :config
+;;   (add-hook 'exwm-manage-finish-hook #'enable-exwm-evil-mode)
+;;   (cl-pushnew 'escape exwm-input-prefix-keys)
 
-  ;; If you want to force enable exwm-evil-mode in any buffer, use:
-  ;; (exwm-evil-enable-unconditionally)
+;;   ;; If you want to force enable exwm-evil-mode in any buffer, use:
+;;   ;; (exwm-evil-enable-unconditionally)
 
-  ;; We will disable `C-c' in insert state.
- (define-key exwm-mode-map (kbd "C-c") nil)
+;;   ;; We will disable `C-c' in insert state.
+;;  (define-key exwm-mode-map (kbd "C-c") nil)
 
-  (map! :map exwm-mode-map
-        :localleader
-        (:prefix ("d" . "debug")
-         :desc "Clear debug buffer" "l" #'xcb-debug:clear
-         :desc "Insert mark into the debug buffer" "m" #'xcb-debug:mark
-         :desc "Enable debug logging" "t" #'exwm-debug)
-        :desc "Toggle fullscreen" "f" #'exwm-layout-toggle-fullscreen
-        :desc "Hide floating window" "h" #'exwm-floating-hide
-        :desc "Send next key" "q" #'exwm-input-send-next-key
-        :desc "Toggle floating" "SPC" #'exwm-floating-toggle-floating
-        :desc "Send escape" "e" (cmd! (exwm-evil-send-key 1 'escape))
-        :desc "Toggle modeline" "m" #'exwm-layout-toggle-mode-line))
+;;   (map! :map exwm-mode-map
+;;         :localleader
+;;         (:prefix ("d" . "debug")
+;;          :desc "Clear debug buffer" "l" #'xcb-debug:clear
+;;          :desc "Insert mark into the debug buffer" "m" #'xcb-debug:mark
+;;          :desc "Enable debug logging" "t" #'exwm-debug)
+;;         :desc "Toggle fullscreen" "f" #'exwm-layout-toggle-fullscreen
+;;         :desc "Hide floating window" "h" #'exwm-floating-hide
+;;         :desc "Send next key" "q" #'exwm-input-send-next-key
+;;         :desc "Toggle floating" "SPC" #'exwm-floating-toggle-floating
+;;         :desc "Send escape" "e" (cmd! (exwm-evil-send-key 1 'escape))
+;;         :desc "Toggle modeline" "m" #'exwm-layout-toggle-mode-line))
 
-;; Super+Escape → return to evil-normal-state in EXWM
-(defun my/exwm-super-esc ()
-  (interactive)
-  (exwm-evil-normal-state))
+;; ;; Super+Escape → return to evil-normal-state in EXWM
+;; (defun my/exwm-super-esc ()
+;;   (interactive)
+;;   (exwm-evil-normal-state))
 
-;; ;; This is the correct way to set EXWM-specific keys
-;; (exwm-input-set-key (kbd "s-<escape>") #'my/exwm-super-esc)
+;; ;; ;; This is the correct way to set EXWM-specific keys
+;; ;; (exwm-input-set-key (kbd "s-<escape>") #'my/exwm-super-esc)
 
-;; Escape inside EXWM insert mode: send ESC to app
-;; (evil-define-key 'insert exwm-evil-mode-map
+;; ;; Escape inside EXWM insert mode: send ESC to app
+;; ;; (evil-define-key 'insert exwm-evil-mode-map
+;; ;;   (kbd "<escape>")
+;; ;;   (lambda () (interactive)
+;; ;;     (exwm-input--fake-key 'escape)))
+
+;; (evil-define-key 'normal exwm-evil-mode-map
 ;;   (kbd "<escape>")
 ;;   (lambda () (interactive)
-;;     (exwm-input--fake-key 'escape)))
+;;     (exwm-input--fake-key 'escape)
+;;     (exwm-evil-insert)))
 
-(evil-define-key 'normal exwm-evil-mode-map
-  (kbd "<escape>")
-  (lambda () (interactive)
-    (exwm-input--fake-key 'escape)
-    (exwm-evil-insert)))
+;; (use-package! exwm-randr
+;;   :after exwm
+;;   :config
+;;   (setq exwm-randr-workspace-monitor-plist
+;;         '(0 "eDP-1"
+;;           1 "HDMI-1-0"))
 
-(use-package! exwm-randr
-  :after exwm
-  :config
-  (setq exwm-randr-workspace-monitor-plist
-        '(0 "eDP-1"
-          1 "HDMI-1-0"))
+;;   (add-hook 'exwm-randr-screen-change-hook
+;;             (lambda ()
+;;               (start-process-shell-command
+;;                "xrandr" nil
+;;                "xrandr --output eDP-1 --mode 1920x1080 \
+;;                        --output HDMI-1-0 --mode 1920x1080 --right-of eDP-1")))
 
-  (add-hook 'exwm-randr-screen-change-hook
-            (lambda ()
-              (start-process-shell-command
-               "xrandr" nil
-               "xrandr --output eDP-1 --mode 1920x1080 \
-                       --output HDMI-1-0 --mode 1920x1080 --right-of eDP-1")))
+;;   (exwm-randr-enable))
 
-  (exwm-randr-enable))
+;;; multiple cursors
+(requier 'multiple-cursors)
+
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->")         'mc/mark-next-like-this)
+(global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
+(global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
+(global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
