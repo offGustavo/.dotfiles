@@ -33,6 +33,6 @@ export FZF_DEFAULT_COMMAND='rg --files'
 export ZOXIDE_EXCLUDE='/tmp/*'
 eval "$(zoxide init bash)"
 
-# Dotfiles 
-alias dotman='/usr/bin/git --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
-alias dotman-tui='/usr/bin/lazygit --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
+# Dotfiles
+alias dot='/usr/bin/git --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
+alias dot-tui='/usr/bin/lazygit --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'

@@ -115,8 +115,8 @@ alias lt='eza -aT --color=always --group-directories-first --icons=always --hype
 alias l.="eza -a | grep -e '^\.'" # show only dotfiles
 
 # Dotfiles
-alias dotman='/usr/bin/git --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
-alias dotman-tui='/usr/bin/lazygit --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
+alias dot='/usr/bin/git --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
+alias dot-tui='/usr/bin/lazygit --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
 
 # Change go PATH
 set -x GOPATH "$HOME/.go"
