@@ -542,10 +542,10 @@ binds {
     Mod+q { close-window; }
     Mod+Delete { close-window; }
 
-    Mod+H     { focus-column-or-monitor-left; }
-    Mod+J     { focus-window-or-workspace-down; }
-    Mod+K     { focus-window-or-workspace-up; }
-    Mod+L     { focus-column-or-monitor-right; }
+    Mod+H     { focus-column-left; }
+    Mod+J     { focus-window-down; }
+    Mod+K     { focus-window-up; }
+    Mod+L     { focus-column-right; }
 
     Mod+Left     { focus-column-or-monitor-left; }
     Mod+Down     { focus-window-or-workspace-down; }
@@ -558,37 +558,29 @@ binds {
     Mod+Prior { focus-workspace-up; }  
 
     Mod+Shift+H { consume-or-expel-window-left; }         
-    Mod+Shift+J { move-window-down-or-to-workspace-down; }
+    Mod+Shift+J { move-window-down; }
     Mod+Shift+L { consume-or-expel-window-right; }        
-    Mod+Shift+K { move-window-up-or-to-workspace-up; }    
+    Mod+Shift+K { move-window-up; }    
 
     Mod+Shift+Left { consume-or-expel-window-left; }         
     Mod+Shift+Down { move-window-down-or-to-workspace-down; }
     Mod+Shift+Right { consume-or-expel-window-right; }        
     Mod+Shift+Up { move-window-up-or-to-workspace-up; }    
 
-    Mod+BracketLeft  { focus-monitor-left; }
-    Mod+BracketRight { focus-monitor-right; }
     Mod+comma  { focus-monitor-left; }
     Mod+period { focus-monitor-right; }
     Mod+Home  { focus-monitor-left; }
     Mod+End { focus-monitor-right; }
 
-    Mod+Shift+BracketLeft     { move-window-to-monitor-left; }
-    Mod+Shift+BracketRight     { move-window-to-monitor-right; }
     Mod+Shift+comma     { move-window-to-monitor-left; }
     Mod+Shift+period     { move-window-to-monitor-right; }
     Mod+Shift+Home     { move-window-to-monitor-left; }
     Mod+Shift+End     { move-window-to-monitor-right; }
 
-    Mod+Alt+BracketLeft     { move-workspace-to-monitor-left; }
-    Mod+Alt+BracketRight     { move-workspace-to-monitor-right; }
     Mod+Alt+comma     { move-workspace-to-monitor-left; }
     Mod+Alt+period     { move-workspace-to-monitor-right; }
     Mod+Alt+Home     { move-workspace-to-monitor-left; }
     Mod+Alt+End     { move-workspace-to-monitor-right; }
-    Mod+Ctrl+BracketLeft     { move-workspace-to-monitor-left; }
-    Mod+Ctrl+BracketRight     { move-workspace-to-monitor-right; }
     Mod+Ctrl+comma     { move-workspace-to-monitor-left; }
     Mod+Ctrl+period     { move-workspace-to-monitor-right; }
     Mod+Ctrl+Home     { move-workspace-to-monitor-left; }
@@ -690,7 +682,6 @@ binds {
     Mod+4 { focus-workspace "4"; }
     Mod+5 { focus-workspace "5"; }
     Mod+6 { focus-workspace "6"; }
-    Mod+Shift+g { focus-workspace "6"; }
     Mod+7 { focus-workspace "7"; }
     Mod+8 { focus-workspace "8"; }
     Mod+9 { focus-workspace "9"; }
@@ -701,7 +692,6 @@ binds {
     Mod+Shift+4 { move-window-to-workspace "4"; }
     Mod+Shift+5 { move-window-to-workspace "5"; }
     Mod+Shift+6 { move-window-to-workspace "6"; }
-    Mod+M { move-window-to-workspace "6"; }
     Mod+Shift+7 { move-window-to-workspace "7"; }
     Mod+Shift+8 { move-window-to-workspace "8"; }
     Mod+Shift+9 { move-window-to-workspace "9"; }
@@ -835,14 +825,14 @@ recent-windows {
 
         Alt+Tab         { next-window scope="all"; }
         Alt+Shift+Tab   { previous-window scope="all"; }
-        Alt+grave       { next-window     filter="app-id"; }
-        Alt+Shift+grave { previous-window filter="app-id"; }
+        alt+grave       { next-window     scope="all" filter="app-id"; }
+        Alt+Shift+grave { previous-window scope="all" filter="app-id"; }
         Alt+escape       { next-window     scope="workspace"; }
         Alt+Shift+escape { previous-window scope="workspace"; }
 
-        // Mod+Tab         { next-window; }
-        // Mod+Shift+Tab   { previous-window; }
-        // Mod+grave       { next-window     filter="app-id"; }
-        // Mod+Shift+grave { previous-window filter="app-id"; }
+        Mod+Tab         { next-window; }
+        Mod+Shift+Tab   { previous-window; }
+        Mod+grave       { next-window     filter="app-id"; }
+        Mod+Shift+grave { previous-window filter="app-id"; }
     }
 }
