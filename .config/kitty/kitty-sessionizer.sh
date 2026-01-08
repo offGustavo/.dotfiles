@@ -105,7 +105,7 @@ create_session_file(){
 }
 
 ## Script ##
-[[ -z $session_path ]] && session_path=$(zoxide query --list | fzf --prompt "Switch to session > " || exit 1)
+[[ -z $session_path ]] && session_path=$(zoxide query --list --score | fzf --no-sort --color=base16 --margin=20% --reverse --style=full --prompt "Switch to session > " | awk '{print $2}' || exit 1)
 
 [[ -z "$session_path" ]] && {
     printf "No session selected" >&2
