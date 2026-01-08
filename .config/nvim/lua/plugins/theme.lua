@@ -67,10 +67,6 @@ return {
   },
 
   {
-    dir = "~/Projects/shibuya.nvim/",
-  },
-
-  {
     "serhez/teide.nvim",
     lazy = true,
     priority = 1000,
