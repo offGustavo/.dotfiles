@@ -1,4 +1,5 @@
 (defcfg
+[,[]{]m
  movemouse-smooth-diagonals yes
  log-layer-changes yes
  process-unmapped-keys yes
@@ -35,9 +36,11 @@
    ;; (grv ret)   @bas 100 all-released() 
    ;; (grv spc)   @gam 100 all-released() 
    ;; (lsft rsft) caps 100 all-released() 
-   (c v)  S-[ 50 all-released()
-   (x c)  S-] 50 all-released()
-   (z x)  S-\ 50 all-released()
+   (s d f)    [ 50 all-released()
+   (w e r)  S-[ 50 all-released()
+   (x c v)    \ 50 all-released()
+   (u i o)  S-] 50 all-released()
+   (j k l)    ] 50 all-released()
    (m ,)    [ 50 all-released()
    (, .)    ] 50 all-released()
    (. /)    \ 50 all-released()
