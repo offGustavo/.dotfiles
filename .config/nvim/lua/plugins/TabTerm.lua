@@ -1,7 +1,6 @@
 return {
   'offGustavo/TabTerm.nvim',
   lazy = true,
-  enabled = false,
   opts = {
     center = true,
     separator_first = "",

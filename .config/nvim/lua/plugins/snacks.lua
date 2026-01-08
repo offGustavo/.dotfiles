@@ -111,7 +111,7 @@ return {
           layout = ivy_like,
         },
       },
-      -- layout = ivy_like, 
+      layout = ivy_like, 
     },
     animate = {
       duration = 10, -- ms per step

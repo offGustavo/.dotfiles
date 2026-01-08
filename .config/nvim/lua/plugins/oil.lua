@@ -247,16 +247,17 @@ return {
       --   end,
       -- })
 
-      --   vim.api.nvim_create_autocmd("BufEnter", {
-      --     callback = function(args)
-      --       if vim.bo[args.buf].filetype == "oil" then
-      --         local dir = require("oil").get_current_dir()
-      --         if dir then
-      --           vim.cmd.lcd(dir)
-      --         end
+      -- vim.api.nvim_create_autocmd("BufEnter", {
+      --   callback = function(args)
+      --     if vim.bo[args.buf].filetype == "oil" then
+      --       local dir = require("oil").get_current_dir()
+      --       if dir then
+      --         vim.cmd.lcd(dir)
       --       end
-      --     end,
-      --   })
+      --     end
+      --   end,
+      -- })
+
       vim.keymap.set("n", "<leader>fd", "<Cmd>Oil<Cr>", { desc = "Oil" })
       vim.keymap.set("n", "<leader><Cr>", "<Cmd>Oil --float<Cr>", { desc = "Oil" })
       vim.keymap.set("n", "<leader>.", "<Cmd>split<Cr><Cmd>Oil<Cr>", { desc = "Oil" })
