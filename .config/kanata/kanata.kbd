@@ -1,5 +1,4 @@
 (defcfg
-[,[]{]m
  movemouse-smooth-diagonals yes
  log-layer-changes yes
  process-unmapped-keys yes
