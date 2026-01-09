@@ -12,22 +12,22 @@ vim.keymap.set("n", "gJ", "kJ_", { silent = true, desc = "Join Line Above" })
 vim.keymap.set("n", "J", "J_", { silent = true, desc = "Better Join Line" })
 
 pcall(function()
-    -- Del LazyVim Keymaps
-    vim.keymap.set({ "x", "n" }, "<Left>", "<Left>")
-    vim.keymap.set({ "x", "n" }, "<Up>", "<Up>")
-    vim.keymap.set({ "x", "n" }, "<Down>", "<Down>")
-    vim.keymap.set({ "x", "n" }, "<Right>", "<Right>")
+  -- Del LazyVim Keymaps
+  vim.keymap.set({ "x", "n" }, "<Left>", "<Left>")
+  vim.keymap.set({ "x", "n" }, "<Up>", "<Up>")
+  vim.keymap.set({ "x", "n" }, "<Down>", "<Down>")
+  vim.keymap.set({ "x", "n" }, "<Right>", "<Right>")
 
-    -- vim.keymap.del({ "n" }, "<C-h>")
-    -- vim.keymap.del({ "n" }, "<C-j>")
-    -- vim.keymap.del({ "n" }, "<C-k>")
-    -- vim.keymap.del({ "n" }, "<C-l>")
+  -- vim.keymap.del({ "n" }, "<C-h>")
+  -- vim.keymap.del({ "n" }, "<C-j>")
+  -- vim.keymap.del({ "n" }, "<C-k>")
+  -- vim.keymap.del({ "n" }, "<C-l>")
 end)
 -----------------
 --- DASHBOARD ---
 -----------------
 vim.keymap.set("n", "<leader>od", function()
-    Snacks.dashboard()
+  Snacks.dashboard()
 end, { silent = true, desc = "Open Dashboard" })
 
 ----------------
@@ -43,9 +43,9 @@ end, { silent = true, desc = "Open Dashboard" })
 --   Snacks.terminal("zellij")
 -- end, { silent = true, desc = "Open Float  Terminal" })
 
-vim.keymap.set("n", "<leader>tn", ":terminal ", { silent = true, desc = "New Buffer Terminal With Command" } )
-vim.keymap.set("n", "<leader>tv", ":vertical terminal ", { silent = true, desc = "Vertical Terminal With Command" } )
-vim.keymap.set("n", "<leader>ts", ":horizontal terminal ", { silent = true, desc = "Horizontal Terminal With Command" } )
+vim.keymap.set("n", "<leader>tn", ":terminal ", { silent = true, desc = "New Buffer Terminal With Command" })
+vim.keymap.set("n", "<leader>tv", ":vertical terminal ", { silent = true, desc = "Vertical Terminal With Command" })
+vim.keymap.set("n", "<leader>ts", ":horizontal terminal ", { silent = true, desc = "Horizontal Terminal With Command" })
 
 vim.keymap.set("n", "<leader>tN", "<Cmd>terminal<Cr>", { silent = true, desc = "New Buffer Terminal" })
 vim.keymap.set("n", "<leader>tV", "<Cmd>vertical terminal<CR>", { silent = true, desc = "Vertical Terminal" })
@@ -59,18 +59,78 @@ vim.keymap.set("n", "<leader>o?", ":hor term rg --vimgrep ", { desc = "Grep" })
 ---- Terminal Mode to Normal
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { silent = true, desc = "Go To Normal Mode in Terminal" })
 
+--- tabterm
+vim.g.tabterm_config = {
+    center = true,
+    separator_first = "",
+    separator_right = "",
+    separator_left = "",
+    -- separator_right = "",
+    -- separator_left = "",
+    -- separator_first = "",
+    -- separator_first = "",
+    -- separator_first = "",
+    -- separator_first = " ",
+    -- separator_right = "",
+    -- separator_left = "",
+    -- separator_first = "",
+    tab_highlight = "%#lualine_a_normal#",
+    default_highlight = "%#lualine_c_normal#",
+  }
+
+vim.keymap.set({ "i", "n", "t" }, "<A-m>c", function()
+    require("fish.tabterm").new()
+  end, { desc = "Create Terminal" })
+vim.keymap.set({ "i", "n", "t" }, "<A-m>x", function()
+  require("fish.tabterm").close()
+end, { desc = "Close Terminal" })
+vim.keymap.set({ "i", "n", "t" }, "<A-m>d", function()
+  require("fish.tabterm").toggle()
+end, { desc = "Toggle Terminal" })
+vim.keymap.set({ "i", "n", "t" }, "<A-m>,", function()
+  require("fish.tabterm").rename()
+end, { desc = "Rename Terminal" })
+vim.keymap.set({ "i", "n", "t" }, "<A-n>", function()
+  require("fish.tabterm").new()
+end, { desc = "Create Terminal" })
+vim.keymap.set({ "i", "n", "t" }, "<A-x>", function()
+  require("fish.tabterm").close()
+end, { desc = "Close Terminal" })
+vim.keymap.set({ "i", "n", "t" }, "<A-/>", function()
+  require("fish.tabterm").toggle()
+end, { desc = "Toggle Terminal" })
+vim.keymap.set({ "i", "n", "t" }, "<A-,>", function()
+  require("fish.tabterm").rename()
+end, { desc = "Rename Terminal" })
+vim.keymap.set({ "i", "n", "t" }, "<A-m>!", function()
+  print("Test Legal Apenas")
+end, { desc = "which_key_ignore" })
+vim.keymap.set({ "i", "n", "t" }, "<A-m>%", function()
+  print("Test Legal Apenas")
+end, { desc = "which_key_ignore" })
+vim.keymap.set({ "i", "n", "t" }, '<A-m>"', function()
+  print("Test Legal Apenas")
+end, { desc = "which_key_ignore" })
+
+for i = 1, 9 do
+  vim.keymap.set({ "i", "n", "t" }, "<A-m>" .. i, function()
+    require("fih.tabterm").go(i)
+  end, { desc = "which_key_ignore" })
+  vim.keymap.set({ "i", "n", "t" }, "<A-" .. i .. ">", function()
+    require("fish.tabterm").go(i)
+  end, { desc = "which_key_ignore" })
+end
+
 ---- Move in windows on Terminal Mode
 -- vim.keymap.set("t", "<C-h>", "<C-\\><C-N><C-w>h")
 -- vim.keymap.set("t", "<C-j>", "<C-\\><C-N><C-w>j")
 -- vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k")
 -- vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l")
-
 -- -- Move Window
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
-
 -- resize window
 -- vim.keymap.set("n", "<C-A-h>", "<C-w><", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-A-l>", "<C-w>>", { desc = "Move window to the right" })
@@ -140,23 +200,23 @@ vim.keymap.set("c", "<C-o>", "<C-f>")
 
 -- Visual Keymaps - Markdown Text
 vim.keymap.set(
-    "x",
-    "<C-i>",
-    ":<Del><Del><Del><Del><Del>norm saiw*<Cr>gv",
-    { silent = true, desc = "Add Italic/Bold(*)" }
+  "x",
+  "<C-i>",
+  ":<Del><Del><Del><Del><Del>norm saiw*<Cr>gv",
+  { silent = true, desc = "Add Italic/Bold(*)" }
 )
 vim.keymap.set(
-    "x",
-    "<C-o>",
-    ":<Del><Del><Del><Del><Del>norm sd*<Cr>gv",
-    { silent = true, desc = "Remove Italic/Bold(*)" }
+  "x",
+  "<C-o>",
+  ":<Del><Del><Del><Del><Del>norm sd*<Cr>gv",
+  { silent = true, desc = "Remove Italic/Bold(*)" }
 )
 
 --- Buffers
 -- Remove Lazyvim default keymap
 pcall(function()
-    vim.keymap.del("n", "<S-h>")
-    vim.keymap.del("n", "<S-l>")
+  vim.keymap.del("n", "<S-h>")
+  vim.keymap.del("n", "<S-l>")
 end)
 vim.keymap.set("n", "<C-S-PageUp>", vim.cmd.bnext, { desc = "Next Buffer" })
 vim.keymap.set("n", "<C-S-PageDown>", vim.cmd.bprev, { desc = "Previous Buffer" })
@@ -180,7 +240,7 @@ vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diag
 --- LazyVim ---
 ---------------
 pcall(function()
-    vim.keymap.del("n", "<leader>l")
+  vim.keymap.del("n", "<leader>l")
 end)
 vim.keymap.set("n", "<leader>lz", ":Lazy<Cr>", { desc = "Lazy", silent = true })
 vim.keymap.set("n", "<leader>lx", ":LazyExtras<Cr>", { desc = "LazyVim Extras", silent = true })
@@ -197,20 +257,20 @@ vim.keymap.set("n", "<leader>ll", ":lwindow<Cr>", { desc = "Location List", sile
 vim.keymap.set("n", "<leader>lp", ":lprev<Cr>", { desc = "Location List", silent = true })
 vim.keymap.set("n", "<leader>ln", ":lnext<Cr>", { desc = "Location List", silent = true })
 vim.keymap.set("n", "<leader>la", function()
-    local pos = vim.api.nvim_win_get_cursor(0)
-    local item = {
-        bufnr = vim.api.nvim_get_current_buf(),
-        lnum = pos[1],
-        col = pos[2] + 1,
-        text = vim.fn.getline("."),
-    }
-    vim.fn.setloclist(0, { item }, "a") -- "a" = append
-    vim.notify("Adicionado à Location List")
+  local pos = vim.api.nvim_win_get_cursor(0)
+  local item = {
+    bufnr = vim.api.nvim_get_current_buf(),
+    lnum = pos[1],
+    col = pos[2] + 1,
+    text = vim.fn.getline("."),
+  }
+  vim.fn.setloclist(0, { item }, "a") -- "a" = append
+  vim.notify("Adicionado à Location List")
 end, { desc = "Adicionar item à Location List" })
 
 vim.keymap.set("n", "<leader>lr", function()
-    vim.fn.setloclist(0, {}, "r") -- "r" = replace (aqui com vazio)
-    vim.notify("Location List resetada")
+  vim.fn.setloclist(0, {}, "r") -- "r" = replace (aqui com vazio)
+  vim.notify("Location List resetada")
 end, { desc = "Resetar Location List" })
 
 ----------------
@@ -225,7 +285,12 @@ vim.keymap.set("n", "<leader>qh", "<Cmd>chistory<Cr>", { silent = true, desc = "
 vim.keymap.set("n", "<leader>qn", "<Cmd>cnewer<Cr>", { silent = true, desc = "Next Quickfix List" })
 vim.keymap.set("n", "<leader>qN", "<Cmd>colder<Cr>", { silent = true, desc = "Previous Quickfix List" })
 for i = 1, 9 do
-  vim.keymap.set("n", "<leader>q" .. i, "<Cmd>chistory " .. i .. "<Cr>", { silent = true, desc = "Go to " .. i .. " Quickfix" })
+  vim.keymap.set(
+    "n",
+    "<leader>q" .. i,
+    "<Cmd>chistory " .. i .. "<Cr>",
+    { silent = true, desc = "Go to " .. i .. " Quickfix" }
+  )
 end
 
 ------------
@@ -239,16 +304,16 @@ vim.keymap.set("n", "<leader>qr", vim.cmd.restart, { desc = "Restart Vim" })
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set(
-    "n",
-    "<leader>rg",
-    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-    { desc = "Substitute Current Word Globally" }
+  "n",
+  "<leader>rg",
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "Substitute Current Word Globally" }
 )
 vim.keymap.set(
-    "n",
-    "<leader>rw",
-    [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-    { desc = "Substitute Current Word" }
+  "n",
+  "<leader>rw",
+  [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "Substitute Current Word" }
 )
 vim.keymap.set({ "x", "n" }, "<leader>rr", ":s/", { desc = "Search and Replace" })
 vim.keymap.set("x", "S", ":s/", { desc = "Substitute in line(or selection)" })
@@ -257,27 +322,26 @@ vim.keymap.set("x", "<leader>rp", '"_dP', { silent = true, desc = "Paste Without
 
 vim.keymap.set("n", "gf", ":e <cfile><Cr>", { silent = true, desc = "Better gf" })
 
-
 -- Toggle Options
 Snacks.toggle
-    .new({
-        id = "toggle_sing_and_line_column",
-        name = "Relative Line Number and Sign Column",
-        get = function()
-            return vim.o.relativenumber
-        end,
-        set = function(state)
-            if state then
-                vim.o.signcolumn = "no"
-                vim.opt.number = false
-                vim.opt.relativenumber = false
-            end
-            vim.o.signcolumn = "yes"
-            vim.opt.number = state
-            vim.opt.relativenumber = state
-        end,
-    })
-    :map("<leader>on")
+  .new({
+    id = "toggle_sing_and_line_column",
+    name = "Relative Line Number and Sign Column",
+    get = function()
+      return vim.o.relativenumber
+    end,
+    set = function(state)
+      if state then
+        vim.o.signcolumn = "no"
+        vim.opt.number = false
+        vim.opt.relativenumber = false
+      end
+      vim.o.signcolumn = "yes"
+      vim.opt.number = state
+      vim.opt.relativenumber = state
+    end,
+  })
+  :map("<leader>on")
 
 Snacks.toggle.option("cursorline", { off = false, on = true }):map("<leader>ol")
 
@@ -304,17 +368,16 @@ local modes = { "n", "x", "i", "t" }
 local term_insert_mode = "<Cmd>term<Cr><Cmd>start<Cr>"
 
 map(modes, tmux_prefix .. "%", "<Cmd>split<Cr>" .. term_insert_mode, { desc = "Tmux Split" })
-map(modes, tmux_prefix .. "\"", "<Cmd>vsplit<Cr>" .. term_insert_mode, { desc = "Tmux Vertical Split" })
+map(modes, tmux_prefix .. '"', "<Cmd>vsplit<Cr>" .. term_insert_mode, { desc = "Tmux Vertical Split" })
 map(modes, tmux_prefix .. "c", "<Cmd>tabnew<Cr>" .. term_insert_mode, { desc = "Tmux New Tab" })
 map(modes, tmux_prefix .. "x", "<Cmd>close!<Cr>", { desc = "Tmux Close" })
 map(modes, tmux_prefix .. "w", ":b term:h", { desc = "Tmux Switch Terminals" })
 map(modes, tmux_prefix .. "[", "<C-\\><C-n>", { desc = "Tmux Copy Mode" })
 
 for i = 1, 9, 1 do
-    map(modes, tmux_prefix .. i, "<Cmd>norm " .. i .. "gt<Cr>", { desc = "Tmux to tab " .. i })
-    vim.keymap.set("n", "<leader><tab>" .. i, "<Cmd>norm" .. i .. "gt<Cr>", { desc = "which_key_ignore" })
+  map(modes, tmux_prefix .. i, "<Cmd>norm " .. i .. "gt<Cr>", { desc = "Tmux to tab " .. i })
+  vim.keymap.set("n", "<leader><tab>" .. i, "<Cmd>norm" .. i .. "gt<Cr>", { desc = "which_key_ignore" })
 end
-
 
 vim.cmd([[
  nmap  <S-ScrollWheelUp> zh
@@ -325,32 +388,31 @@ vim.cmd([[
 -- OBSIDIAN ---
 ---------------
 vim.keymap.set("n", "<leader>ood", function()
-    local current_date = os.date("%Y-%m-%d")
-    local daily_note_date = "~/Notes/DailyNotes/" .. current_date .. ".md"
-    vim.cmd("e " .. daily_note_date)
+  local current_date = os.date("%Y-%m-%d")
+  local daily_note_date = "~/Notes/DailyNotes/" .. current_date .. ".md"
+  vim.cmd("e " .. daily_note_date)
 end, { desc = "Daily Note" })
 
 vim.keymap.set("n", "<leader>ooc", function()
-    local current_date_and_time = os.date("%Y-%m-%d %H:%M:%S")
-    local commit_date = "vault backup: " .. current_date_and_time
-    vim.cmd('!git add ~/Notes && git commit -m "' .. commit_date .. '"')
-    print("Commit: " .. commit_date)
+  local current_date_and_time = os.date("%Y-%m-%d %H:%M:%S")
+  local commit_date = "vault backup: " .. current_date_and_time
+  vim.cmd('!git add ~/Notes && git commit -m "' .. commit_date .. '"')
+  print("Commit: " .. commit_date)
 end, { desc = "Commit All Changes" })
 
 vim.keymap.set("n", "<leader>oop", function()
-    vim.cmd("!git pull")
-    print("Pull Changes")
+  vim.cmd("!git pull")
+  print("Pull Changes")
 end, { desc = "Pull Changes" })
 
 vim.keymap.set("n", "<leader>ooP", function()
-    vim.cmd("!git push")
-    print("Push Changes")
+  vim.cmd("!git push")
+  print("Push Changes")
 end, { desc = "Push Changes" })
 
 vim.keymap.set("x", "<leader>oof", ':! tr -s " " | column -t -s "|" -o "|"<Cr>', { desc = "Format Table in Markdown" })
 
 vim.keymap.set("x", "<leader>a", ":AlignRegexp<CR>", { desc = "Align by regex", silent = true })
-
 
 -------------------------------------
 ----- CUSTOM SEARCH FILES AND WORD --
@@ -428,14 +490,13 @@ vim.keymap.set("n", "<leader><S-z>", ":TCD ", { desc = "Tab Cd with Zoxide" })
 vim.keymap.set("n", "<leader>cm", ":make ", { desc = "Make", remap = true })
 vim.keymap.set("n", "<leader>cM", "<Cmd>make<CR>", { desc = "Run Make" })
 
-
-vim.keymap.set('n', 'gX', function()
-    local file = vim.fn.expand("%:p")
-    if file ~= "" then
-        vim.ui.open(file)
-    else
-        vim.notify("No file to open", vim.log.levels.WARN)
-    end
+vim.keymap.set("n", "gX", function()
+  local file = vim.fn.expand("%:p")
+  if file ~= "" then
+    vim.ui.open(file)
+  else
+    vim.notify("No file to open", vim.log.levels.WARN)
+  end
 end, { desc = "Open current file" })
 
 vim.keymap.set("c", "w!!", "w !sudo tee > /dev/null %", { silent = true, desc = "Write as Sudo" })

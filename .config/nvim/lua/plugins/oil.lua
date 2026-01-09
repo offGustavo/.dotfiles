@@ -259,8 +259,7 @@ return {
       -- })
 
       vim.keymap.set("n", "<leader>fd", "<Cmd>Oil<Cr>", { desc = "Oil" })
-      vim.keymap.set("n", "<leader><Cr>", "<Cmd>Oil --float<Cr>", { desc = "Oil" })
-      vim.keymap.set("n", "<leader>.", "<Cmd>split<Cr><Cmd>Oil<Cr>", { desc = "Oil" })
+      vim.keymap.set("n", "<leader>.", "<Cmd>Oil<Cr>", { desc = "Oil" })
     end,
   },
   {

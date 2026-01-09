@@ -59,8 +59,8 @@ require("fish.commads")
 require("fish.filetypes")
 
 -- External Programs
-require("fish.neovide")
-require("fish.vscode")
+-- require("fish.neovide")
+-- require("fish.vscode")
 
 if os.getenv("DISPLAY") then
   -- Theme
@@ -80,3 +80,6 @@ else
   -- require("fish.tmux")
   -- require("fish.lazygit")
 end
+
+
+vim.cmd("let g:loaded_fzf = 0")

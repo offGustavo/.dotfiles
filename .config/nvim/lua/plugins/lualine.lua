@@ -1,4 +1,13 @@
-if os.getenv('LUALINE_DISABLE') == '1' then
+local function show_macro_recording()
+  local recording_register = vim.fn.reg_recording()
+  if recording_register == "" then
+    return ""
+  else
+    return "@" .. recording_register
+  end
+end
+
+if os.getenv("LUALINE_DISABLE") == "1" then
   print("oi")
   return {
     "nvim-lualine/lualine.nvim",
@@ -96,6 +105,7 @@ else
             "filesize",
             "location",
             "progress",
+            "selectioncount",
             {
               "diagnostics",
               sources = { "nvim_diagnostic" },
@@ -110,6 +120,11 @@ else
             -- "%=",
           },
           lualine_x = {
+            {
+              "macro-recording",
+              fmt = show_macro_recording,
+            },
+            "searchcount",
             {
               "branch",
               -- icon = "",

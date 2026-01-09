@@ -7,7 +7,6 @@ return {
       "sindrets/diffview.nvim", -- optional - Diff integration
     },
     keys = {
-      { "<leader>gn", "<Cmd>Neogit kind=floating cwd=%:h<Cr>", silent = true, desc = "Neogit Float" },
       { "<leader>gg", "<Cmd>Neogit kind=replace cwd=%:h<Cr>", silent = true, desc = "Neogit" },
     },
   },
