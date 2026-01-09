@@ -64,7 +64,7 @@ require("fish.filetypes")
 
 if os.getenv("DISPLAY") then
   -- Theme
-  -- require("fish.theme")
+  require("fish.theme")
   -- require("themes.compline").setup()
 else
   vim.cmd([[

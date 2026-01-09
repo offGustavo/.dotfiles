@@ -1,3 +1,12 @@
 {
-  "plugins": []
+  "plugins": {
+    "nvim-sessionizer": {
+      "rev": "81e235beeabb58f38cc4b1fc7edc15d2f851dc4d",
+      "src": "https://github.com/offGustavo/nvim-sessionizer"
+    },
+    "tv.nvim": {
+      "rev": "e22cf23e141b77d0e1719700775d5a85b129c98a",
+      "src": "https://github.com/alexpasmantier/tv.nvim"
+    }
+  }
 }
