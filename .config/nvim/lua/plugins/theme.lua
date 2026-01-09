@@ -19,30 +19,30 @@ return {
     },
   },
 
-  {
-    "catppuccin/nvim",
-    opts = {
-      transparent_background = false, -- disables setting the background color.
-      float = {
-        transparent = true, -- enable transparent floating windows
-        solid = true, -- use solid styling for floating windows, see |winborder|
-      },
-    },
-    name = "catppuccin",
-    lazy = true,
-  },
+  -- {
+  --   "catppuccin/nvim",
+  --   opts = {
+  --     transparent_background = false, -- disables setting the background color.
+  --     float = {
+  --       transparent = true, -- enable transparent floating windows
+  --       solid = true, -- use solid styling for floating windows, see |winborder|
+  --     },
+  --   },
+  --   name = "catppuccin",
+  --   lazy = true,
+  -- },
 
-  { "rebelot/kanagawa.nvim", name = "kanagawa", lazy = true },
+  -- { "rebelot/kanagawa.nvim", name = "kanagawa", lazy = true },
 
-  { "rose-pine/neovim", lazy = true },
+  -- { "rose-pine/neovim", lazy = true },
 
-  { "shaunsingh/nord.nvim", lazy = true },
+  -- { "shaunsingh/nord.nvim", lazy = true },
 
-  { "ellisonleao/gruvbox.nvim", lazy = true },
+  -- { "ellisonleao/gruvbox.nvim", lazy = true },
 
   -- { "SomeCoder99/darkslate.nvim", lazy = true },
 
-  { "Mofiqul/adwaita.nvim", lazy = true, priority = 1000 },
+  -- { "Mofiqul/adwaita.nvim", lazy = true, priority = 1000 },
 
   -- { "nvim-mini/mini.base16", version = false, lazy = true },
 
@@ -54,13 +54,13 @@ return {
 
   -- { "kyazdani42/nvim-palenight.lua", lazy = true },
 
-  { "NTBBloodbath/doom-one.nvim", lazy = true },
+  -- { "NTBBloodbath/doom-one.nvim", lazy = true },
 
-  {
-    "nendix/zen.nvim",
-    lazy = true,
-    priority = 1000,
-  },
+  -- {
+  --   "nendix/zen.nvim",
+  --   lazy = true,
+  --   priority = 1000,
+  -- },
 
   {
     "tiagovla/tokyodark.nvim",
