@@ -5,7 +5,7 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       -- Declare a global function to retrieve the current directory
-      function _G.get_oil_winbar()
+      local function get_oil_winbar()
         local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
         local dir = require("oil").get_current_dir(bufnr)
         if dir then
@@ -43,7 +43,7 @@ return {
           conceallevel = 3,
           concealcursor = "nvic",
           relativenumber = false,
-          winbar = "%!v:lua.get_oil_winbar()",
+          -- winbar = get_oil_winbar(),
         },
         -- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
         delete_to_trash = true,
