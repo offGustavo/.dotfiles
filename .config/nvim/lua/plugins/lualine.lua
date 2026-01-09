@@ -181,12 +181,6 @@ else
           lualine_z = {},
         },
         tabline = {
-          -- lualine_a = {
-          --   "tabs"
-          -- },
-          -- lualine_y = {
-          --   "windows"
-          -- }
         },
         winbar = {},
         inactive_winbar = {},

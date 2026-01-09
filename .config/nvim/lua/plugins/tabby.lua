@@ -1,6 +1,5 @@
 return {
   "nanozuki/tabby.nvim",
-  enabled = true,
   config = function()
     -- vim.o.showtabline = 2
     local theme = {

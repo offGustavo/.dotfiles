@@ -1,3 +1,4 @@
+-- if true then return {} end
 -- local ivy_like = {
 --             preview = false,
 --             layout = {
