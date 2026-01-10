@@ -94,7 +94,7 @@ rm/ (tap-hold 100 300 / @mov)
   ;; Remap
 
   ;; Caps
-   ecc (tap-hold 100 300 esc caps)
+   ;; ecc (tap-hold 100 300 esc caps)
 ;; lce (tap-hold 100 300 esc caps)
 
   ;; Control
