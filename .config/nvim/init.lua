@@ -1,3 +1,9 @@
+vim.filetype.add({
+  extension = {
+    kbd = "kbd", -- maps *.kbd → filetype=kbd
+  },
+})
+
 -- bootstrap lazy.nvim, LazyVim and your plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -41,14 +47,14 @@ require("lazy").setup({
     rtp = {
       -- disable some rtp plugins
       disabled_plugins = {
-        -- "gzip",
+        "gzip",
         -- "matchit",
         -- "matchparen",
         "netrwPlugin",
-        -- "tarPlugin",
-        -- "tohtml",
+        "tarPlugin",
+        "tohtml",
         "tutor",
-        -- "zipPlugin",
+        "zipPlugin",
       },
     },
   },
@@ -57,7 +63,7 @@ require("lazy").setup({
 -- Custom Things
 -- require("fish.multi_marks")
 require("fish.commads")
-require("fish.filetypes")
+
 
 -- External Programs
 -- require("fish.neovide")
