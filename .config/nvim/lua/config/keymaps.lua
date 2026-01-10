@@ -206,6 +206,18 @@ vim.keymap.set("n", "<leader>la", function()
   vim.notify("Adicionado à Location List")
 end, { desc = "Adicionar item à Location List" })
 
+vim.keymap.set("n", "<A-S-l>", function()
+  local pos = vim.api.nvim_win_get_cursor(0)
+  local item = {
+    bufnr = vim.api.nvim_get_current_buf(),
+    lnum = pos[1],
+    col = pos[2] + 1,
+    text = vim.fn.getline("."),
+  }
+  vim.fn.setloclist(0, { item }, "a") -- "a" = append
+  vim.notify("Adicionado à Location List")
+end, { desc = "Adicionar item à Location List" })
+
 vim.keymap.set("n", "<leader>lr", function()
   vim.fn.setloclist(0, {}, "r") -- "r" = replace (aqui com vazio)
   vim.notify("Location List resetada")

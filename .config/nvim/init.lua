@@ -80,6 +80,3 @@ else
   -- require("fish.tmux")
   -- require("fish.lazygit")
 end
-
-
-vim.cmd("let g:loaded_fzf = 0")

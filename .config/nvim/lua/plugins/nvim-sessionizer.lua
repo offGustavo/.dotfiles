@@ -1,7 +1,7 @@
 return {
-  "offGustavo/nvim-sessionizer",
-  -- enabled = false,
-  -- dir = "~/Projects/nvim-sessionizer/",
+  -- "offGustavo/nvim-sessionizer",
+  enabled = false,
+  dir = "~/Projects/nvim-sessionizer/",
   config = function()
     vim.g.sessionizer = {
       no_zoxide = false,
@@ -48,16 +48,16 @@ return {
     vim.keymap.set({ "n", "v", "i", "t" }, "<A-o>", function()
       require("nvim-sessionizer").sessionizer()
     end, { silent = true, desc = "Create an new session wiht zoxide" })
-    vim.keymap.set({ "n", "v", "i", "t" }, "<A-S-W>", function()
+    vim.keymap.set({ "n", "v", "i", "t" }, "<A-W>", function()
       require("nvim-sessionizer").new_session()
     end, { silent = true, desc = "Create an new session in the current dir" })
     vim.keymap.set({ "n", "v", "i", "t" }, "<A-u>", function()
       require("nvim-sessionizer").attach_session()
     end, { silent = true, desc = "Attach to and sessins with vim.ui.select" })
-    vim.keymap.set({ "n", "v", "i", "t" }, "<A-S-0>", function()
+    vim.keymap.set({ "n", "v", "i", "t" }, "<A-=>", function()
       require("nvim-sessionizer").attach_session("+1")
     end, { silent = true, desc = "Go to next session" })
-    vim.keymap.set({ "n", "v", "i", "t" }, "<A-S-9>", function()
+    vim.keymap.set({ "n", "v", "i", "t" }, "<A-->", function()
       require("nvim-sessionizer").attach_session("-1")
     end, { silent = true, desc = "Go to previous session" })
     vim.keymap.set({ "n", "v", "i", "t" }, "<A-q>", function()
@@ -67,6 +67,9 @@ return {
       require("nvim-sessionizer").manage_sessions()
     end, { silent = true, desc = "List sessions" })
     vim.keymap.set({ "n", "v", "i", "t" }, "<A-d>", ":detach<CR>", { silent = true, desc = "Detach current session" })
+    vim.keymap.set({ "n", "v", "i", "t" }, "<A-a>", function()
+      require("nvim-sessionizer").attach_session("-o")
+    end, { silent = true, desc = "Go to Anternative Session" })
     for i = 1, 9, 1 do
       vim.keymap.set({ "n", "v", "i", "t" }, "<C-" .. i .. ">", function()
         require("nvim-sessionizer").attach_session(i)

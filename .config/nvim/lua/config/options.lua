@@ -6,7 +6,7 @@ vim.cmd([[
   let maplocalleader = "\<BS>"
 ]])
 
-vim.g.snacks_animate = false
+-- vim.g.snacks_animate = false
 
 -- vim.o.scrolloff = 999
 vim.o.scrolloff = 0
