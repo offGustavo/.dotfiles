@@ -115,7 +115,7 @@ return {
       layout = ivy_like, 
     },
     animate = {
-      duration = 5, -- ms per step
+      duration = 1, -- ms per step
       easing = "linear",
       fps = 120, -- frames per second. Global setting for all animations
     },
