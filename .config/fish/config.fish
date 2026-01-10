@@ -71,7 +71,7 @@ bind -M normal \cZ redo
 
 # Export nvim as manpager
 export MANPAGER='nvim -c "nmap <silent> q :q!<Cr>" +Man!'
-export PAGER='nvim -c "nmap <silent> q :q!<Cr>" +"BaleiaColorize" -R'
+export PAGER='nvim -c "nmap <silent> q :q!<Cr>" +"BaleiaColorize"'
 
 # Export nvim as editor
 export EDITOR='nvim'
