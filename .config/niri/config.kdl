@@ -24,7 +24,7 @@ workspace "4" {
   open-on-output "HDMI-A-2"
 }
 workspace "5" {
-  open-on-output "HDMI-A-2"
+  open-on-output "HDMI-A-2 "
 }
 workspace "6"  {
   open-on-output "eDP-1"
@@ -504,9 +504,9 @@ binds {
   Mod+Return hotkey-overlay-title="Open Terminal" { spawn "kitty"; }
   Mod+Shift+Return { spawn-sh "kitten quick-access-terminal"; }
 
-  Mod+Slash hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-  Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-  Alt+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+  Mod+D { spawn-sh "rofi -combi-modi window,drun,run -show combi "; }
+  Mod+Slash { spawn-sh "rofi -combi-modi drun,run -show combi "; }
+  Alt+Space { spawn-sh "rofi -show drun"; }
 
   // Mod+d { spawn "cosmic-launcher"; }
   // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
@@ -534,13 +534,12 @@ binds {
   // You can also move the mouse into the top-left hot corner,
   // or do a four-finger swipe up on a touchpad.
   Mod+Shift+W repeat=false { toggle-overview; }
-  Mod+W repeat=false { spawn "~/.config/niri/scripts/windows.sh"; }
+  Mod+W repeat=false { spawn-sh "rofi -show window"; }
 
   // Switches focus between the current and the previous workspace.
   // Mod+Tab { focus-workspace-previous; }
   // Alt+Tab repeat=true { spawn "~/.config/niri/scripts/alt_tab.sh"; }
   // Alt+Shift+Tab repeat=true { spawn "sh" "-c" "~/.config/niri/scripts/alt_tab.sh prev"; }
-
 
   Mod+q { close-window; }
   Mod+Delete { close-window; }
@@ -793,18 +792,20 @@ binds {
   Mod+Shift+Alt+P { power-off-monitors; }
 
   // Scripts
-  Mod+b { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/bluetooth.sh"; }
+  Mod+b { spawn "sh" "-c" "$HOME/.config/rofi/scripts/bluetooth.sh"; }
   Mod+Ctrl+b { spawn "sh" "-c" "$HOME/.config/waybar/scripts/toggle-waybar.sh"; }
   Mod+Alt+b { spawn "sh" "-c" "$HOME/.local/bin/toggle-dark-mode.sh"; }
   Mod+Alt+W { spawn "sh" "-c" "$HOME/.local/bin/start_swaybg.lua"; }
-  Mod+n { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/network.lua"; }
-  Mod+v { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/sound.sh"; }
+  Mod+n { spawn "sh" "-c" "$HOME/.config/rofi/scripts/network.lua"; }
+  Mod+v { spawn "sh" "-c" "$HOME/.config/rofi/scripts/output.sh"; }
   Mod+p { spawn "sh" "-c" "/home/gustavo/.config/niri/scripts/monitors.sh"; }
-  Mod+Alt+p { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/color.sh"; }
-  Mod+x { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/power.sh"; }
-  Mod+s { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/screenshot.sh"; }
-  Mod+Shift+n { spawn "sh" "-c" "makoctl dismiss -a"; }
+  Mod+Alt+p { spawn-sh "hyprpicker -a"; }
+  Mod+x { spawn "sh" "-c" "$HOME/.config/rofi/scripts/power.sh"; }
+  Mod+s { spawn "sh" "-c" "notify-send 'TODO' 'Roubar o script de screenshot do Adtaya'"; }
 
+
+  // Notification
+  Mod+Shift+n { spawn "sh" "-c" "makoctl dismiss -a"; }
 }
 
 recent-windows {

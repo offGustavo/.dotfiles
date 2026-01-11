@@ -10,7 +10,7 @@ function zoxide_cd
     # end
     #
     # if test $use_fuzzel -eq 1
-    set -l dir (zoxide query -l -s | fuzzel --dmenu --no-sort --match-mode=exact | awk "{print \$2}")
+    set -l dir (zoxide query -l -s | rofi -dmenu | awk "{print \$2}")
     # else
     # set -l dir (zoxide query -l | fzf)
     # end
