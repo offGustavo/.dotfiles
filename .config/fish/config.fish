@@ -22,59 +22,13 @@ function zoxide_cd
 end
 
 bind -a alt-z zoxide_cd
-bind -M insert alt-z zoxide_cd
-bind -M normal alt-z zoxide_cd
 
-# bind -a alt-z zi
+fish_default_key_bindings
 
-# # Set and configure VI Mode
-fish_vi_key_bindings
-# fish_default_key_bindings
-
-# Ctrl-A / Ctrl-E
-bind -M insert \ca beginning-of-line
-bind -M insert \ce end-of-line
-
-bind -M normal \ca beginning-of-line
-bind -M normal \ce end-of-line
-
-# Kill / yank
-bind -M insert \ck kill-line
-bind -M insert \cy yank
-bind -M insert \cw backward-kill-word
-bind -M insert \cu kill-whole-line
-bind -M normal \ck kill-line
-bind -M normal \cy yank
-bind -M normal \cw backward-kill-word
-bind -M normal \cu kill-whole-line
-
-# Cursor movement
-bind -M insert \cb backward-char
-bind -M insert \cf forward-char
-bind -M normal \cb backward-char
-bind -M normal \cf forward-char
-
-bind -e \cp
-bind -e \cn
-bind -M normal \cp up-or-search
-bind -M normal \cn down-or-search
-bind -M insert \cp up-or-search
-bind -M insert \cn down-or-search
-
-bind -M insert \cs search
-bind -M normal \cs search
-
-bind -M insert \cz undo
-bind -M insert \cZ redo
-bind -M normal \cz undo
-bind -M normal \cZ redo
-
-# Export nvim as manpager
-export MANPAGER='nvim -c "nmap <silent> q :q!<Cr>" +Man!'
-export PAGER='nvim -c "nmap <silent> q :q!<Cr>" +"BaleiaColorize"'
-
-# Export nvim as editor
-export EDITOR='nvim'
+set -gx EDITOR nvim
+# Export all environment variables at once
+set -gx MANPAGER 'nvim -c "set filetype=man" -c "nmap q :q!<cr>" +Man!'
+set -gx PAGER 'nvim -c "nmap q :q!<cr>" +"BaleiaColorize"'
 
 # Edit File with Sudo
 alias svim='sudoedit'
