@@ -51,7 +51,7 @@ vim.keymap.set("n", "<localleader>ic", ":Editor create<Cr>", { desc = "Create a 
 vim.keymap.set("n", "<localleader>iC", ":Editor edit<Cr>", { desc = "Edit a code block", buffer = 0 })
 vim.keymap.set("n", "<localleader>H", ":Headings increase<Cr>", { desc = "Headings increase", buffer = 0 })
 vim.keymap.set("n", "<localleader>h", ":Headings decrease<Cr>", { desc = "Headings decrease", buffer = 0 })
--- vim.keymap.set("n", "<Cr>", ":Checkbox toggle<Cr>", { desc = "Checkbox", buffer = 0 })
+vim.keymap.set("n", "<Cr>", ":Checkbox toggle<Cr>", { desc = "Checkbox", buffer = 0 })
 vim.keymap.set("n", "<S-Cr>", ":Checkbox interactive<Cr>", { desc = "Checkbox interactive", buffer = 0 })
 vim.keymap.set("n", "<localleader>id", "<Cmd>CheckTask<CR>", { silent = true, buffer = 0, desc = "Check Tesk" })
 vim.keymap.set("n", "<localleader>ic", "<Cmd>CancelTask<CR>", { silent = true, buffer = 0, desc = "Cancel Tesk" })
