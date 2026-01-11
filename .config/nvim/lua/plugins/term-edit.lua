@@ -1,6 +1,7 @@
 return {
   "chomosuke/term-edit.nvim",
   lazy = true,
+  enabled = false,
   event = "TermOpen",
   version = "1.*",
   config = function()

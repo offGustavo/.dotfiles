@@ -43,9 +43,9 @@ end, { silent = true, desc = "Open Dashboard" })
 --   Snacks.terminal("zellij")
 -- end, { silent = true, desc = "Open Float  Terminal" })
 
-vim.keymap.set("n", "<leader>tn", ":terminal ", { silent = true, desc = "New Buffer Terminal With Command" })
-vim.keymap.set("n", "<leader>tv", ":vertical terminal ", { silent = true, desc = "Vertical Terminal With Command" })
-vim.keymap.set("n", "<leader>ts", ":horizontal terminal ", { silent = true, desc = "Horizontal Terminal With Command" })
+vim.keymap.set("n", "<leader>tn", ":terminal ", { desc = "New Buffer Terminal With Command" })
+vim.keymap.set("n", "<leader>tv", ":vertical terminal ", { desc = "Vertical Terminal With Command" })
+vim.keymap.set("n", "<leader>ts", ":horizontal terminal ", { desc = "Horizontal Terminal With Command" })
 
 vim.keymap.set("n", "<leader>tN", "<Cmd>terminal<Cr>", { silent = true, desc = "New Buffer Terminal" })
 vim.keymap.set("n", "<leader>tV", "<Cmd>vertical terminal<CR>", { silent = true, desc = "Vertical Terminal" })
@@ -58,6 +58,7 @@ vim.keymap.set("n", "<leader>o?", ":hor term rg --vimgrep ", { desc = "Grep" })
 
 ---- Terminal Mode to Normal
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { silent = true, desc = "Go To Normal Mode in Terminal" })
+vim.keymap.set("t", "<S-Esc>", "<C-\\><C-n>", { silent = true, desc = "Go To Normal Mode in Terminal" })
 
 ---- Move in windows on Terminal Mode
 -- vim.keymap.set("t", "<C-h>", "<C-\\><C-N><C-w>h")

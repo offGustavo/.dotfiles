@@ -58,10 +58,12 @@ return {
       enabled = false,
     },
     input = { enabled = false },
+    notifier = { enabled = false },
     picker = {
       sources = {
         grep = { hidden = true, layout = ivy_like },
         git_log = { hidden = true, layout = ivy_like },
+
         buffers = { hidden = true, layout = ivy_like },
         recent = { hidden = true, layout = ivy_like },
         explorer = {

@@ -279,3 +279,16 @@ end
 --     vim.notify("No valid file:line pattern found", vim.log.levels.WARN)
 --   end
 -- end, { nargs = "?", desc = "Jump to file:line pattern" })
+
+-- vim.api.nvim_create_autocmd({ "TermEnter", "TermOpen" }, {
+--   pattern = "*",
+--   callback = function()
+--     vim.cmd("startinsert")
+--     vim.wo.number = false
+--     vim.wo.relativenumber = false
+--     vim.wo.signcolumn = "yes:1"
+--     -- vim.fn.setenv("EDITOR", "nvim --server $NVIM --remote-tab")
+--     -- vim.fn.setenv("MANPAGER", "nvim --server $NVIM --remote-tab -c 'nmap <silent> q :q!<Cr>' +Man!")
+--     -- vim.fn.setenv("PAGER", "nvim --server $NVIM --remote-tab -c 'nmap <silent> q :q!<Cr>' +BaleiaColorize")
+--   end
+-- })
