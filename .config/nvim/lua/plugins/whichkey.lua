@@ -57,6 +57,10 @@ return {
             return require("which-key.extras").expand.buf()
           end,
         },
+        {
+          "<leader>w",
+          hidden = true, 
+        },
         -- {
         --   "<leader>w",
         --   group = "windows",

@@ -62,16 +62,16 @@ return {
   --   priority = 1000,
   -- },
 
-  {
-    "tiagovla/tokyodark.nvim",
-  },
+  -- {
+  --   "tiagovla/tokyodark.nvim",
+  -- },
 
-  {
-    "serhez/teide.nvim",
-    lazy = true,
-    priority = 1000,
-    opts = {},
-  },
+  -- {
+  --   "serhez/teide.nvim",
+  --   lazy = true,
+  --   priority = 1000,
+  --   opts = {},
+  -- },
 
   --   { "EdenEast/nightfox.nvim" } -- lazy
 }

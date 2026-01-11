@@ -75,7 +75,7 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { silent = true, desc = "Go To 
 -- vim.keymap.set("n", "<C-A-k>", "<C-w>-", { desc = "Move window to the upper" })
 -- vim.keymap.set("n", "<C-A-j>", "<C-w>+", { desc = "Move window to the lower" })
 -- Close Window
-vim.keymap.set("n", "<leader>wc", "<Cmd>close<Cr>")
+-- vim.keymap.set("n", "<leader>wc", "<Cmd>close<Cr>")
 
 -- Toggle Comment
 -- vim.keymap.set("n", "<C-/>", ":normal gcc<Cr>", { desc = "Toggle Comment", silent = true })

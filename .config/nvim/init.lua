@@ -62,6 +62,7 @@ require("lazy").setup({
 
 -- Custom Things
 -- require("fish.multi_marks")
+require("fish.commads")
 
 -- External Programs
 -- require("fish.neovide")
