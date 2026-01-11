@@ -318,7 +318,7 @@ layout {
   // You can enable drop shadows for windows.
   shadow {
     // Uncomment the next line to enable shadows.
-    on
+    // on
 
     // By default, the shadow draws only around its window, and not behind it.
     // Uncomment this setting to make the shadow draw behind its window.
@@ -343,13 +343,13 @@ layout {
     softness 10
 
     // Spread expands the shadow.
-    spread 5
+    spread 1
 
     // Offset moves the shadow relative to the window.
     offset x=0 y=0
 
     // You can also change the shadow color and opacity.
-    color "#5A6B7A33"
+    color "#292e42ff"
   }
 
   // Struts shrink the area occupied by windows, similarly to layer-shell panels.
@@ -410,6 +410,9 @@ animations {
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+window-rule {
+    open-maximized false
+}
 
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
