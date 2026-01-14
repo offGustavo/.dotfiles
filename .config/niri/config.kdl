@@ -24,7 +24,7 @@ workspace "4" {
   open-on-output "HDMI-A-2"
 }
 workspace "5" {
-  open-on-output "HDMI-A-2 "
+  open-on-output "HDMI-A-2"
 }
 workspace "6"  {
   open-on-output "eDP-1"
@@ -537,7 +537,7 @@ binds {
   // You can also move the mouse into the top-left hot corner,
   // or do a four-finger swipe up on a touchpad.
   Mod+Shift+W repeat=false { toggle-overview; }
-  Mod+W repeat=false { spawn-sh "rofi -show window"; }
+  Mod+W repeat=false { spawn-sh "~/.config/niri/scripts/windows.sh"; }
 
   // Switches focus between the current and the previous workspace.
   // Mod+Tab { focus-workspace-previous; }
@@ -830,17 +830,11 @@ recent-windows {
   }
 
   binds {
-
     Alt+Tab         { next-window scope="all"; }
     Alt+Shift+Tab   { previous-window scope="all"; }
     alt+grave       { next-window     scope="all" filter="app-id"; }
     Alt+Shift+grave { previous-window scope="all" filter="app-id"; }
     Alt+escape       { next-window     scope="workspace"; }
     Alt+Shift+escape { previous-window scope="workspace"; }
-
-    Mod+Tab         { next-window; }
-    Mod+Shift+Tab   { previous-window; }
-    Mod+grave       { next-window     filter="app-id"; }
-    Mod+Shift+grave { previous-window filter="app-id"; }
   }
 }
