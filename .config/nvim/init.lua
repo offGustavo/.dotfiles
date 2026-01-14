@@ -85,3 +85,7 @@ else
   -- require("fish.tmux")
   -- require("fish.lazygit")
 end
+
+vim.keymap.set("n", "<C-8>", ":t.<CR>", { desc = "Clone Line Down" })
+vim.keymap.set("n", "<A-t>", ":t.<CR>", { desc = "Clone Line Down" })
+vim.keymap.set("n", "<C-S-8>", ":t.<CR>", { desc = "Clone Line Down" })

@@ -120,11 +120,11 @@ else
             -- "%=",
           },
           lualine_x = {
-            {
-              "macro-recording",
-              fmt = show_macro_recording,
-            },
-            "searchcount",
+            -- {
+            --   "macro-recording",
+            --   fmt = show_macro_recording,
+            -- },
+            -- "searchcount",
             {
               "branch",
               -- icon = "",
