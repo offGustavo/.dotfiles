@@ -438,8 +438,7 @@ vim.keymap.set("n", "<leader><S-z>", ":TCD ", { desc = "Tab Cd with Zoxide" })
 ----------
 -- Make --
 ----------
-vim.keymap.set("n", "<leader>cm", ":make ", { desc = "Make", remap = true })
-vim.keymap.set("n", "<leader>cM", "<Cmd>make<CR>", { desc = "Run Make" })
+vim.keymap.set("n", "<leader>cM", ":make ", { desc = "Make", remap = true })
 
 vim.keymap.set("n", "gX", function()
   local file = vim.fn.expand("%:p")
@@ -451,3 +450,5 @@ vim.keymap.set("n", "gX", function()
 end, { desc = "Open current file" })
 
 vim.keymap.set("c", "w!!", "w !sudo tee > /dev/null %", { silent = true, desc = "Write as Sudo" })
+
+vim.keymap.set("n", "<A-d>", ":t.<CR>", { desc = "Clone Line Down" })
