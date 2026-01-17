@@ -67,3 +67,5 @@
 ;; (package! universal-launcher
 ;;   :recipe (:host github
 ;;            :repo "jblais493/universal-launcher.el"))
+
+( package! multiple-cursors)
