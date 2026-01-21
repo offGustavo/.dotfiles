@@ -95,6 +95,7 @@ input {
     numlock
 
   }
+
   // workspace-auto-back-and-forth
 
   // Next sections include libinput settings.
@@ -119,6 +120,7 @@ input {
     accel-speed -0.6
     accel-profile "flat"
     // scroll-method "no-scroll"
+    left-handed
   }
 
   trackpoint {
@@ -138,6 +140,11 @@ input {
   // Focus windows and outputs automatically when moving the mouse into them.
   // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
   // focus-follows-mouse max-scroll-amount="0%"
+
+  // tablet {
+  //     map-to-output "eDP-1"
+  // }
+
 }
 
 // You can configure outputs by their name, which you can find
@@ -266,7 +273,7 @@ layout {
   // You can change how the focus ring looks.
   focus-ring {
     // Uncomment this line to disable the focus ring.
-    // off
+    off
 
     // How many logical pixels the ring extends out from the windows.
     width 2
@@ -302,11 +309,12 @@ layout {
   border {
     // The settings are the same as for the focus ring.
     // If you enable the border, you probably want to disable the focus ring.
-    off
+    // off
 
-    width 4
-    active-color "#ffc87f"
-    inactive-color "#505050"
+    width 2
+
+    active-color "#7aa2f7"
+    inactive-color "#1A1B26"
 
     // Color of the border around windows that request your attention.
     urgent-color "#9b0000"
@@ -379,7 +387,6 @@ layout {
 spawn-at-startup "sh" "-c" "sleep 1 && ~/.config/waybar/scripts/toggle-waybar.sh"
 spawn-at-startup "sh" "-c" "sleep 1 && ~/.local/bin/start_swaybg.lua"
 spawn-at-startup "sh" "-c" "mako"
-spawn-at-startup "sh" "-c" "kanata"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -411,7 +418,8 @@ animations {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 window-rule {
-    open-maximized false
+  open-maximized false
+  default-window-height {}
 }
 
 // Work around WezTerm's initial configure bug
@@ -472,20 +480,21 @@ window-rule {
 }
 
 
-// Make the wallpaper stationary, rather than moving with workspaces.
-layer-rule {
-  // This is for swaybg; change for other wallpaper tools.
-  match namespace="^wallpaper$"
-  place-within-backdrop true
-}
+// // Make the wallpaper stationary, rather than moving with workspaces.
+// layer-rule {
+//   // This is for swaybg; change for other wallpaper tools.
+//   match namespace="^wallpaper$"
+//   place-within-backdrop true
+// }
 
 
 // Optionally, disable the workspace shadows in the overview.
 overview {
+  zoom 0.75
   workspace-shadow {
-    off
+    // off
   }
-  // backdrop-color "#1A1B26"
+  backdrop-color "#1A1B26"
 }
 
 binds {
@@ -559,8 +568,6 @@ binds {
 
   Mod+o     { focus-workspace-down; }
   Mod+i     { focus-workspace-up; }  
-  Mod+Next  { focus-workspace-down; }
-  Mod+Prior { focus-workspace-up; }  
 
   Mod+Shift+H { consume-or-expel-window-left; }         
   Mod+Shift+J { move-window-down; }
@@ -574,31 +581,20 @@ binds {
 
   Mod+comma  { focus-monitor-left; }
   Mod+period { focus-monitor-right; }
-  Mod+Home  { focus-monitor-left; }
-  Mod+End { focus-monitor-right; }
 
   Mod+Shift+comma     { move-window-to-monitor-left; }
   Mod+Shift+period     { move-window-to-monitor-right; }
-  Mod+Shift+Home     { move-window-to-monitor-left; }
-  Mod+Shift+End     { move-window-to-monitor-right; }
 
   Mod+Alt+comma     { move-workspace-to-monitor-left; }
   Mod+Alt+period     { move-workspace-to-monitor-right; }
-  Mod+Alt+Home     { move-workspace-to-monitor-left; }
-  Mod+Alt+End     { move-workspace-to-monitor-right; }
   Mod+Ctrl+comma     { move-workspace-to-monitor-left; }
   Mod+Ctrl+period     { move-workspace-to-monitor-right; }
-  Mod+Ctrl+Home     { move-workspace-to-monitor-left; }
-  Mod+Ctrl+End     { move-workspace-to-monitor-right; }
 
   Mod+Alt+i        { move-workspace-up; }  
   Mod+Alt+o       { move-workspace-down; }
-  Mod+Alt+Prior  { move-workspace-up; }  
-  Mod+Alt+Next { move-workspace-down; }
 
   // You can bind mouse wheel scroll ticks using the following syntax.
   // These binds will change direction based on the natural-scroll setting.
-  //
   // To avoid scrolling through workspaces really fast, you can use
   // the cooldown-ms property. The bind will be rate-limited to this value.
   // You can set a cooldown on any bind, but it's most useful for the wheel.
@@ -635,52 +631,14 @@ binds {
   Mod+Shift+Alt+WheelScrollUp { spawn "brightnessctl" "set" "10%+"; }
   Mod+Shift+Alt+WheelScrollDown { spawn "brightnessctl" "set" "10%-"; }
 
-  // Mod+1 { focus-workspace "note"; }
-  // Mod+2 { focus-workspace "temp"; }
-  // Mod+3 { focus-workspace "term"; }
-  // Mod+4 { focus-workspace "zen"; }
-  // Mod+5 { focus-workspace "spotify"; }
-  // Mod+6 { focus-workspace "trash"; }
-  // Mod+7 { focus-workspace "minimize"; }
-  // // Mod+8 { focus-workspace "obs"; }
-  // // Mod+9 { focus-workspace "ten"; }
-  // Mod+Shift+1 { move-window-to-workspace "note"; }
-  // Mod+Shift+2 { move-window-to-workspace "temp"; }
-  // Mod+Shift+3 { move-window-to-workspace "term"; }
-  // Mod+Shift+4 { move-window-to-workspace "zen"; }
-  // Mod+Shift+5 { move-window-to-workspace "spotify"; }
-  // Mod+Shift+6 { move-window-to-workspace "trash"; }
-  // Mod+Shift+7 { move-window-to-workspace "minimize"; }
-  // // Mod+Shift+8 { move-window-to-workspace "obs"; }
-  // // Mod+Shift+9 { move-window-to-workspace "ten"; }
-
-  // // You can refer to workspaces by index. However, keep in mind that
-  // // niri is a dynamic workspace system, so these commands are kind of
-  // // "best effort". Trying to refer to a workspace index bigger than
-  // // the current workspace count will instead refer to the bottommost
-  // // (empty) workspace.
-  // //
-  // // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
-  // // will all refer to the 3rd workspace.
-  // Mod+1 { focus-workspace 1; }
-  // Mod+2 { focus-workspace 2; }
-  // Mod+3 { focus-workspace 3; }
-  // Mod+4 { focus-workspace 4; }
-  // Mod+5 { focus-workspace 5; }
-  // Mod+6 { focus-workspace 6; }
-  // Mod+7 { focus-workspace 7; }
-  // Mod+8 { focus-workspace 8; }
-  // Mod+9 { focus-workspace 9; }
-  // Mod+Shift+1 { move-window-to-workspace 1; }
-  // Mod+Shift+2 { move-window-to-workspace 2; }
-  // Mod+Shift+3 { move-window-to-workspace 3; }
-  // Mod+Shift+4 { move-window-to-workspace 4; }
-  // Mod+Shift+5 { move-window-to-workspace 5; }
-  // Mod+Shift+6 { move-window-to-workspace 6; }
-  // Mod+Shift+7 { move-window-to-workspace 7; }
-  // Mod+Shift+8 { move-window-to-workspace 8; }
-  // Mod+Shift+9 { move-window-to-workspace 9; }
-
+  // You can refer to workspaces by index. However, keep in mind that
+  // niri is a dynamic workspace system, so these commands are kind of
+  // "best effort". Trying to refer to a workspace index bigger than
+  // the current workspace count will instead refer to the bottommost
+  // (empty) workspace.
+  //
+  // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
+  // will all refer to the 3rd workspace.
   Mod+1 { focus-workspace "1"; }
   Mod+2 { focus-workspace "2"; }
   Mod+3 { focus-workspace "3"; }
@@ -721,9 +679,13 @@ binds {
   Mod+Shift+R { switch-preset-window-height; }
   Mod+Shift+E { switch-preset-window-height-back; }
   Mod+Ctrl+R { reset-window-height; }
+
   Mod+f { maximize-column; }
   Mod+Shift+f { fullscreen-window; }
   Mod+Shift+Ctrl+f { toggle-windowed-fullscreen;}
+
+  Mod+Insert { maximize-column; }
+  Mod+Shift+Insert { fullscreen-window; }
 
   Mod+Shift+M { maximize-window-to-edges; }
 
@@ -798,13 +760,14 @@ binds {
   Mod+b { spawn "sh" "-c" "$HOME/.config/rofi/scripts/bluetooth.sh"; }
   Mod+Ctrl+b { spawn "sh" "-c" "$HOME/.config/waybar/scripts/toggle-waybar.sh"; }
   Mod+Alt+b { spawn "sh" "-c" "$HOME/.local/bin/toggle-dark-mode.sh"; }
+  Mod+Shift+b { spawn "sh" "-c" "$HOME/.config/niri/scripts/toggle-sunset.sh"; }
   Mod+Alt+W { spawn "sh" "-c" "$HOME/.local/bin/start_swaybg.lua"; }
   Mod+n { spawn "sh" "-c" "$HOME/.config/rofi/scripts/network.lua"; }
   Mod+v { spawn "sh" "-c" "$HOME/.config/rofi/scripts/output.sh"; }
   Mod+p { spawn "sh" "-c" "/home/gustavo/.config/niri/scripts/monitors.sh"; }
   Mod+Alt+p { spawn-sh "hyprpicker -a"; }
   Mod+x { spawn "sh" "-c" "$HOME/.config/rofi/scripts/power.sh"; }
-  Mod+s { spawn "sh" "-c" "notify-send 'TODO' 'Roubar o script de screenshot do Adtaya'"; }
+  Mod+s { spawn "sh" "-c" "$HOME/.config/rofi/scripts/screenshot.sh"; }
 
 
   // Notification
@@ -818,8 +781,8 @@ recent-windows {
   open-delay-ms 150
 
   highlight {
-    active-color "#B4BCC4"
-    urgent-color "#ff9999ff"
+    active-color "#7aa2f7ff"
+    urgent-color "#db4b4bff"
     padding 5
     corner-radius 12
   }
