@@ -2,6 +2,7 @@ return {
     "brenton-leighton/multiple-cursors.nvim",
     version = "*", -- Use the latest tagged version
     opts = { }, -- This causes the plugin setup function to be called
+    lazy = true,
     keys = {
       { "<C-m>", "<Cmd>MultipleCursorsLock<CR>", mode = { "n", "x" }, desc = "Lock virtual cursors" },
       { "<C-S-k>", "<Cmd>MultipleCursorsAddUp<CR>", mode = { "n", "i", "x" }, desc = "Add cursor and move up" },

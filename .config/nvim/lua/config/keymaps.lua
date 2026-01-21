@@ -18,10 +18,12 @@ pcall(function()
   vim.keymap.set({ "x", "n" }, "<Down>", "<Down>")
   vim.keymap.set({ "x", "n" }, "<Right>", "<Right>")
 
-  -- vim.keymap.del({ "n" }, "<C-h>")
-  -- vim.keymap.del({ "n" }, "<C-j>")
-  -- vim.keymap.del({ "n" }, "<C-k>")
-  -- vim.keymap.del({ "n" }, "<C-l>")
+  vim.keymap.del({ "n" }, "<C-h>")
+  vim.keymap.del({ "n" }, "<C-j>")
+  vim.keymap.del({ "n" }, "<C-k>")
+  vim.keymap.del({ "n" }, "<C-l>")
+  vim.keymap.set({ "n" }, "gd", "gd")
+  vim.keymap.set({ "n" }, "gr", "gr")
 end)
 -----------------
 --- DASHBOARD ---
@@ -86,43 +88,43 @@ vim.keymap.set("t", "<S-Esc>", "<C-\\><C-n>", { silent = true, desc = "Go To Nor
 -- vim.keymap.set("x", "<C-k>", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move Line Up" })
 -- vim.keymap.set("x", "<C-j>", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move Line Down" })
 
--- Emacs Keybinds in Insert Mode
--- set this better
-vim.keymap.set({ "i", "c" }, "<C-p>", "<Up>", { silent = true })
-vim.keymap.set({ "i", "c" }, "<C-a>", "<Home>", { silent = true })
-vim.keymap.set({ "i", "c" }, "<C-n>", "<Down>", { silent = true })
-vim.keymap.set({ "i", "c" }, "<C-f>", "<Right>", { silent = true })
-vim.keymap.set({ "i", "c" }, "<C-b>", "<Left>", { silent = true })
-vim.keymap.set({ "i", "c" }, "<C-e>", "<End>", { silent = true })
-vim.keymap.set({ "i", "c" }, "<A-b>", "<C-Left>", { silent = true })
-vim.keymap.set({ "i", "c" }, "<A-f>", "<C-Right>", { silent = true })
-vim.keymap.set("i", "<A-d>", "<C-o>dw", { silent = true })
-vim.keymap.set({ "i", "c" }, "<C-d>", "<Del>", { silent = true })
-vim.keymap.set("i", "<C-k>", "<Esc>lDa", { silent = true })
-vim.keymap.set("i", "<C-u>", "<Esc>d0xi", { silent = true })
-vim.keymap.set("i", "<A-}>", "<C-o>}", { silent = true })
-vim.keymap.set("i", "<A-{>", "<C-o>{", { silent = true })
-vim.keymap.set("i", "<A-a>", "<C-o>(", { silent = true })
-vim.keymap.set("i", "<A-e>", "<C-o>)", { silent = true })
-vim.keymap.set("i", "<A-<>", "<C-o>gg", { silent = true })
-vim.keymap.set("i", "<A->>", "<C-o>G", { silent = true })
-vim.keymap.set("i", "<C-/>", "<C-o>u", { silent = true })
-vim.cmd([[
-  imap <C-BS> <C-w>
-]])
--- vim.keymap.set("i", "<C-x><C-s>", "<Cmod>update<CR>", { silent = true })
--- vim.keymap.set("i", "<C-x><C-x>", "<Esc>:x<CR>", { silent = true })
--- vim.keymap.set("i", "<C-t>", "<Esc>Xpa", { silent = true })
--- vim.keymap.set("i", "<C-]>", "<C-t>", { silent = true })
-vim.keymap.set("n", "<A-x>", ":", { desc = "Emacs" })
-vim.keymap.set("i", "<A-x>", "<C-o>:", { desc = "Emacs" })
-vim.keymap.set("t", "<A-x>", "<C-\\><C-o>:", { desc = "Emacs" })
+-- -- Emacs Keybinds in Insert Mode
+-- -- set this better
+-- vim.keymap.set({ "i", "c" }, "<C-p>", "<Up>", { silent = true })
+-- vim.keymap.set({ "i", "c" }, "<C-a>", "<Home>", { silent = true })
+-- vim.keymap.set({ "i", "c" }, "<C-n>", "<Down>", { silent = true })
+-- vim.keymap.set({ "i", "c" }, "<C-f>", "<Right>", { silent = true })
+-- vim.keymap.set({ "i", "c" }, "<C-b>", "<Left>", { silent = true })
+-- vim.keymap.set({ "i", "c" }, "<C-e>", "<End>", { silent = true })
+-- vim.keymap.set({ "i", "c" }, "<A-b>", "<C-Left>", { silent = true })
+-- vim.keymap.set({ "i", "c" }, "<A-f>", "<C-Right>", { silent = true })
+-- vim.keymap.set("i", "<A-d>", "<C-o>dw", { silent = true })
+-- vim.keymap.set({ "i", "c" }, "<C-d>", "<Del>", { silent = true })
+-- vim.keymap.set("i", "<C-k>", "<Esc>lDa", { silent = true })
+-- vim.keymap.set("i", "<C-u>", "<Esc>d0xi", { silent = true })
+-- vim.keymap.set("i", "<A-}>", "<C-o>}", { silent = true })
+-- vim.keymap.set("i", "<A-{>", "<C-o>{", { silent = true })
+-- vim.keymap.set("i", "<A-a>", "<C-o>(", { silent = true })
+-- vim.keymap.set("i", "<A-e>", "<C-o>)", { silent = true })
+-- vim.keymap.set("i", "<A-<>", "<C-o>gg", { silent = true })
+-- vim.keymap.set("i", "<A->>", "<C-o>G", { silent = true })
+-- vim.keymap.set("i", "<C-/>", "<C-o>u", { silent = true })
+-- vim.cmd([[
+--   imap <C-BS> <C-w>
+-- ]])
+-- -- vim.keymap.set("i", "<C-x><C-s>", "<Cmod>update<CR>", { silent = true })
+-- -- vim.keymap.set("i", "<C-x><C-x>", "<Esc>:x<CR>", { silent = true })
+-- -- vim.keymap.set("i", "<C-t>", "<Esc>Xpa", { silent = true })
+-- -- vim.keymap.set("i", "<C-]>", "<C-t>", { silent = true })
+-- vim.keymap.set("n", "<A-x>", ":", { desc = "Emacs" })
+-- vim.keymap.set("i", "<A-x>", "<C-o>:", { desc = "Emacs" })
+-- vim.keymap.set("t", "<A-x>", "<C-\\><C-o>:", { desc = "Emacs" })
 
 vim.keymap.set({ "i", "x", "n" }, "<C-s>", "<Cmd>update<CR>", { silent = true })
 
--- Indent with tab
-vim.keymap.set("i", "<Tab>", "<C-t>")
-vim.keymap.set("i", "<S-Tab>", "<C-d>")
+-- -- Indent with tab
+-- vim.keymap.set("i", "<Tab>", "<C-t>")
+-- vim.keymap.set("i", "<S-Tab>", "<C-d>")
 
 -- Emacs Keybinds in Command Mode
 vim.keymap.set({ "c" }, "<C-p>", "<Up>")

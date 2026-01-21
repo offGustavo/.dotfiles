@@ -9,7 +9,7 @@ return {
     linewise_hybrid_mode = true,
   },
   latex = {
-    enable = false,
+    enable = true,
   },
   -- list_items
   markdown = {

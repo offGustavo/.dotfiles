@@ -257,9 +257,7 @@ return {
       --     end
       --   end,
       -- })
-
       vim.keymap.set("n", "<leader>fd", "<Cmd>Oil<Cr>", { desc = "Oil" })
-      vim.keymap.set("n", "<leader>.", "<Cmd>Oil<Cr>", { desc = "Oil" })
     end,
   },
   -- {

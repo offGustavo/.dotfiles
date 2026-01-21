@@ -7,8 +7,7 @@ local function show_macro_recording()
   end
 end
 
-if os.getenv("LUALINE_DISABLE") == "1" then
-  print("oi")
+if os.getenv("SCROLL_MODE") == "1" then
   return {
     "nvim-lualine/lualine.nvim",
     enabled = false,
@@ -105,7 +104,7 @@ else
             "filesize",
             "location",
             "progress",
-            "selectioncount",
+            -- "selectioncount",
             {
               "diagnostics",
               sources = { "nvim_diagnostic" },

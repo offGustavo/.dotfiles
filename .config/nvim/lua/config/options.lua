@@ -65,21 +65,21 @@ end
 
 -- vim.o.makeprg = "make"
 
--- if vim.fn.has("nvim-0.12") == 1 then
---   if not vim.g.vscode then
---     vim.o.cmdheight = 1
---     -- Experimental
---     require("vim._extui").enable({
---       enable = true, -- Whether to enable or disable the UI.
---       msg = { -- Options related to the message module.
---         ---@type 'cmd'|'msg' Where to place regular messages, either in the
---         ---cmdline or in a separate ephemeral message window.
---         target = "msg",
---         timeout = 2000, -- Time a message is visible in the message window.
---       },
---     })
---   end
--- end
+if vim.fn.has("nvim-0.12") == 1 then
+  if not vim.g.vscode then
+    vim.o.cmdheight = 1
+    -- Experimental
+    require("vim._extui").enable({
+      enable = true, -- Whether to enable or disable the UI.
+      msg = { -- Options related to the message module.
+        ---@type 'cmd'|'msg' Where to place regular messages, either in the
+        ---cmdline or in a separate ephemeral message window.
+        target = "msg",
+        timeout = 2000, -- Time a message is visible in the message window.
+      },
+    })
+  end
+end
 
 -- Better Grep and Find with ripgrep
 if vim.fn.executable("rg") then
@@ -127,3 +127,5 @@ vim.o.cursorline = false
 
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
+
+vim.o.keymodel = "startsel,stopsel"

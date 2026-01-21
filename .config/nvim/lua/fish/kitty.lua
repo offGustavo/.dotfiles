@@ -191,4 +191,9 @@ if os.getenv("KITTY_WINDOW_ID") then
   end, 100)
 
   vim.keymap.set("n", "<leader>oK", UpdateKittyTheme, { desc = "Update Kitty Theme" })
+
+  -- if os.getenv("SCROLL_MODE") == "1" then
+  --   vim.keymap.set({ "n", "x" }, "q", "ZQ")
+  --   vim.cmd('set laststatus=0 nonu nornu signcolumn=no cursorline cmdheight=0')
+  -- end
 end

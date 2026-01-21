@@ -67,8 +67,7 @@ return {
 ░███░███ ░███ ░███████  ░███  ░███  ░███  ░███ 
 ░░░ ░███ ░███ ░███░░░   ░░███ ███   ░███  ░███ 
  ███░░████████░░██████   ░░█████    █████ █████
-░░░  ░░░░░░░░  ░░░░░░     ░░░░░    ░░░░░ ░░░░░ 
-            ]],
+░░░  ░░░░░░░░  ░░░░░░     ░░░░░    ░░░░░ ░░░░░ ]],
           -- stylua: ignore
           ---@type snacks.dashboard.Item[]
           keys = {
@@ -174,12 +173,12 @@ return {
           win = {
             list = {
               keys = {
-                --    ["h"] = "explorer_up_and_collapse",
-                ["<BS>"] = "explorer_up_and_collapse",
-                ["-"] = "explorer_up_and_collapse",
-                --   ["l"] = "explorer_focus_or_confirm",
-                ["<CR>"] = "explorer_focus_or_confirm",
-                --  ["q"] = "explorer_collapse_and_close",
+                -- ["h"] = "explorer_up_and_collapse",
+                -- ["<BS>"] = "explorer_up_and_collapse",
+                -- ["-"] = "explorer_up_and_collapse",
+                -- ["l"] = "explorer_focus_or_confirm",
+                -- ["<CR>"] = "explorer_focus_or_confirm",
+                -- ["q"] = "explorer_collapse_and_close",
               },
             },
           },
@@ -205,10 +204,10 @@ return {
     -- },
   },
   keys = {
-    {
-      "<leader>.",
-      false,
-    },
+    -- {
+    --   "<leader>.",
+    --   false,
+    -- },
     -- {
     --   "<leader>.",
     --   function()
@@ -216,13 +215,13 @@ return {
     --   end,
     --   desc = "Snacks Picker Files",
     -- },
-    {
-      "<leader>>",
-      function()
-        Snacks.scratch()
-      end,
-      desc = "Snacks Picker Files",
-    },
+    -- {
+    --   "<leader>>",
+    --   function()
+    --     Snacks.scratch()
+    --   end,
+    --   desc = "Snacks Picker Files",
+    -- },
     {
       "<leader><space>",
       function()

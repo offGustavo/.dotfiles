@@ -19,6 +19,7 @@ return {
         PERF = { icon = "P ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
         NOTE = { icon = "I ", color = "hint", alt = { "INFO" } },
         TEST = { icon = "T ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+        TASK = { icon = "T ", color = "warning" },
       },
     gui_style = {
       fg = "NONE", -- The gui style to use for the fg highlight group.

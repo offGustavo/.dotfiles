@@ -50,7 +50,7 @@ return {
 
   -- { "srt0/codescope.nvim", lazy = true },
 
-  { "RRethy/nvim-base16", lazy = true },
+  -- { "RRethy/nvim-base16", lazy = true },
 
   -- { "kyazdani42/nvim-palenight.lua", lazy = true },
 
@@ -66,12 +66,12 @@ return {
   --   "tiagovla/tokyodark.nvim",
   -- },
 
-  -- {
-  --   "serhez/teide.nvim",
-  --   lazy = true,
-  --   priority = 1000,
-  --   opts = {},
-  -- },
+  {
+    "serhez/teide.nvim",
+    lazy = true,
+    priority = 1000,
+    opts = {},
+  },
 
   --   { "EdenEast/nightfox.nvim" } -- lazy
 }
