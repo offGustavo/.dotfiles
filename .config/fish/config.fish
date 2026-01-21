@@ -43,8 +43,8 @@ end
 
 # Keyboard
 # cat /proc/bus/input/devices | rg --context 10 "Translated"
-alias kboff="sudo echo 1 | sudo tee /sys/class/input/event4/device/inhibited"
-alias kbon="sudo echo 0 | sudo tee /sys/class/input/event4/device/inhibited"
+alias kboff="sudo echo 1 | sudo tee /sys/class/input/event9/device/inhibited"
+alias kbon="sudo echo 0 | sudo tee /sys/class/input/event9/device/inhibited"
 
 #### CachyOs Aliases
 
@@ -77,7 +77,7 @@ set -x GOPATH "$HOME/.go"
 set -x GOBIN "$GOPATH/bin"
 
 # Append common directories for executable files to $PATH
-fish_add_path ~/.local/bin ~/.cargo/bin ~/Applications/depot_tools $HOME/.go/bin
+fish_add_path ~/.local/bin ~/.cargo/bin ~/Applications/depot_tools $HOME/.go/bin $HOME/.nix-profile/bin
 
 function fish_prompt --description 'Write out the prompt'
     # Salva o último comando executado (por sessão)
