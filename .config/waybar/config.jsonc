@@ -269,7 +269,7 @@
     "justify": "center",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "~/.config/fuzzel/scripts/sound.sh --waybar",
-    "on-click-middle": "pavucontrol",
+    "on-click-middle": "flatpak run com.saivert.pwvucontrol",
     "tooltip-format": "{volume}%  {icon}",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"

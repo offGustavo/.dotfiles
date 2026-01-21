@@ -6,6 +6,7 @@
   font-family: "JetBrainsMono Nerd Font,JetBrainsMono NF" ;
   /*height: 10px;*/
   color: @fg;
+  background-color: transparent;
   padding: 0;
   font-size: 12px;
 }
@@ -46,6 +47,7 @@ window#waybar {
 #workspaces button {
   padding: 5px 10px;
   border-radius: 5px;
+  background-color: @bg;
 }
 
        /* #workspaces button */
@@ -81,12 +83,14 @@ window#waybar {
   background: @blue;
   color: @bg;
 }
+
 #workspaces button.urgent{
   background: @red;
   color: @bg;
 }
 #workspaces button.visible label,
 #workspaces button.urgent label{
+  background: @blue;
   color: @bg;
 }
 
