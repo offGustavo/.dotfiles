@@ -31,6 +31,8 @@ start_waybar() {
 }
 
 if [ "$current_scheme" = "'prefer-light'" ] || [ "$current_scheme" = "'default'" ]; then
+
+  niri msg action do-screen-transition 
   gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
   ln -sf ~/.config/fuzzel/dark.ini ~/.config/fuzzel/colors.ini
@@ -39,8 +41,9 @@ if [ "$current_scheme" = "'prefer-light'" ] || [ "$current_scheme" = "'default'"
   start_waybar
   start_sway
 
-  notify-send "Dark Mode" "Switched to dark mode"
+  # notify-send "Dark Mode" "Switched to dark mode"
 else
+  niri msg action do-screen-transition 
   gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 
   ln -sf ~/.config/fuzzel/light.ini ~/.config/fuzzel/colors.ini
@@ -49,5 +52,5 @@ else
   start_waybar
   start_sway 
 
-  notify-send "Light Mode" "Switched to light mode"
+  # notify-send "Light Mode" "Switched to light mode"
 fi
