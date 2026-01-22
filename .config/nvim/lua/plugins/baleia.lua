@@ -1,5 +1,7 @@
 return {
   "m00qek/baleia.nvim",
+  lazy = true,
+  cmd = "BaleiaColorize", 
   version = "*",
   config = function()
     vim.g.baleia = require("baleia").setup({})

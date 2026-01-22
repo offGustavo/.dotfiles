@@ -1,6 +1,7 @@
 return {
   -- "offGustavo/nvim-sessionizer",
-  enabled = false,
+  -- enabled = false,
+  lazy = false,
   dir = "~/Projects/nvim-sessionizer/",
   config = function()
     vim.g.sessionizer = {

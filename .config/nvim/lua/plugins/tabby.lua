@@ -51,9 +51,9 @@ return {
 								line.sep(" ", hl, theme.bg),
 								tab.number(),
 								{
-									cwd_name .. "/",
-									tab.name(),
+									"[" .. cwd_name .. "]",
 								},
+                tab.name(),
 								tab.close_btn(""),
 								line.sep(" ", hl, theme.bg),
 								hl = hl,
