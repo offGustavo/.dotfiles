@@ -42,38 +42,6 @@ workspace "0" {
   open-on-output "eDP-1"
 }
 
-// workspace "note" {
-//   open-on-output "HDMI-A-1"
-// }
-// workspace "temp" {
-//   open-on-output "HDMI-A-1"
-// }
-// workspace "term" {
-//   open-on-output "HDMI-A-1"
-// }
-// workspace "zen" {
-//   open-on-output "HDMI-A-1"
-// }
-// workspace "spotify" {
-//   open-on-output "HDMI-A-1"
-// }
-// workspace "trash" {
-//   open-on-output "HDMI-A-1"
-// }
-// workspace "minimize" {
-//   open-on-output "HDMI-A-1"
-// }
-// // workspace "obs" {
-// //   open-on-output "HDMI-A-1"
-// // }
-// // workspace "ten" {
-// //   open-on-output "HDMI-A-1"
-// // }
-// // workspace "oi" {
-// //   open-on-output "HDMI-A-1"
-// // }
-
-
 // Input device configuration.
 // Find the full list of options on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
@@ -566,8 +534,6 @@ binds {
   Mod+Up     { focus-window-or-workspace-up; }
   Mod+Right     { focus-column-or-monitor-right; }
 
-  Mod+o     { focus-workspace-down; }
-  Mod+i     { focus-workspace-up; }  
 
   Mod+Shift+H { consume-or-expel-window-left; }         
   Mod+Shift+J { move-window-down; }
@@ -579,9 +545,13 @@ binds {
   Mod+Shift+Right { consume-or-expel-window-right; }        
   Mod+Shift+Up { move-window-up-or-to-workspace-up; }    
 
+  Mod+o     { focus-workspace-down; }
+  Mod+i     { focus-workspace-up; }  
+  Mod+Shift+o     { move-window-to-workspace-down; }
+  Mod+Shift+i     { move-window-to-workspace-up; }
+
   Mod+comma  { focus-monitor-left; }
   Mod+period { focus-monitor-right; }
-
   Mod+Shift+comma     { move-window-to-monitor-left; }
   Mod+Shift+period     { move-window-to-monitor-right; }
 
