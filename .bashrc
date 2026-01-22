@@ -28,11 +28,8 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --bind ctrl-q:toggle-all,alt-q:toggle-all,ctrl-o:toggle-preview \
   --bind ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up "
 
-export FZF_DEFAULT_COMMAND='rg --files'
-
 export ZOXIDE_EXCLUDE='/tmp/*'
 eval "$(zoxide init bash)"
 
 # Dotfiles
-alias dot='/usr/bin/git --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
-alias dot-tui='/usr/bin/lazygit --git-dir=/home/gustavo/.dotfiles/ --work-tree=/home/gustavo'
+alias dot='/usr/bin/git --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME"'
