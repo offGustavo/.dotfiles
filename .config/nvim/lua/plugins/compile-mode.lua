@@ -3,7 +3,8 @@ return {
   {
     "ej-shafran/compile-mode.nvim",
     version = "^5.0.0",
-    enable = false,
+    enable = true,
+    lazy = false,
     -- you can just use the latest version:
     -- branch = "latest",
     -- or the most up-to-date updates:

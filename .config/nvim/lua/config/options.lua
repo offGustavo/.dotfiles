@@ -67,7 +67,7 @@ end
 
 if vim.fn.has("nvim-0.12") == 1 then
   if not vim.g.vscode then
-    vim.o.cmdheight = 1
+    vim.o.cmdheight = 0
     -- Experimental
     require("vim._extui").enable({
       enable = true, -- Whether to enable or disable the UI.
@@ -130,14 +130,3 @@ vim.g.loaded_netrw = 1
 
 vim.o.keymodel = "startsel,stopsel"
 
-vim.g.clipboard = {
-  name = "OSC 52",
-  copy = {
-    ["-"] = require("vim.ui.clipboard.osc52").copy("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-  },
-  paste = {
-    ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
-  },
-}

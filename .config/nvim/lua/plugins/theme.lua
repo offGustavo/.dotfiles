@@ -1,23 +1,24 @@
 return {
 
-  {
-    "folke/tokyonight.nvim",
-    opts = {
-      dim_inactive = false,
-      style = "night",
-      transparent = false,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-        -- functions = { bold = true },
-        -- keywords = { bold = true },
-      },
-      on_colors = function(colors)
-        colors.bg_statusline = colors.none -- To check if its working try something like "#ff00ff" instead of colors.none
-        colors.bg_statusline = colors.none
-      end,
-    },
-  },
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   opts = {
+  --     dim_inactive = true,
+  --     light_style = "night", -- The theme is used when the background is set to light
+  --     style = "moon",
+  --     transparent = false,
+  --     styles = {
+  --       sidebars = "transparent",
+  --       floats = "transparent",
+  --       -- functions = { bold = true },
+  --       -- keywords = { bold = true },
+  --     },
+  --     on_colors = function(colors)
+  --       colors.bg_statusline = colors.none -- To check if its working try something like "#ff00ff" instead of colors.none
+  --       colors.bg_statusline = colors.none
+  --     end,
+  --   },
+  -- },
 
   -- {
   --   "catppuccin/nvim",
@@ -66,12 +67,12 @@ return {
   --   "tiagovla/tokyodark.nvim",
   -- },
 
-  {
-    "serhez/teide.nvim",
-    lazy = true,
-    priority = 1000,
-    opts = {},
-  },
+  -- {
+  --   "serhez/teide.nvim",
+  --   lazy = true,
+  --   priority = 1000,
+  --   opts = {},
+  -- },
 
   --   { "EdenEast/nightfox.nvim" } -- lazy
 }
