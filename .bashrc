@@ -32,4 +32,4 @@ export ZOXIDE_EXCLUDE='/tmp/*'
 eval "$(zoxide init bash)"
 
 # Dotfiles
-alias dot='/usr/bin/git --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME"'
+alias dot='/usr/bin/env git --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME"'

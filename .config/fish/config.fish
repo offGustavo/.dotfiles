@@ -1,5 +1,9 @@
 # source /usr/share/cachyos-fish-config/cachyos-config.fish
 
+# Keybinds
+set --global fish_key_bindings fish_vi_key_bindings
+
+# Zoxide
 zoxide init fish | source
 
 function zoxide_cd
@@ -23,8 +27,9 @@ end
 
 bind -a alt-z zoxide_cd
 
-fish_default_key_bindings
 
+
+# Nvim
 set -gx EDITOR nvim
 # Export all environment variables at once
 set -gx MANPAGER 'nvim -c "set filetype=man" -c "nmap q :q!<cr>" +Man!'
@@ -69,8 +74,8 @@ alias lt='eza -aT --color=always --group-directories-first --icons=always --hype
 alias l.="eza -a | grep -e '^\.'" # show only dotfiles
 
 # Dotfiles
-alias dot='/usr/bin/git --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME"'
-alias dot-tui='/usr/bin/lazygit --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME"'
+alias dot='/usr/bin/env git --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME"'
+alias dot-tui='/usr/bin/env lazygit --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME"'
 
 # Change go PATH
 set -x GOPATH "$HOME/.go"
@@ -112,3 +117,20 @@ function fish_prompt --description 'Write out the prompt'
     echo -s (prompt_login) ' ' $cwd_color (prompt_pwd) $vcs_color (fish_vcs_prompt) $normal ' ' $prompt_status
     echo -n -s $status_color $suffix ' ' $normal
 end
+
+# Fzf config
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+  --info=inline-right \
+  --ansi \
+  --layout=reverse \
+  --border=none \
+  --style=default \
+  --margin=0% \
+  --color=base16 \
+  --preview-window 'right,border-rounded,hidden'
+  --multi \
+  --bind ctrl-q:toggle-all,alt-q:toggle-all,ctrl-o:toggle-preview \
+  --bind ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up "
+
+fzf --fish | source
+
