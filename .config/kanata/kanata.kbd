@@ -114,7 +114,7 @@
 	;; Space
 	;;ssc (tap-hold 100 300 (tap-dance 200 ((macro spc) (macro spc spc) @nav)) lsft)
 	;; ssc (tap-dance 200 ( (tap-hold 100 300 (macro spc) lsft) (tap-hold 100 300 (macro spc spc) @nav)))
-	ssc (tap-hold-release 100 200 spc lsft)
+	;; ssc (tap-hold-release 100 200 spc lsft)
 
 	;; Super/Windows
 	lma (tap-hold 100 300 a lmet)
@@ -156,7 +156,7 @@
 	;; Mouse Input
 	;; mrc (tap-hold 100 200 🖰2 lctrl )
 	mfs (tap-hold 100 200 fwd lctrl)
-	mbn (tap-hold 100 200 bck (layer-toggle alt-nav))
+	mbn (tap-hold 100 200 bck (layer-toggle navigation))
 
 	;; Devorak
 	ldg (tap-hold 100 300 grv (layer-switch dvorak))
@@ -189,7 +189,7 @@
   tab  @lmq @law @lne @lsr t    y    @rsu @rni @rao @rmp [    ]    \
   @ecc @lma @las @lsd @lcf g    h    @rcj @rsk @ral @rm; '    @rar
   lsft @lmz @lnx @lnc v    b    n    m    @rn, @rn. @rm/ rsft
-  lctl lmet @lab           @ssc           @rar  @rmn rctl
+  lctl lmet @lab           @lsn           @rar  @rmn rctl
   🖰1 🖰2 🖰3 @mbn @mfs)
 
 (deflayer dvorak
@@ -198,48 +198,57 @@
   tab  [    ,    .    p    y    f    g    c    r    l    grv  ]    \
   @ecc a    o    e    u    i    d    h    t    n    s    /    ret
   lsft ;    q    j    k    x    b    m    w    v    z    rsft
-  lctl lmet lalt (tap-hold 100 300 spc (layer-toggle alt-nav)) ralt rmet rctl
+  lctl lmet lalt (tap-hold 100 300 spc (layer-toggle navigation)) ralt rmet rctl
   _  _  _  _  _ )
 
-(deflayermap alt-nav
-	 ;; Left Hand
-	 e up
-	 s left
-	 d down
-	 f rght
-	 w home
-	 r end
-	 t pgup
-	 g pgdn
-	 c del
-	 x bspc
-	 z ins
-	 bspc lmet
-	 tab [
-	 esc ]
-	 caps ]
-	 q vold
-	 a volu
-	v prev
-	b next
-	🖰3 pp
-	mwu volu
-	mwd vold
-	;; Others Keys
-	1 f1
-	2 f2
-	3 f3
-	4 f4
-	5 f5
-	6 f6
-	7 f7
-	8 f8
-	9 f9
-	0 f10
-	- f11
-	= f12
-	🖰1 (tap-hold 100 300 🖰1 lsft)
-	🖰2 (tap-hold 100 300 🖰2 lctrl))
+(deflayer navigation
+	 [    _    _    _    _    _    _    _    _    _    _    _    _
+	 \    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  @num
+	 [    home up   end  pgup _    _    prev vold volu next _    _    _
+	 ]    left down rght pgdn caps _    lctl lsft lalt lmet _    _
+	 _    ins  bspc del  menu ralt _    pp   brdn brup mute _
+	 _    _    _              _              _     _    _
+	 _  _  _  _  _ )
+
+;; (deflayermap navigation
+;; 	 ;; Left Hand
+;; 	 e up
+;; 	 s left
+;; 	 d down
+;; 	 f rght
+;; 	 w home
+;; 	 r end
+;; 	 t pgup
+;; 	 g pgdn
+;; 	 c del
+;; 	 x bspc
+;; 	 z ins
+;; 	 bspc lmet
+;; 	 tab [
+;; 	 esc ]
+;; 	 caps ]
+;; 	 q vold
+;; 	 a volu
+;; 	v prev
+;; 	b next
+;; 	🖰3 pp
+;; 	mwu volu
+;; 	mwd vold
+;; 	;; Others Keys
+;; 	1 f1
+;; 	2 f2
+;; 	3 f3
+;; 	4 f4
+;; 	5 f5
+;; 	6 f6
+;; 	7 f7
+;; 	8 f8
+;; 	9 f9
+;; 	0 f10
+;; 	- f11
+;; 	= f12
+;; 	🖰1 (tap-hold 100 300 🖰1 lsft)
+;; 	🖰2 (tap-hold 100 300 🖰2 lctrl))
 
 (deflayer game
 	 esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
@@ -259,14 +268,15 @@
 	 _    _    _              kp0           lalt  _    _
 	 _  _  _  _  _ )
 
-(deflayer navigation
-	 ]    _    _    _    _    _    _    _    _    _    _    _    _
-	 \    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  _
-	 [    1    2    3    4    5    6    7    8    9    0    -    =    grv
-	 ]    @mPr @aVd @sVu @cNe caps lft  down up   rght del  bspc _
-	 _    mute pp   brdn brup menu ins  @rhc @res @rua @rdm _
-	 _    _    _              _              _     _    _
-	 _  _  _  _  _ )
+
+;; (deflayer navigation
+;; 	 ]    _    _    _    _    _    _    _    _    _    _    _    _
+;; 	 \    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  _
+;; 	 [    1    2    3    4    5    6    7    8    9    0    -    =    grv
+;; 	 ]    @mPr @aVd @sVu @cNe caps lft  down up   rght del  bspc _
+;; 	 _    mute pp   brdn brup menu ins  @rhc @res @rua @rdm _
+;; 	 _    _    _              _              _     _    _
+;; 	 _  _  _  _  _ )
 
 (deflayer symbols
 	 _    _       _         _       _    _    _    _    _    _    _    _    _
