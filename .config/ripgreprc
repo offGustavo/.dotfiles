@@ -7,3 +7,4 @@
 --glob=!target/*
 --max-columns=150
 --max-columns-preview
+--hyperlink-format=kitty
