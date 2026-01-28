@@ -33,7 +33,7 @@
 (defchordsv2
 	;; (grv ret)   @bas 100 all-released()
 	;; (grv spc)   @gam 100 all-released()
-	;; (lsft rsft) caps 100 all-released()
+	(lsft rsft) caps 100 all-released()
 	(s d f)    [ 50 all-released()
 	(w e r)  S-[ 50 all-released()
 	(x c v)    \ 50 all-released()
@@ -73,6 +73,7 @@
 	lne (tap-hold 100 300 e @nav)
 	rni (tap-hold 100 300 i @nav)
 	lsn (tap-hold 100 300 spc @nav)
+	rbn (tap-hold 100 300 bspc @nav)
 
 	;; Numbers
 	lnc (tap-hold 100 300 c @num)
@@ -114,7 +115,7 @@
 	;; Space
 	;;ssc (tap-hold 100 300 (tap-dance 200 ((macro spc) (macro spc spc) @nav)) lsft)
 	;; ssc (tap-dance 200 ( (tap-hold 100 300 (macro spc) lsft) (tap-hold 100 300 (macro spc spc) @nav)))
-	;; ssc (tap-hold-release 100 200 spc lsft)
+	ssc (tap-hold-release 100 200 spc lsft)
 
 	;; Super/Windows
 	lma (tap-hold 100 300 a lmet)
@@ -178,14 +179,14 @@
 	lef(tap-hold 100 300 = f12))
 
 ;;  (deflayer base
-;;            grv      F1/1          F2/2                F3/3             F4/4
-;;            tab      Menu/q         AltGr/w            Symbols Layer/e r
-;;            Ctrl/Esc Alt/a          Super/s            Shift/d         Control/f
-;;            Shift    Mouse Layer/z  Navigation Layer/x Numbers Layer/c Symbols Layer/v
-;;            Control  Super            Alt/Backspace                              Shift/Space       AltGr/Return)
+;;            grv      F1/1          F2/2                F3/3               F4/4
+;;            tab      Menu/q         AltGr/w            Navigation Layer/e r
+;;            Ctrl/Esc Alt/a          Super/s            Shift/d            Control/f
+;;            Shift    Mouse Layer/z  Navigation Layer/x Numbers Layer/c    Symbols Layer/v
+;;            Control  Super          Alt/Backspace      Shift/Space        AltGr/Return)
 (deflayer base
-  @ecc f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-  grv  @l1f @l2f @l3f @l4f @l5f @l6f @l7f @l8f @l9f @l0f @lmf @lef bspc
+  @lce f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  @l1f @l2f @l3f @l4f @l5f @l6f @l7f @l8f @l9f @l0f @lmf @lef @rbn
   tab  @lmq @law @lne @lsr t    y    @rsu @rni @rao @rmp [    ]    \
   @ecc @lma @las @lsd @lcf g    h    @rcj @rsk @ral @rm; '    @rar
   lsft @lmz @lnx @lnc v    b    n    m    @rn, @rn. @rm/ rsft
@@ -204,9 +205,9 @@
 (deflayer navigation
 	 [    _    _    _    _    _    _    _    _    _    _    _    _
 	 \    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  @num
-	 [    home up   end  pgup _    _    prev vold volu next _    _    _
+	 [    home up   end  pgup _    _    prev volu vold next _    _    _
 	 ]    left down rght pgdn caps _    lctl lsft lalt lmet _    _
-	 _    ins  bspc del  menu ralt _    pp   brdn brup mute _
+	 _    ins  bspc del  menu ralt _    pp   brup brdn mute _
 	 _    _    _              _              _     _    _
 	 _  _  _  _  _ )
 
@@ -267,7 +268,6 @@
 	 _    f9   f10  f11  f12  RA-, _    kp1  kp2  kp3  kp.  _
 	 _    _    _              kp0           lalt  _    _
 	 _  _  _  _  _ )
-
 
 ;; (deflayer navigation
 ;; 	 ]    _    _    _    _    _    _    _    _    _    _    _    _
