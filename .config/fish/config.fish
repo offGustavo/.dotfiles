@@ -48,8 +48,8 @@ end
 
 # Keyboard
 # cat /proc/bus/input/devices | rg --context 10 "Translated"
-alias kboff="sudo echo 1 | sudo tee /sys/class/input/event9/device/inhibited"
-alias kbon="sudo echo 0 | sudo tee /sys/class/input/event9/device/inhibited"
+alias kboff="sudo echo 1 | sudo tee /sys/class/input/event0/device/inhibited"
+alias kbon="sudo echo 0 | sudo tee /sys/class/input/event0/device/inhibited"
 
 #### CachyOs Aliases
 
@@ -82,7 +82,7 @@ set -x GOPATH "$HOME/.go"
 set -x GOBIN "$GOPATH/bin"
 
 # Append common directories for executable files to $PATH
-fish_add_path ~/.local/bin ~/.cargo/bin ~/Applications/depot_tools $HOME/.go/bin $HOME/.nix-profile/bin
+fish_add_path ~/.local/bin ~/.cargo/bin ~/Applications/depot_tools $HOME/.go/bin $HOME/.nix-profile/bin ~/.local/share/bob/nightly/bin/
 
 function fish_prompt --description 'Write out the prompt'
     # Salva o último comando executado (por sessão)
@@ -117,6 +117,9 @@ function fish_prompt --description 'Write out the prompt'
     echo -s (prompt_login) ' ' $cwd_color (prompt_pwd) $vcs_color (fish_vcs_prompt) $normal ' ' $prompt_status
     echo -n -s $status_color $suffix ' ' $normal
 end
+
+# Rip
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgreprc"
 
 # Fzf config
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
