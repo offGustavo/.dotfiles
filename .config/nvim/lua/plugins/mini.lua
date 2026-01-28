@@ -96,8 +96,8 @@ return {
       --   end, { desc = "Open Mini Files" })
     end,
   },
-  {
-    "nvim-mini/mini.pairs",
-    enabled = false,
-  },
+  -- {
+  --   "nvim-mini/mini.pairs",
+  --   enabled = false,
+  -- },
 }

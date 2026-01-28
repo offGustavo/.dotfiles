@@ -4,7 +4,7 @@
 " Former Maintainer:	Bram Moolenaar <Bram@vim.org>
 
 " Don't use Vi-compatible mode.
-set nocompatible
+" set nocompatible
 
 " " Use the mswin.vim script for most mappings
 " source <sfile>:p:h/mswin.vim

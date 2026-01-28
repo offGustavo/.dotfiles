@@ -1,3 +1,4 @@
+if true then return {} end -- WARN: Comment this line to active the plugins
 return {
 	{ "tiagovla/scope.nvim", lazy = false, config = true },
 	{

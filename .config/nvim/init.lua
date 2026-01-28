@@ -78,3 +78,5 @@ else
   end
   require("fish.kitty")
 end
+
+

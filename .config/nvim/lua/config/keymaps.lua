@@ -25,6 +25,7 @@ pcall(function()
   vim.keymap.set({ "n" }, "gd", "gd")
   vim.keymap.set({ "n" }, "gr", "gr")
 end)
+
 -----------------
 --- DASHBOARD ---
 -----------------
@@ -120,24 +121,24 @@ vim.keymap.set("t", "<S-Esc>", "<C-\\><C-n>", { silent = true, desc = "Go To Nor
 -- vim.keymap.set("i", "<A-x>", "<C-o>:", { desc = "Emacs" })
 -- vim.keymap.set("t", "<A-x>", "<C-\\><C-o>:", { desc = "Emacs" })
 
-vim.keymap.set({ "i", "x", "n" }, "<C-s>", "<Cmd>update<CR>", { silent = true })
+-- vim.keymap.set({ "i", "x", "n" }, "<C-s>", "<Cmd>update<CR>", { silent = true })
 
 -- -- Indent with tab
 -- vim.keymap.set("i", "<Tab>", "<C-t>")
 -- vim.keymap.set("i", "<S-Tab>", "<C-d>")
 
--- Emacs Keybinds in Command Mode
-vim.keymap.set({ "c" }, "<C-p>", "<Up>")
-vim.keymap.set({ "c" }, "<C-n>", "<Down>")
-vim.keymap.set({ "c" }, "<C-a>", "<Home>")
-vim.keymap.set({ "c" }, "<C-f>", "<Right>")
-vim.keymap.set({ "c" }, "<C-b>", "<Left>")
-vim.keymap.set({ "c" }, "<C-e>", "<End>")
-vim.keymap.set({ "c" }, "<A-b>", "<S-Left>")
-vim.keymap.set({ "c" }, "<A-f>", "<S-Right>")
+-- -- Emacs Keybinds in Command Mode
+-- vim.keymap.set({ "c" }, "<C-p>", "<Up>")
+-- vim.keymap.set({ "c" }, "<C-n>", "<Down>")
+-- vim.keymap.set({ "c" }, "<C-a>", "<Home>")
+-- vim.keymap.set({ "c" }, "<C-f>", "<Right>")
+-- vim.keymap.set({ "c" }, "<C-b>", "<Left>")
+-- vim.keymap.set({ "c" }, "<C-e>", "<End>")
+-- vim.keymap.set({ "c" }, "<A-b>", "<S-Left>")
+-- vim.keymap.set({ "c" }, "<A-f>", "<S-Right>")
 
--- Normal mode in command line
-vim.keymap.set("c", "<C-o>", "<C-f>")
+-- -- Normal mode in command line
+-- vim.keymap.set("c", "<C-o>", "<C-f>")
 
 -- Visual Keymaps - Markdown Text
 vim.keymap.set(
@@ -453,4 +454,34 @@ end, { desc = "Open current file" })
 
 vim.keymap.set("c", "w!!", "w !sudo tee > /dev/null %", { silent = true, desc = "Write as Sudo" })
 
-vim.keymap.set("n", "<A-d>", ":t.<CR>", { desc = "Clone Line Down" })
+vim.keymap.set("n", "<A-d>", ":t.<CR>", { desc = "Clone Line Down", silent = true })
+
+local function emacs_mark_forward(select_cmd, move_cmd)
+  return function()
+    local mode = vim.fn.mode()
+    if mode ~= "v" and mode ~= "V" and mode ~= "\22" then
+      vim.cmd("normal! " .. select_cmd)
+    end
+    vim.cmd("normal! " .. move_cmd)
+  end
+end
+vim.keymap.set({ "n", "x" }, "<M-S-2>", emacs_mark_forward("viwo", "oeo"), { desc = "Emacs M-@ mark word forward" })
+vim.keymap.set({ "n", "x" }, "<M-h>", emacs_mark_forward("vip", "}"), { desc = "Emacs M-h mark paragraph" })
+vim.keymap.set({ "n", "x" }, "<M-e>", emacs_mark_forward("vis", ")"), { desc = "Emacs M-e mark sentence" })
+vim.keymap.set({ "n", "x" }, "<C-M-h>", emacs_mark_forward("va{", "}"), { desc = "Emacs C-M-h mark defun" })
+vim.keymap.set({ "n", "x" }, "<M-S-.>", function()
+  local mode = vim.fn.mode()
+  if mode ~= "v" and mode ~= "V" then
+    vim.cmd("normal! V")
+  end
+  vim.cmd("normal! Go")
+end, { desc = "Emacs M-< mark end of buffer" })
+vim.keymap.set({ "n", "v" }, "<M-S-,>", function()
+  local mode = vim.fn.mode()
+  if mode ~= "v" and mode ~= "V" then
+    vim.cmd("normal! V")
+  end
+  vim.cmd("normal! ggo")
+end, { desc = "Emacs M-< mark beginning of buffer" })
+
+vim.keymap.set("x", "<M-t>", ":g/^$/d<Cr>:noh<Cr>", { desc = "Remove Empty Lines", silent = true })
