@@ -498,8 +498,8 @@ binds {
   Mod+Shift+Return { spawn-sh "kitten quick-access-terminal"; }
 
   // Mod+D { spawn-sh "rofi -combi-modi window,drun,run -show combi "; }
-  Mod+Slash { spawn-sh "rofi -combi-modi drun,run -show combi "; }
-  Alt+Space { spawn-sh "rofi -show drun"; }
+  Mod+Slash { spawn-sh "fuzzel"; }
+  Alt+Space { spawn-sh "fuzzel"; }
 
   Super+Alt+Escape hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "dms ipc call lock lock"; }
 
@@ -747,18 +747,18 @@ binds {
   Mod+Shift+Alt+P { power-off-monitors; }
 
   // Scripts
-  Mod+b { spawn "sh" "-c" "$HOME/.config/rofi/scripts/bluetooth.sh"; }
+  Mod+b { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/bluetooth.sh"; }
   Mod+Ctrl+b { spawn "sh" "-c" "$HOME/.config/waybar/scripts/toggle-waybar.sh"; }
   Mod+Alt+b { spawn "sh" "-c" "$HOME/.local/bin/toggle-dark-mode.sh"; }
   Mod+Shift+b { spawn "sh" "-c" "$HOME/.config/niri/scripts/toggle-sunset.sh"; }
   Mod+Alt+W { spawn "sh" "-c" "$HOME/.local/bin/start_swaybg.lua"; }
-  Mod+n { spawn "sh" "-c" "$HOME/.config/rofi/scripts/network.lua"; }
-  Mod+v { spawn "sh" "-c" "$HOME/.config/rofi/scripts/output.sh"; }
+  Mod+n { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/network.lua"; }
+  Mod+v { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/output.sh"; }
   Mod+p { spawn "sh" "-c" "/home/gustavo/.config/niri/scripts/monitors.sh"; }
   Mod+Alt+p { spawn-sh "hyprpicker -a"; }
-  Mod+x { spawn "sh" "-c" "$HOME/.config/rofi/scripts/power.sh"; }
-  Mod+s { spawn "sh" "-c" "$HOME/.config/rofi/scripts/screenshot.sh"; }
-  Mod+semicolon { spawn "sh" "-c" "rofi -modi 'emoji:rofimoji' -show emoji"; }
+  Mod+x { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/power.sh"; }
+  Mod+s { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/screenshot.sh"; }
+  Mod+semicolon { spawn "sh" "-c" "rofimoji -a copy"; }
   Mod+z { spawn "sh" "-c" "pkill -SIGUSR1 wayscriber"; }
 
   // Notification
