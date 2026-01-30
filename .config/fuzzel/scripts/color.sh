@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 
-rofi -show drun
+hyprpicker -a

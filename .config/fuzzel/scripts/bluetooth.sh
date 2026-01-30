@@ -1,27 +1,28 @@
 #!/usr/bin/env bash
-#             __ _       _     _            _              _   _
-#  _ __ ___  / _(_)     | |__ | |_   _  ___| |_ ___   ___ | |_| |__
-# | '__/ _ \| |_| |_____| '_ \| | | | |/ _ \ __/ _ \ / _ \| __| '_ \
-# | | | (_) |  _| |_____| |_) | | |_| |  __/ || (_) | (_) | |_| | | |
-# |_|  \___/|_| |_|     |_.__/|_|\__,_|\___|\__\___/ \___/ \__|_| |_|
-#
-# Author: Nick Clyde (clydedroid)
-#
-# A script that generates a rofi menu that uses bluetoothctl to
-# connect to bluetooth devices and display status info.
-#
-# Inspired by networkmanager-dmenu (https://github.com/firecat53/networkmanager-dmenu)
-# Thanks to x70b1 (https://github.com/polybar/polybar-scripts/tree/master/polybar-scripts/system-bluetooth-bluetoothctl)
-#
-# Depends on:
-#   Arch repositories: rofi, bluez-utils (contains bluetoothctl)
-
-# Import Current Theme
-DIR="$HOME/.config/rofi"
-RASI="$DIR/config.rasi"
-
 # Constants
 goback="Back"
+waybar_mode=false
+
+# Parse command line arguments
+for arg in "$@"; do
+  case $arg in
+    --waybar)
+      waybar_mode=true
+      shift
+      ;;
+    --status)
+      print_status
+      exit 0
+      ;;
+  esac
+done
+
+# Set fuzzel command based on waybar mode
+if [ "$waybar_mode" = true ]; then
+  rofi_command="fuzzel -d -p Bluetooth: -a top-right -w 20 -l 10 --x-margin 30"
+else
+  rofi_command="fuzzel -d -p Bluetooth:"
+fi
 
 # Checks if bluetooth controller is powered on
 power_on() {
@@ -186,7 +187,7 @@ toggle_trust() {
 # Useful for status bars like polybar, etc.
 print_status() {
   if power_on; then
-    printf '󰂯'
+    printf ''
 
     paired_devices_cmd="devices Paired"
     # Check if an outdated version of bluetoothctl is used to preserve backwards compatibility
@@ -212,7 +213,7 @@ print_status() {
     done
     printf "\n"
   else
-    echo "󰂲"
+    echo ""
   fi
 }
 
@@ -234,8 +235,8 @@ device_menu() {
   trusted=$(device_trusted "$mac")
   options="$connected\n$paired\n$trusted\n$goback\nExit"
 
-  # Open rofi menu, read chosen option
-  chosen="$(echo -e "$options" | $rofi_command "$device_name")"
+  # Open fuzzel menu, read chosen option
+  chosen="$(echo -e "$options" | $rofi_command)"
 
   # Match chosen option to command
   case "$chosen" in
@@ -257,7 +258,7 @@ device_menu() {
   esac
 }
 
-# Opens a rofi menu with current bluetooth status and options to connect
+# Opens a fuzzel menu with current bluetooth status and options to connect
 show_menu() {
   # Get menu options
   if power_on; then
@@ -272,15 +273,15 @@ show_menu() {
     pairable=$(pairable_on)
     discoverable=$(discoverable_on)
 
-    # Options passed to rofi
+    # Options passed to fuzzel
     options="$devices\n$power\n$scan\n$pairable\n$discoverable\nExit"
   else
     power="Power: off"
     options="$power\nExit"
   fi
 
-  # Open rofi menu, read chosen option
-  chosen="$(echo -e "$options" | $rofi_command "Bluetooth")"
+  # Open fuzzel menu, read chosen option
+  chosen="$(echo -e "$options" | $rofi_command)"
 
   # Match chosen option to command
   case "$chosen" in
@@ -307,15 +308,5 @@ show_menu() {
   esac
 }
 
-# Rofi command to pipe into, can add any options here
-# rofi_command="rofi -theme ${RASI} -dmenu $* -p"
-rofi_command="rofi  -dmenu $* -p"
-
-case "$1" in
---status)
-  print_status
-  ;;
-*)
-  show_menu
-  ;;
-esac
+# Main execution
+show_menu

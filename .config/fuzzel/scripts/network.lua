@@ -31,7 +31,7 @@ local fuzzel_command
 if waybar_mode then
     fuzzel_command = "fuzzel -a top-right -w 30 -l 10 --x-margin 10 -d -p "
 else
-    fuzzel_command = "rofi -dmenu -p "
+    fuzzel_command = "fuzzel -d -p "
 end
 
 -- Obter informações das conexões de rede usando nmcli
