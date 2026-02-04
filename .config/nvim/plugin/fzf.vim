@@ -1,4 +1,4 @@
-au User VeryLazy lua require('fzf-lua').setup( { 'ivy', })
+au User VeryLazy lua require('fzf-lua').setup( { 'fzf-native', })
 
 au User VeryLazy FzfLua setup_fzfvim_cmds
 au User VeryLazy FzfLua register_ui_select

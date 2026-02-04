@@ -1,4 +1,4 @@
--- Our custom things
+-- custom things
 Fish = {}
 
 vim.g.mapleader = " "
@@ -7,16 +7,16 @@ let g:maplocalleader = "\<BS>"
 ]])
 
 Fish.plugins = {
-	-- TODO: Remover depois
 	now = {
+    -- TODO: Remover depois
+    "https://github.com/dstein64/vim-startuptime",
 		"https://github.com/folke/tokyonight.nvim",
-		"https://github.com/dstein64/vim-startuptime",
 	},
 	later = {
+    "https://github.com/mikavilpas/yazi.nvim",
 		"https://github.com/nvim-mini/mini.nvim",
 		"https://github.com/folke/snacks.nvim",
-		"https://github.com/Rolv-Apneseth/tfm.nvim",
-		 "https://github.com/ibhagwan/fzf-lua",
+		"https://github.com/ibhagwan/fzf-lua",
 		"https://github.com/folke/noice.nvim",
 		"https://github.com/folke/flash.nvim",
 		"https://github.com/stevearc/quicker.nvim",
@@ -50,17 +50,7 @@ vim.g.loaded_tarPlugin = 1
 vim.g.loaded_zipPlugin = 1
 vim.g.loaded_tutor_mode_plugin = 1
 
-
-
--- require("config.pack")
-
-require("config.lazy")
-
--- vim.autocmd("User", {
--- 	pattern = "Later",
--- 	callback = function()
--- 		vim.cmd("call dashboard#Start()")
--- 	end,
--- })
+require("config.pack")
+-- require("config.lazy")
 
 vim.cmd("color tokyonight")
