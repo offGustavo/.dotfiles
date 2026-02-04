@@ -1,0 +1,11 @@
+vim.api.nvim_create_autocmd({ "User" }, {
+  pattern = "VeryLazy",
+  callback = function()
+    vim.g.baleia = require("baleia").setup({ })
+    -- Command to colorize the current buffer
+    vim.api.nvim_create_user_command("BaleiaColorize", function()
+      vim.g.baleia.once(vim.api.nvim_get_current_buf())
+    end, { bang = true })
+    vim.g.baleia.automatically(vim.api.nvim_get_current_buf())
+  end,
+})
