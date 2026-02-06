@@ -5,7 +5,7 @@
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
 // Use server side decorations
-prefer-no-csd
+// prefer-no-csd
 
 hotkey-overlay {
     skip-at-startup
@@ -133,7 +133,7 @@ output "eDP-1" {
   // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
   mode "1920x1080@60"
   // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-  scale 1
+  scale 1.0
   // Transform allows to rotate the output counter-clockwise, valid values are:
   // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
   transform "normal"
@@ -360,11 +360,11 @@ layout {
 // Start
 // spawn-at-startup "sh" "-c" "systemctl --user start gnome-keyring-daemon.service"
 // spawn-at-startup "sh" "-c" "sleep 1 && waybar -c ~/.config/niri/waybar/config.jsonc  -s ~/.config/niri/waybar/style.css"
-spawn-at-startup "sh" "-c" "sleep 1 && swaybg -i ~/Pictures/Wallpapers/my/The-Path-of-Giants.png"
+// spawn-at-startup "sh" "-c" "sleep 1 && swaybg -i ~/Pictures/Wallpapers/my/The-Path-of-Giants.png"
 // spawn-at-startup "sh" "-c" "sleep 1 && ~/.config/waybar/scripts/toggle-waybar.sh"
 // spawn-at-startup "sh" "-c" "sleep 1 && ~/.local/bin/start_swaybg.lua"
-spawn-at-startup "sh" "-c" "mako"
-spawn-at-startup "sh" "-c" "waybar"
+// spawn-at-startup "sh" "-c" "mako"
+// spawn-at-startup "sh" "-c" "waybar"
 // spawn-at-startup "sh" "-c" "dms run"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -499,7 +499,7 @@ binds {
 
   // Mod+D { spawn-sh "rofi -combi-modi window,drun,run -show combi "; }
   Mod+Slash { spawn-sh "fuzzel"; }
-  Alt+Space { spawn-sh "fuzzel"; }
+  // Alt+Space { spawn-sh "fuzzel"; }
 
   Super+Alt+Escape hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "dms ipc call lock lock"; }
 
@@ -554,16 +554,18 @@ binds {
   Mod+Up     { focus-window-or-workspace-up; }
   Mod+Right     { focus-column-or-monitor-right; }
 
-
-  Mod+Shift+H { consume-or-expel-window-left; }         
+  Mod+Shift+H { consume-or-expel-window-left; }
   Mod+Shift+J { move-window-down; }
-  Mod+Shift+L { consume-or-expel-window-right; }        
+  Mod+Shift+L { consume-or-expel-window-right; }
   Mod+Shift+K { move-window-up; }    
 
-  Mod+Shift+Left { consume-or-expel-window-left; }         
+  Mod+Shift+Left { move-column-left-or-to-monitor-left; }
   Mod+Shift+Down { move-window-down-or-to-workspace-down; }
-  Mod+Shift+Right { consume-or-expel-window-right; }        
+  Mod+Shift+Right { move-column-right-or-to-monitor-right; }
   Mod+Shift+Up { move-window-up-or-to-workspace-up; }    
+
+  Mod+Ctrl+Shift+Left { consume-or-expel-window-left; }
+  Mod+Ctrl+Shift+Right { consume-or-expel-window-right; }
 
   Mod+o     { focus-workspace-down; }
   Mod+i     { focus-workspace-up; }  
@@ -611,13 +613,13 @@ binds {
   // These binds are also affected by touchpad's natural-scroll, so these
   // example binds are "inverted", since we have natural-scroll enabled for
   // touchpads by default.
-  Mod+Ctrl+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.10+"; }
-  Mod+Ctrl+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.10-"; }
+  Mod+Ctrl+TouchpadScrollUp { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
+  Mod+Ctrl+TouchpadScrollDown   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
   Mod+Ctrl+WheelScrollUp { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.10+"; }
   Mod+Ctrl+WheelScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.10-"; }
 
-  Mod+Shift+Alt+TouchpadScrollDown { spawn "brightnessctl" "set" "10%+"; }
-  Mod+Shift+Alt+TouchpadScrollUp { spawn "brightnessctl" "set" "10%-"; }
+  mod+shift+alt+touchpadscrollup { spawn "brightnessctl" "set" "1%+"; }
+  mod+shift+alt+touchpadscrolldown { spawn "brightnessctl" "set" "1%-"; }
   Mod+Shift+Alt+WheelScrollUp { spawn "brightnessctl" "set" "10%+"; }
   Mod+Shift+Alt+WheelScrollDown { spawn "brightnessctl" "set" "10%-"; }
 
@@ -683,10 +685,10 @@ binds {
   // Makes the column "fill the rest of the space".
   Mod+Ctrl+f { expand-column-to-available-width; }
 
-  Mod+C { center-column; }
+  Mod+Ctrl+C { center-column; }
 
   // Center all fully visible columns on screen.
-  Mod+Shift+C { center-visible-columns; }
+  // Mod+Ctrl+Shift+C { center-visible-columns; }
 
   // Finer width adjustments
   // This command can also:
@@ -753,10 +755,10 @@ binds {
   Mod+Shift+b { spawn "sh" "-c" "$HOME/.config/niri/scripts/toggle-sunset.sh"; }
   Mod+Alt+W { spawn "sh" "-c" "$HOME/.local/bin/start_swaybg.lua"; }
   Mod+n { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/network.lua"; }
-  Mod+v { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/output.sh"; }
+  Mod+Ctrl+v { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/output.sh"; }
   Mod+p { spawn "sh" "-c" "/home/gustavo/.config/niri/scripts/monitors.sh"; }
   Mod+Alt+p { spawn-sh "hyprpicker -a"; }
-  Mod+x { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/power.sh"; }
+  Mod+Ctrl+x { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/power.sh"; }
   Mod+s { spawn "sh" "-c" "$HOME/.config/fuzzel/scripts/screenshot.sh"; }
   Mod+semicolon { spawn "sh" "-c" "rofimoji -a copy"; }
   Mod+z { spawn "sh" "-c" "pkill -SIGUSR1 wayscriber"; }
@@ -786,7 +788,7 @@ recent-windows {
   binds {
     Alt+Tab         { next-window scope="all"; }
     Alt+Shift+Tab   { previous-window scope="all"; }
-    alt+grave       { next-window     scope="all" filter="app-id"; }
+    Alt+grave       { next-window     scope="all" filter="app-id"; }
     Alt+Shift+grave { previous-window scope="all" filter="app-id"; }
     Alt+escape       { next-window     scope="workspace"; }
     Alt+Shift+escape { previous-window scope="workspace"; }
