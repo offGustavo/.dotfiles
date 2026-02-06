@@ -1,7 +1,23 @@
 # source /usr/share/cachyos-fish-config/cachyos-config.fish
 
 # Keybinds
-set --global fish_key_bindings fish_vi_key_bindings
+# set --global fish_key_bindings fish_vi_key_bindings
+#  if status is-interactive
+# bind -M default \ca beginning-of-line
+# bind -M insert \ca beginning-of-line
+# bind -M default \ce end-of-line
+# bind -M insert \ce end-of-line
+# bind -M default \cb backward-char
+# bind -M insert \cb backward-char
+# bind -M default \cf forward-char
+# bind -M insert \cf forward-char
+# bind -M default \cq backward-bigword
+# bind -M insert \cq backward-bigword
+# bind -M default \cw forward-bigword
+# bind -M insert \cw forward-bigword
+# bind -M default \cz complete-and-search
+# bind -M insert \cz complete-and-search
+# end
 
 # Zoxide
 zoxide init fish | source
@@ -14,7 +30,7 @@ function zoxide_cd
     # end
     #
     # if test $use_fuzzel -eq 1
-    set -l dir (zoxide query -l -s | rofi -dmenu | awk "{print \$2}")
+    set -l dir (zoxide query -l -s | fuzzel --dmenu | awk "{print \$2}")
     # else
     # set -l dir (zoxide query -l | fzf)
     # end
@@ -27,23 +43,30 @@ end
 
 bind -a alt-z zoxide_cd
 
+function y
+	set tmp (mktemp -t "yazi-cwd.XXXXXX")
+	command yazi $argv --cwd-file="$tmp"
+	if read -z cwd < "$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
+		builtin cd -- "$cwd"
+	end
+	rm -f -- "$tmp"
+end
 
+bind -a alt-y yazi_cd
 
 # Nvim
 set -gx EDITOR nvim
-# Export all environment variables at once
-set -gx MANPAGER 'nvim -c "set filetype=man" -c "nmap q :q!<cr>" +Man!'
-set -gx PAGER 'nvim -c "nmap q :q!<cr>" +"BaleiaColorize"'
 
 # Edit File with Sudo
 alias svim='sudoedit'
 
 # Genga
-alias gengar="pokeget --hide-name glalie | fastfetch --file-raw - -c ~/.config/fastfetch/gengar.jsonc"
+alias gengar="pokeget --hide-name gengar | fastfetch --file-raw - -c ~/.config/fastfetch/gengar.jsonc"
+alias glalie="pokeget --hide-name glalie | fastfetch --file-raw - -c ~/.config/fastfetch/gengar.jsonc"
 
 # overwrite greeting
 function fish_greeting
-    gengar
+  # gengar
 end
 
 # Keyboard
@@ -75,14 +98,15 @@ alias l.="eza -a | grep -e '^\.'" # show only dotfiles
 
 # Dotfiles
 alias dot='/usr/bin/env git --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME"'
-alias dot-tui='/usr/bin/env lazygit --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME"'
+alias dotui='/usr/bin/env lazygit --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME"'
 
 # Change go PATH
 set -x GOPATH "$HOME/.go"
 set -x GOBIN "$GOPATH/bin"
 
 # Append common directories for executable files to $PATH
-fish_add_path ~/.local/bin ~/.cargo/bin ~/Applications/depot_tools $HOME/.go/bin $HOME/.nix-profile/bin ~/.local/share/bob/nightly/bin/
+fish_add_path ~/.local/bin ~/.cargo/bin ~/Applications/depot_tools $HOME/.go/bin $HOME/.nix-profile/bin
+
 
 function fish_prompt --description 'Write out the prompt'
     # Salva o último comando executado (por sessão)
@@ -127,7 +151,7 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --ansi \
   --layout=reverse \
   --border=none \
-  --style=default \
+  --style=minimal \
   --margin=0% \
   --color=base16 \
   --preview-window 'right,border-rounded,hidden'
@@ -136,4 +160,3 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --bind ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up "
 
 fzf --fish | source
-
