@@ -1,6 +1,6 @@
 (defcfg
 	movemouse-smooth-diagonals yes
-	log-layer-changes yes
+	log-layer-changes no
 	process-unmapped-keys yes
 	concurrent-tap-hold yes
 	linux-device-detect-mode any
@@ -14,34 +14,35 @@
 	"8BitDo Ultimate 2 Wireless Controller")
 	windows-altgr add-lctl-release)
 
-;; (deflocalkeys-linux
-;;  mctl 89)
+(deflocalkeys-linux
+ mctl 89)
 
 ;; (deflocalkeys-win
 ;;   mctl 193
 ;;   )
 
 (defsrc
-	esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
 	grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
 	tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
 	caps a    s    d    f    g    h    j    k    l    ;    '    ret
 	lsft z    x    c    v    b    n    m    ,    .    /    rsft
-	lctl lmet lalt           spc            ralt  menu rctl
+	lctl lmet lalt           spc            ralt  menu mctl
 	🖰1 🖰2 🖰3 🖰4 🖰5)
 
 (defchordsv2
 	;; (grv ret)   @bas 100 all-released()
 	;; (grv spc)   @gam 100 all-released()
-	(lsft rsft) caps 100 all-released()
-	(s d f)    [ 50 all-released()
-	(w e r)  S-[ 50 all-released()
-	(x c v)    \ 50 all-released()
-	(u i o)  S-] 50 all-released()
-	(j k l)    ] 50 all-released()
-	(m ,)    [ 50 all-released()
-	(, .)    ] 50 all-released()
-	(. /)    \ 50 all-released()
+	;; (lsft rsft) caps 100 all-released()
+	;; (lctl tab)  esc 100 all-released()
+	;; (o i)  tab 100 all-released()
+	;; (s d f)    [ 50 all-released()
+	;; (w e r)  S-[ 50 all-released()
+	;; (x c v)    \ 50 all-released()
+	;; (u i o)  S-] 50 all-released()
+	;; (j k l)    ] 50 all-released()
+	;; (m ,)    [ 50 all-released()
+	;; (, .)    ] 50 all-released()
+  ;; (. /)    \ 50 all-released()
 	(' c) RA-, 50 all-released())
 
 (defalias
@@ -72,8 +73,9 @@
 	rmn (tap-hold 100 300 menu @nav)
 	lne (tap-hold 100 300 e @nav)
 	rni (tap-hold 100 300 i @nav)
-	lsn (tap-hold 100 300 spc @nav)
+	lsn (tap-hold-release 100 200 spc @nav)
 	rbn (tap-hold 100 300 bspc @nav)
+  ;; test (tap-dance @lsn lsft)
 
 	;; Numbers
 	lnc (tap-hold 100 300 c @num)
@@ -95,7 +97,13 @@
 
 	;; Caps
 	ecc (tap-hold 100 300 esc caps)
+	rcs (tap-hold-press 100 300 caps rsft)
 	;; lce (tap-hold 100 300 esc caps)
+
+	;; Space
+	;;ssc (tap-hold 100 300 (tap-dance 200 ((macro spc) (macro spc spc) @nav)) lsft)
+	;; ssc (tap-dance 200 ( (tap-hold 100 300 (macro spc) lsft) (tap-hold 100 300 (macro spc spc) @nav)))
+	;; ssc (tap-hold-release 100 200 spc lsft)
 
 	;; Control
 	lcf (tap-hold 100 300 f lctl)
@@ -111,12 +119,6 @@
 	sVu (tap-hold 100 300 volu lsft)
 	res (tap-hold 100 300 end lsft)
 
-
-	;; Space
-	;;ssc (tap-hold 100 300 (tap-dance 200 ((macro spc) (macro spc spc) @nav)) lsft)
-	;; ssc (tap-dance 200 ( (tap-hold 100 300 (macro spc) lsft) (tap-hold 100 300 (macro spc spc) @nav)))
-	ssc (tap-hold-release 100 200 spc lsft)
-
 	;; Super/Windows
 	lma (tap-hold 100 300 a lmet)
 	rm; (tap-hold 100 300 ; lmet)
@@ -125,17 +127,17 @@
 
 	;; Alt
 	las (tap-hold 100 300 s lalt)
-	;;NOTE: `︔` != `;`
-	;; This isen't require now, but i'll keeping it
 	ral (tap-hold 100 300 l lalt)
-	law (tap-hold 100 300 w ralt)
-	rao (tap-hold 100 300 o ralt)
 	aVd (tap-hold 100 300 vold lalt)
 	rua (tap-hold 100 200 pgup lalt)
 	lab (tap-hold-press 100 300 bspc lalt)
-	rar (tap-hold-release 100 300 ret ralt)
 	;; rna (tap-dance 300 ( @rar @nav))
-	;; lsa (tap-dance 300 ( @lab lsft))
+  ;; lsa (tap-dance 300 ( @lab lsft))
+
+  ;;  AltGR
+	law (tap-hold 100 300 w ralt)
+  rao (tap-hold 100 300 o ralt)
+	rar (tap-hold 100 300 ret ralt)
 
 	;; Menu
 	lmq (tap-hold 100 300 q menu)
@@ -159,8 +161,6 @@
 	mfs (tap-hold 100 200 fwd lctrl)
 	mbn (tap-hold 100 200 bck (layer-toggle navigation))
 
-	;; Devorak
-	ldg (tap-hold 100 300 grv (layer-switch dvorak))
 	;; Qwerty
 	lqg (tap-hold 100 300 grv (layer-switch base))
 
@@ -185,74 +185,22 @@
 ;;            Shift    Mouse Layer/z  Navigation Layer/x Numbers Layer/c    Symbols Layer/v
 ;;            Control  Super          Alt/Backspace      Shift/Space        AltGr/Return)
 (deflayer base
-  @lce f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-  grv  @l1f @l2f @l3f @l4f @l5f @l6f @l7f @l8f @l9f @l0f @lmf @lef @rbn
-  tab  @lmq @law @lne @lsr t    y    @rsu @rni @rao @rmp [    ]    \
-  @ecc @lma @las @lsd @lcf g    h    @rcj @rsk @ral @rm; '    @rar
-  lsft @lmz @lnx @lnc v    b    n    m    @rn, @rn. @rm/ rsft
-  lctl lmet @lab           @lsn           @rar  @rmn rctl
+  grv  @l1f @l2f @l3f @l4f @l5f @l6f @l7f @l8f @l9f @l0f @lmf @lef bspc
+  tab @lmq @law @lne @lsr t    y    @rsu @rni @rao @rmp [    ] (tap-hold-press 100 300 \ lsft)
+  caps @lma @las @lsd @lcf g    h    @rcj @rsk @ral @rm; '    @rar
+  lsft @lmz @lnx @lnc v    b    n    m    @rn, @rn. @rm/ (tap-hold-press 100 300 tab rsft)
+  (tap-hold-press 100 300 esc lctrl) lmet @lab           @lsn           @rar lmet rctl
   🖰1 🖰2 🖰3 @mbn @mfs)
 
-(deflayer dvorak
-  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-  @lqg 1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  [    ,    .    p    y    f    g    c    r    l    grv  ]    \
-  @ecc a    o    e    u    i    d    h    t    n    s    /    ret
-  lsft ;    q    j    k    x    b    m    w    v    z    rsft
-  lctl lmet lalt (tap-hold 100 300 spc (layer-toggle navigation)) ralt rmet rctl
-  _  _  _  _  _ )
-
 (deflayer navigation
-	 [    _    _    _    _    _    _    _    _    _    _    _    _
-	 \    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  @num
-	 [    home up   end  pgup _    _    prev volu vold next _    _    _
-	 ]    left down rght pgdn caps _    lctl lsft lalt lmet _    _
-	 _    ins  bspc del  menu ralt _    pp   brup brdn mute _
+	 _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  @num
+	 _    pgup home up   end  _    \    prev volu vold next f12  _    _
+	 _    pgdn left down rght caps [    lctl lsft lalt lmet ]    _
+	 _    ins  bspc del  menu ralt ralt pp   brup brdn mute _
 	 _    _    _              _              _     _    _
 	 _  _  _  _  _ )
 
-;; (deflayermap navigation
-;; 	 ;; Left Hand
-;; 	 e up
-;; 	 s left
-;; 	 d down
-;; 	 f rght
-;; 	 w home
-;; 	 r end
-;; 	 t pgup
-;; 	 g pgdn
-;; 	 c del
-;; 	 x bspc
-;; 	 z ins
-;; 	 bspc lmet
-;; 	 tab [
-;; 	 esc ]
-;; 	 caps ]
-;; 	 q vold
-;; 	 a volu
-;; 	v prev
-;; 	b next
-;; 	🖰3 pp
-;; 	mwu volu
-;; 	mwd vold
-;; 	;; Others Keys
-;; 	1 f1
-;; 	2 f2
-;; 	3 f3
-;; 	4 f4
-;; 	5 f5
-;; 	6 f6
-;; 	7 f7
-;; 	8 f8
-;; 	9 f9
-;; 	0 f10
-;; 	- f11
-;; 	= f12
-;; 	🖰1 (tap-hold 100 300 🖰1 lsft)
-;; 	🖰2 (tap-hold 100 300 🖰2 lctrl))
-
 (deflayer game
-	 esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
 	 grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
 	 tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
 	 lctl a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -261,7 +209,6 @@
 	 _  _  _  _  _ )
 
 (deflayer numbers
-	 _    _    _    _    _    _    _    _    _    _    _    _    _
 	 _    _    _    _    _    _    esc  nlck kp/  kp*  kp-  bspc _    _
 	 @gam f1   f2   f3   f4   esc  tab  kp7  kp8  kp9  kp+  kprt _    _
 	 _    f5   f6   f7   f8   tab  del  kp4  kp5  kp6  ,    =    ret
@@ -269,17 +216,7 @@
 	 _    _    _              kp0           lalt  _    _
 	 _  _  _  _  _ )
 
-;; (deflayer navigation
-;; 	 ]    _    _    _    _    _    _    _    _    _    _    _    _
-;; 	 \    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  _
-;; 	 [    1    2    3    4    5    6    7    8    9    0    -    =    grv
-;; 	 ]    @mPr @aVd @sVu @cNe caps lft  down up   rght del  bspc _
-;; 	 _    mute pp   brdn brup menu ins  @rhc @res @rua @rdm _
-;; 	 _    _    _              _              _     _    _
-;; 	 _  _  _  _  _ )
-
 (deflayer symbols
-	 _    _       _         _       _    _    _    _    _    _    _    _    _
 	 _    _       _         _       _    _    _    _    _    _    _    _    _    _
 	 @edt [       ]         S-9     S-0  S-5  S-6  S-[  S-]  S-,  S-.  S-1  _    _
 	 _    RA-grv  S-RA-grv  0    RA-S-6  S-4  \    =    -    S-= S-grv S-6  _
@@ -288,8 +225,7 @@
 	 _  _  _  _  _ )
 
 (deflayer mouse
-	 _    _    _    _    _    _    _    _    _    _    _    _    _
-	 @ldg _    _    _    _    _    _    _    _    _    _    _    _    _
+	 _    _    _    _    _    _    _    _    _    _    _    _    _    _
 	 lrld 🖰1   🖰2   🖰3   🖰4   🖰5   fwd  mwu  @mau mwl  mfwd _    _    _
 	 _    @slw _    @mid @fst _    mmid @mal mrgt @mar mlft _    _
 	 _    _    bck  fwd  _    _    bck  mwd  @mad mwr  mbck _
