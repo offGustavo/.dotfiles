@@ -1,9 +1,0 @@
-# Compile
-```lua 
-
-```
-
-# 
-
-# agda
-

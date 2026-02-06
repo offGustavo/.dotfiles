@@ -42,3 +42,106 @@ end
 
 -- cria comando
 vim.api.nvim_create_user_command("AlignRegexp", align_regexp, { range = true })
+
+if vim.fn.executable("zoxide") == 1 then
+  local function zoxide_list()
+    if vim.fn.executable("zoxide") ~= 1 then
+      return {}
+    end
+
+    local handle = io.popen("zoxide query --list")
+    if not handle then
+      return {}
+    end
+
+    local results = {}
+    for line in handle:lines() do
+      if line ~= "" then
+        table.insert(results, line)
+      end
+    end
+    handle:close()
+
+    return results
+  end
+
+  -- Better Cd with Zoxide
+  vim.api.nvim_create_user_command("CD", function(opts)
+    local target = opts.args
+    if target == "" then
+      vim.cmd("cd ~")
+      return
+    end
+    local handle = io.popen("zoxide query " .. vim.fn.shellescape(target))
+    if not handle then
+      vim.notify("Failed to run zoxide", vim.log.levels.ERROR)
+      return
+    end
+    local result = handle:read("*l")
+    handle:close()
+    if result and result ~= "" then
+      vim.cmd("cd " .. vim.fn.fnameescape(result))
+      print("Changed directory to: " .. result)
+    else
+      print("zoxide: no match for '" .. target .. "'")
+    end
+  end, {
+    nargs = "?",
+    complete = function(_, line)
+      -- Extract the argument being typed
+      local arg = line:match("^%S+%s+(.*)$") or ""
+      local paths = zoxide_list()
+      if arg == "" then
+        return paths
+      end
+      -- Simple substring match (same behavior as zoxide itself)
+      local matches = {}
+      for _, path in ipairs(paths) do
+        if path:find(arg, 1, true) then
+          table.insert(matches, path)
+        end
+      end
+      return matches
+    end,
+  })
+
+  -- Better tcd
+  vim.api.nvim_create_user_command("TCD", function(opts)
+    local target = opts.args
+    if target == "" then
+      vim.cmd("tcd ~")
+      return
+    end
+    local handle = io.popen("zoxide query " .. vim.fn.shellescape(target))
+    if not handle then
+      vim.notify("Failed to run zoxide", vim.log.levels.ERROR)
+      return
+    end
+    local result = handle:read("*l")
+    handle:close()
+    if result and result ~= "" then
+      vim.cmd("tcd " .. vim.fn.fnameescape(result))
+      print("Changed directory to: " .. result)
+    else
+      print("zoxide: no match for '" .. target .. "'")
+    end
+  end, {
+    nargs = "?",
+    complete = function(_, line)
+      -- Extract the argument being typed
+      local arg = line:match("^%S+%s+(.*)$") or ""
+      local paths = zoxide_list()
+      if arg == "" then
+        return paths
+      end
+      -- Simple substring match (same behavior as zoxide itself)
+      local matches = {}
+      for _, path in ipairs(paths) do
+        if path:find(arg, 1, true) then
+          table.insert(matches, path)
+        end
+      end
+      return matches
+    end,
+  })
+end
