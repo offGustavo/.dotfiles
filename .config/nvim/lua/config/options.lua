@@ -6,6 +6,13 @@ vim.cmd([[
   let maplocalleader = "\<BS>"
 ]])
 
+vim.filetype.add({
+  extension = {
+    kbd = "kbd", -- maps *.kbd → filetype=kbd
+  },
+})
+
+
 vim.g.snacks_animate = false
 
 -- vim.o.scrolloff = 999

@@ -40,170 +40,7 @@ local ivy_like = {
   },
 }
 
-return {
-  "folke/snacks.nvim",
-  opts = {
-    -- indent = { enabled = false },
-    -- scope = { enabled = false },
-    lazygit = {
-      config = {
-        -- https://github.com/folke/snacks.nvim/discussions/87
-        -- os = {
-        --   edit = '[ -z ""$NVIM"" ] && (nvim -- {{filename}}) || (nvim --server ""$NVIM"" --remote-send ""q"" && nvim --server ""$NVIM"" --remote {{filename}})',
-        -- },
-      },
-    },
-    dashboard = {
-      enabled = true,
-      preset = {
-        pick = function(cmd, opts)
-          return LazyVim.pick(cmd, opts)()
-        end,
-        header = [[
- ███     █████                       ███  ████ 
-░███    ░░███                       ░░░  ░░███ 
-░███  ███████   ██████  █████ █████ ████  ░███ 
-░███ ███░░███  ███░░███░░███ ░░███ ░░███  ░███ 
-░███░███ ░███ ░███████  ░███  ░███  ░███  ░███ 
-░░░ ░███ ░███ ░███░░░   ░░███ ███   ░███  ░███ 
- ███░░████████░░██████   ░░█████    █████ █████
-░░░  ░░░░░░░░  ░░░░░░     ░░░░░    ░░░░░ ░░░░░ ]],
-          -- stylua: ignore
-          ---@type snacks.dashboard.Item[]
-          keys = {
-            -- { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-            -- { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-            -- { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
-            -- { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-            -- { icon = " ", key = "z", desc = "Change Directory", action = ":lua Snacks.dashboard.pick('zoxide')" },
-            -- { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
-            -- { icon = " ", key = "s", desc = "Restore Session", section = "session" },
-            -- { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
-            -- { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
-            -- { icon = " ", key = "q", desc = "Quit", action = ":qa" },
-          },
-      },
-      sections = {
-        { section = "header" },
-        {
-          -- pane = 2,
-          section = "startup",
-          padding = { 1, 0 },
-        },
-        -- {
-        --   pane = 2,
-        --   section = "terminal",
-        --   -- cmd = "pokeget --hide-name bulbasaur",
-        --   cmd = "colorscript -e square",
-        --   -- cmd = "colorscript -e pacman",
-        --   -- cmd = "chafa ~/Pictures/Wallpapers/my/gengara.jpg --format symbols --symbols vhalf --size 60x11 --stretch",
-        --   -- cmd = "fzf",
-        --   height = 7,
-        --   padding = { 2, 0 },
-        --   -- indent = 10,
-        -- },
-        -- {
-        --   pane = 2,
-        --   icon = " ",
-        --   desc = "Browse Repo",
-        --   padding = 1,
-        --   key = "b",
-        --   action = function()
-        --     Snacks.gitbrowse()
-        --   end,
-        -- },
-        -- { section = "keys", gap = 1, padding = 1 },
-        -- { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-        -- { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
-        -- {
-        --   pane = 2,
-        --   icon = " ",
-        --   title = "Git Status",
-        --   section = "terminal",
-        --   enabled = function()
-        --     return Snacks.git.get_root() ~= nil
-        --   end,
-        --   cmd = "git status --short --branch --renames",
-        --   height = 5,
-        --   padding = 1,
-        --   ttl = 5 * 60,
-        --   indent = 3,
-        -- },
-      },
-    },
-    explorer = {
-      replace_netrw = false,
-      enabled = false,
-    },
-    input = { enabled = false },
-    notifier = { enabled = false },
-    picker = {
-      sources = {
-        grep = { hidden = true, layout = ivy_like },
-        git_log = { hidden = true, layout = ivy_like },
-
-        buffers = { hidden = true, layout = ivy_like },
-        recent = { hidden = true, layout = ivy_like },
-        explorer = {
-          layout = { preset = "sidebar", preview = false },
-          hidden = true,
-          follow_file = true,
-          auto_close = true,
-          actions = {
-            explorer_up_and_collapse = function(picker)
-              picker:set_cwd(vim.fs.dirname(picker:cwd()))
-              picker:find()
-              require("snacks.explorer.tree"):close_all(picker:cwd())
-            end,
-            explorer_focus_or_confirm = function(picker, item, action)
-              if item.dir then
-                picker:set_cwd(item._path)
-                picker:find()
-              else
-                require("snacks.explorer.actions").actions.confirm(picker, item, action)
-              end
-            end,
-            explorer_collapse_and_close = function(picker)
-              require("snacks.explorer.tree"):close_all(picker:cwd())
-              picker:norm(function()
-                picker:close()
-              end)
-            end,
-          },
-          win = {
-            list = {
-              keys = {
-                -- ["h"] = "explorer_up_and_collapse",
-                -- ["<BS>"] = "explorer_up_and_collapse",
-                -- ["-"] = "explorer_up_and_collapse",
-                -- ["l"] = "explorer_focus_or_confirm",
-                -- ["<CR>"] = "explorer_focus_or_confirm",
-                -- ["q"] = "explorer_collapse_and_close",
-              },
-            },
-          },
-        },
-        smart = {
-          hidden = true,
-          layout = ivy_like,
-        },
-        files = {
-          hidden = true,
-          layout = ivy_like,
-        },
-      },
-      layout = ivy_like,
-    },
-    animate = {
-      duration = 1, -- ms per step
-      easing = "linear",
-      fps = 120, -- frames per second. Global setting for all animations
-    },
-    -- scope = {
-    -- enabled = false,
-    -- },
-  },
-  keys = {
+snacks_keys = {
     -- {
     --   "<leader>.",
     --   false,
@@ -462,5 +299,170 @@ return {
     -- { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
     -- { "gai", function() Snacks.picker.lsp_incoming_calls() end, desc = "C[a]lls Incoming" },
     -- { "gao", function() Snacks.picker.lsp_outgoing_calls() end, desc = "C[a]lls Outgoing" },
+  }
+
+return {
+  "folke/snacks.nvim",
+  opts = {
+    -- indent = { enabled = false },
+    -- scope = { enabled = false },
+    lazygit = {
+      config = {
+        -- https://github.com/folke/snacks.nvim/discussions/87
+        -- os = {
+        --   edit = '[ -z ""$NVIM"" ] && (nvim -- {{filename}}) || (nvim --server ""$NVIM"" --remote-send ""q"" && nvim --server ""$NVIM"" --remote {{filename}})',
+        -- },
+      },
+    },
+    dashboard = {
+      enabled = true,
+      preset = {
+        pick = function(cmd, opts)
+          return LazyVim.pick(cmd, opts)()
+        end,
+        header = [[
+ ███     █████                       ███  ████ 
+░███    ░░███                       ░░░  ░░███ 
+░███  ███████   ██████  █████ █████ ████  ░███ 
+░███ ███░░███  ███░░███░░███ ░░███ ░░███  ░███ 
+░███░███ ░███ ░███████  ░███  ░███  ░███  ░███ 
+░░░ ░███ ░███ ░███░░░   ░░███ ███   ░███  ░███ 
+ ███░░████████░░██████   ░░█████    █████ █████
+░░░  ░░░░░░░░  ░░░░░░     ░░░░░    ░░░░░ ░░░░░ ]],
+          -- stylua: ignore
+          ---@type snacks.dashboard.Item[]
+          keys = {
+            -- { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+            -- { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+            -- { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+            -- { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+            -- { icon = " ", key = "z", desc = "Change Directory", action = ":lua Snacks.dashboard.pick('zoxide')" },
+            -- { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+            -- { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+            -- { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
+            -- { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+            -- { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
+      },
+      sections = {
+        { section = "header" },
+        {
+          -- pane = 2,
+          section = "startup",
+          padding = { 1, 0 },
+        },
+        -- {
+        --   pane = 2,
+        --   section = "terminal",
+        --   -- cmd = "pokeget --hide-name bulbasaur",
+        --   cmd = "colorscript -e square",
+        --   -- cmd = "colorscript -e pacman",
+        --   -- cmd = "chafa ~/Pictures/Wallpapers/my/gengara.jpg --format symbols --symbols vhalf --size 60x11 --stretch",
+        --   -- cmd = "fzf",
+        --   height = 7,
+        --   padding = { 2, 0 },
+        --   -- indent = 10,
+        -- },
+        -- {
+        --   pane = 2,
+        --   icon = " ",
+        --   desc = "Browse Repo",
+        --   padding = 1,
+        --   key = "b",
+        --   action = function()
+        --     Snacks.gitbrowse()
+        --   end,
+        -- },
+        -- { section = "keys", gap = 1, padding = 1 },
+        -- { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+        -- { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+        -- {
+        --   pane = 2,
+        --   icon = " ",
+        --   title = "Git Status",
+        --   section = "terminal",
+        --   enabled = function()
+        --     return Snacks.git.get_root() ~= nil
+        --   end,
+        --   cmd = "git status --short --branch --renames",
+        --   height = 5,
+        --   padding = 1,
+        --   ttl = 5 * 60,
+        --   indent = 3,
+        -- },
+      },
+    },
+    explorer = {
+      replace_netrw = false,
+      enabled = false,
+    },
+    input = { enabled = false },
+    notifier = { enabled = false },
+    picker = {
+      sources = {
+        grep = { hidden = true, layout = ivy_like },
+        git_log = { hidden = true, layout = ivy_like },
+
+        buffers = { hidden = true, layout = ivy_like },
+        recent = { hidden = true, layout = ivy_like },
+        explorer = {
+          layout = { preset = "sidebar", preview = false },
+          hidden = true,
+          follow_file = true,
+          auto_close = true,
+          actions = {
+            explorer_up_and_collapse = function(picker)
+              picker:set_cwd(vim.fs.dirname(picker:cwd()))
+              picker:find()
+              require("snacks.explorer.tree"):close_all(picker:cwd())
+            end,
+            explorer_focus_or_confirm = function(picker, item, action)
+              if item.dir then
+                picker:set_cwd(item._path)
+                picker:find()
+              else
+                require("snacks.explorer.actions").actions.confirm(picker, item, action)
+              end
+            end,
+            explorer_collapse_and_close = function(picker)
+              require("snacks.explorer.tree"):close_all(picker:cwd())
+              picker:norm(function()
+                picker:close()
+              end)
+            end,
+          },
+          win = {
+            list = {
+              keys = {
+                -- ["h"] = "explorer_up_and_collapse",
+                -- ["<BS>"] = "explorer_up_and_collapse",
+                -- ["-"] = "explorer_up_and_collapse",
+                -- ["l"] = "explorer_focus_or_confirm",
+                -- ["<CR>"] = "explorer_focus_or_confirm",
+                -- ["q"] = "explorer_collapse_and_close",
+              },
+            },
+          },
+        },
+        smart = {
+          hidden = true,
+          layout = ivy_like,
+        },
+        files = {
+          hidden = true,
+          layout = ivy_like,
+        },
+      },
+      layout = ivy_like,
+    },
+    animate = {
+      duration = 1, -- ms per step
+      easing = "linear",
+      fps = 120, -- frames per second. Global setting for all animations
+    },
+    -- scope = {
+    -- enabled = false,
+    -- },
   },
+  -- keys = snacks_keys,
 }

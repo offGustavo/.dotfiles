@@ -1,9 +1,3 @@
-vim.filetype.add({
-  extension = {
-    kbd = "kbd", -- maps *.kbd → filetype=kbd
-  },
-})
-
 -- bootstrap lazy.nvim, LazyVim and your plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then

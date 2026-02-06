@@ -7,6 +7,13 @@ local function show_macro_recording()
   end
 end
 
+if true then 
+  return {
+    "nvim-lualine/lualine.nvim",
+    enabled = false,
+  }
+ end
+
 if os.getenv("SCROLL_MODE") == "1" then
   return {
     "nvim-lualine/lualine.nvim",

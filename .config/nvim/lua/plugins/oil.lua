@@ -2,6 +2,7 @@ return {
   {
     "stevearc/oil.nvim",
     lazy = false,
+    enabled = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       -- Declare a global function to retrieve the current directory
