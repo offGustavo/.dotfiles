@@ -174,7 +174,7 @@ output "HDMI-A-2" {
   // so to put another output directly adjacent to it on the right, set its x to 1920.
   // If the position is unset or results in an overlap, the output is instead placed
   // automatically.
-  position x=1920 y=0
+  position x=-1920 y=0
   focus-at-startup
 }
 
@@ -182,8 +182,6 @@ output "HDMI-A-2" {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
-
-
   // Set gaps around windows in logical pixels.
   gaps 6
 
@@ -250,7 +248,7 @@ layout {
   // You can change how the focus ring looks.
   focus-ring {
     // Uncomment this line to disable the focus ring.
-    off
+    // off
 
     // How many logical pixels the ring extends out from the windows.
     width 2
@@ -286,7 +284,7 @@ layout {
   border {
     // The settings are the same as for the focus ring.
     // If you enable the border, you probably want to disable the focus ring.
-    // off
+    off
 
     width 2
 
@@ -365,7 +363,7 @@ layout {
 // spawn-at-startup "sh" "-c" "sleep 1 && ~/.local/bin/start_swaybg.lua"
 // spawn-at-startup "sh" "-c" "mako"
 // spawn-at-startup "sh" "-c" "waybar"
-// spawn-at-startup "sh" "-c" "dms run"
+spawn-at-startup "sh" "-c" "dms run"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
