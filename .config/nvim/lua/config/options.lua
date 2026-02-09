@@ -1,139 +1,90 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
+-- vim.g.netrw_banner = 0
 
-vim.cmd([[
-  let maplocalleader = "\<BS>"
-]])
-
-vim.filetype.add({
-  extension = {
-    kbd = "kbd", -- maps *.kbd → filetype=kbd
-  },
-})
-
-
-vim.g.snacks_animate = false
-
--- vim.o.scrolloff = 999
-vim.o.scrolloff = 0
-
-vim.o.wrap = false
-
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.mouse = "a"
+vim.o.showmode = true
+vim.o.laststatus = 3
+vim.o.breakindent = true
+vim.o.linebreak = true
+vim.o.undofile = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.signcolumn = "yes"
+vim.o.updatetime = 50
+vim.o.timeoutlen = 400
+vim.o.splitright = true
+vim.o.splitbelow = true
+vim.o.spell = false
 vim.o.list = false
-
+vim.o.inccommand = "split"
+vim.o.cursorline = true
+vim.o.confirm = true
+vim.o.wrap = false
+vim.o.tabstop = 2 -- A TAB character looks like 4 spaces
+vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
+vim.o.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
+vim.o.shiftwidth = 2 -- Number of spaces inserted when indenting
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.showmode = true
+vim.o.showcmd = true
+vim.o.showcmdloc = "statusline"
+vim.o.foldmethod = "indent"
+vim.o.foldlevel = 99
 vim.o.swapfile = false
+-- vim.o.path = vim.o.path .. "**"
+-- vim.cmd([[
+--   set wildignore=*.o,*.obj,**/node_modules/**,/
+-- ]])
+vim.o.termguicolors = true
 
-vim.o.spelllang = "pt_br,en_us,es"
 
-vim.cmd([[
-  " let g:netrw_banner = 0
-  set path+=**
-  set wildignore+=**/node_modules/**
-]])
+vim.schedule(function()
+	vim.o.clipboard = "unnamed,unnamedplus"
 
--- vim.g.lazyvim_picker = "snacks"
--- vim.g.lazyvim_picker = "telescope"
--- vim.g.lazyvim_picker = "fzf-lua"
+-- [Neovim native, built-in, LSP autocomplete · Tomas Vik](https://blog.viktomas.com/graph/neovim-native-built-in-lsp-autocomplete/)
+-- prevent the built-in vim.lsp.completion autotrigger from selecting the first item
+-- vim.o.autocomplete = true
+-- vim.opt.completeopt = { 'menuone', 'noselect', 'popup' }
 
--- Disable autoformat
-vim.g.autoformat = false -- globally
+-- vim.o.acd = true
+-- vim.g.netrw_keepdir = 0
+-- vim.cmd([[
+-- autocmd BufEnter * lcd %:p:h
+-- ]])
 
--- local function Winbar()
---   local normal_color = "%#Normal#"
---   local mode = "%-5{%v:lua.string.upper(v:lua.vim.fn.mode())%}"
---   local file_name = "%-.16t"
---   local buf_nr = "[%n]"
---   local modified = "%#MiniIconsRed% %-M"
---   local file_type = " %y"
---   local right_align = "%="
---   local line_no = "%10([%l/%L%)]"
---   local pct_thru_file = "%5p%%"
---   return string.format("%s%s%s", normal_color, file_name, modified)
--- end
--- vim.o.winbar = Winbar()
-
-----------------------
--- NEOVIDE          --
-----------------------
-
-if vim.g.neovide then
-  vim.g.neovide_padding_top = 8
-  vim.g.neovide_padding_bottom = 8
-  vim.g.neovide_padding_right = 8
-  vim.g.neovide_padding_left = 8
-end
-
-if vim.uv.os_uname().sysname == "Windows_NT" then
-  vim.o.shell = "pwsh.exe"
-  vim.o.shellcmdflag =
-    "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
-end
-
--- vim.o.makeprg = "make"
-
--- if vim.fn.has("nvim-0.12") == 1 then
---   if not vim.g.vscode then
---     vim.o.cmdheight = 0
---     -- Experimental
---     require("vim._extui").enable({
---       enable = true, -- Whether to enable or disable the UI.
---       msg = { -- Options related to the message module.
---         ---@type 'cmd'|'msg' Where to place regular messages, either in the
---         ---cmdline or in a separate ephemeral message window.
---         target = "msg",
---         timeout = 2000, -- Time a message is visible in the message window.
---       },
---     })
---   end
--- end
+-- require("vim._core.ui2").enable({
+-- 	enable = true, -- Whether to enable or disable the UI.
+-- 	msg = { -- Options related to the message module.
+-- 		---@type 'cmd'|'msg' Where to place regular messages, either in the
+-- 		---cmdline or in a separate ephemeral message window.
+-- 		target = "msg",
+-- 		timeout = 2000, -- Time a message is visible in the message window.
+-- 	},
+-- })
 
 -- Better Grep and Find with ripgrep
 if vim.fn.executable("rg") then
-  vim.o.grepprg = "rg --vimgrep --smart-case"
-  function _G.RgFindFiles(cmdarg, _cmdcomplete)
-    local fnames = vim.fn.systemlist('rg --files --color=never')
-    if #cmdarg == 0 then
-      return fnames
-    else
-      return vim.fn.matchfuzzy(fnames, cmdarg)
-    end
-  end
-  vim.o.findfunc = "v:lua.RgFindFiles"
+	vim.o.grepprg = "rg"
+
+	-- [Native Fuzzy Finder in Neovim With Lua and Cool Bindings :: Cherry's Blog](https://cherryramatis.xyz/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/)
+	function _G.RgFindFiles(cmdarg, _cmdcomplete)
+		local fnames = vim.fn.systemlist("rg --files --hidden --color=never ")
+		if #cmdarg == 0 then
+			return fnames
+		else
+			return vim.fn.matchfuzzy(fnames, cmdarg)
+		end
+	end
+
+	vim.o.findfunc = "v:lua.RgFindFiles"
 end
 
+vim.filetype.add({
+	extension = {
+		kbd = "kbd", -- maps *.kbd → filetype=kbd
+	},
+})
 
-vim.o.timeout = false
-
--- vim.o.winborder = "rounded"
-
--- vim.o.acd = true
--- vim.cmd([[
--- let g:netrw_dirkeep = 0
--- let g:netrw_keepdir = 0
--- ]]
-
--- -- Diagnostics
--- vim.diagnostic.config {
---   -- Use the default configuration
---   virtual_lines = false,
---   virtual_text = true,
---   signs = {
---     text = {
---       [vim.diagnostic.severity.ERROR] = "E",
---       [vim.diagnostic.severity.WARN] = "W",
---       [vim.diagnostic.severity.INFO] = "I",
---       [vim.diagnostic.severity.HINT] = "H",
---     }
---   }
--- }
-
-vim.o.laststatus = 3
-
-vim.o.cursorline = false
-
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_netrw = 1
-
-vim.o.keymodel = "startsel,stopsel"
-
+end)

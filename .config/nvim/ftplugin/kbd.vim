@@ -18,7 +18,6 @@ syntax clear lispNumber
 syntax clear LispFunc
 syntax clear lispAtomMark
 
-
 " Captura qualquer função no formato (word
 " Usa lookbehind para capturar apenas o nome da função após o (
 syntax match kanataFunc /\v\(@<=[A-Za-z0-9_-]{3,}/ containedin=lispExpr,lispList
