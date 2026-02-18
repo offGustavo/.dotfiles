@@ -57,6 +57,8 @@ input {
       // layout "us,br"
       // variant "intl-altgr,"
       // options "grp:win_space_toggle"
+      // options "caps:escape,escape:swapcaps"
+      // options "caps:ctrl_modifier,ctrl:swapcaps"
     }
 
     // Enable numlock on startup, omitting this setting disables it.
