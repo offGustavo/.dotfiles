@@ -176,8 +176,8 @@
 
 (deflayer base
   grv  @l1f @l2f @l3f @l4f @l5f @l6f @l7f @l8f @l9f @l0f @lmf @lef @rbm
-  tab  @lmq @law @lne @lsr t    y    @rsu @rni @rao @rmp [     ]   \
-  (tap-hold 100 200 esc @nav) @lma @las @lsd @lcf g    h    @rcj @rsk @ral @rm; '    @rar
+  (tap-hold 100 200 tab @nav)  @lmq @law @lne @lsr t    y    @rsu @rni @rao @rmp [     ]   \
+  @lce @lma @las @lsd @lcf g    h    @rcj @rsk @ral @rm; '    @rar
   lsft @lmz @lnx @lnc v    b    n    m    @rn, @rn. @rm/ lsft
   lctl lmet lalt           @ssc           ralt lmet rctl
   🖰1 🖰2 🖰3 @mbn @mfs)
