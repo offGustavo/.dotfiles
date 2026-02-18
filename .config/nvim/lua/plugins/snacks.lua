@@ -691,6 +691,20 @@ local snacks_keys = {
 		mode = { "n", "v" },
 	},
 	{
+		"<leader>-",
+		function()
+			Snacks.terminal("yazi")
+		end,
+		desc = "Lazygit",
+	},
+	{
+		"<leader>lg",
+		function()
+			Snacks.lazygit()
+		end,
+		desc = "Lazygit",
+	},
+	{
 		"<leader>gg",
 		function()
 			Snacks.lazygit()
@@ -762,10 +776,11 @@ return {
 	---@type snacks.Config
 	opts = {
 		bigfile = { enabled = true },
+		-- dashboard = { enabled = false } ,
 		dashboard = dashboard_config,
 		explorer = { enabled = false },
-		indent = { enabled = true },
-		input = { enabled = true },
+		indent = { enabled = false },
+		input = { enabled = false },
 		notifier = {
 			enabled = false,
 			timeout = 3000,
