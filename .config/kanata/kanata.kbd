@@ -18,20 +18,17 @@
  mctl 89)
 
 ;; (deflocalkeys-win
-;;   mctl 193
-;;   )
+;;   mctl 193)
 
 (defsrc
 	grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
 	tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-	caps a    s    d    f    g    h    j    k    l    ;    '    ret
+	caps  a    s    d    f    g    h    j    k    l    ;    '    ret
 	lsft z    x    c    v    b    n    m    ,    .    /    rsft
 	lctl lmet lalt           spc            ralt  menu mctl
 	🖰1 🖰2 🖰3 🖰4 🖰5)
 
 (defchordsv2
-	;; (grv ret)   @bas 100 all-released()
-	;; (grv spc)   @gam 100 all-released()
 	;; (lsft rsft) caps 100 all-released()
 	;; (lctl tab)  esc 100 all-released()
 	;; (o i)  tab 100 all-released()
@@ -43,6 +40,7 @@
 	;; (m ,)    [ 50 all-released()
 	;; (, .)    ] 50 all-released()
   ;; (. /)    \ 50 all-released()
+  ;; ([ lalt)    A-Tab 50 all-released()
 	(' c) RA-, 50 all-released())
 
 (defalias
@@ -64,16 +62,13 @@
 	;; Base Layer
 	bas (layer-switch base)
 
-	;; Gaming Layer
-	gam (layer-switch game)
-
 	;; Navigation
 	lnx (tap-hold 100 200 x @nav)
 	rn. (tap-hold 100 200 . @nav)
 	rmn (tap-hold 100 300 menu @nav)
 	lne (tap-hold 100 300 e @nav)
 	rni (tap-hold 100 300 i @nav)
-	lsn (tap-hold-release 100 200 spc @nav)
+  lsn (tap-hold-release 100 200 spc @nav)
 	rbn (tap-hold 100 300 bspc @nav)
   ;; test (tap-dance @lsn lsft)
 
@@ -96,21 +91,21 @@
 	;; Remap
 
 	;; Caps
-	ecc (tap-hold 100 300 esc caps)
-	rcs (tap-hold-press 100 300 caps rsft)
-	;; lce (tap-hold 100 300 esc caps)
+	ecc (tap-hold 100 200 esc caps)
+	rcs (tap-hold-press 100 200 caps rsft)
+	lcc (tap-hold-press 100 300 caps lctl)
 
 	;; Space
 	;;ssc (tap-hold 100 300 (tap-dance 200 ((macro spc) (macro spc spc) @nav)) lsft)
 	;; ssc (tap-dance 200 ( (tap-hold 100 300 (macro spc) lsft) (tap-hold 100 300 (macro spc spc) @nav)))
-	;; ssc (tap-hold-release 100 200 spc lsft)
+	ssc (tap-hold-release 100 200 spc lsft)
 
 	;; Control
 	lcf (tap-hold 100 300 f lctl)
 	rcj (tap-hold 100 300 j rctl)
 	cNe (tap-hold 100 300 next lctl)
 	rhc (tap-hold 100 200 home lctrl)
-	lce (tap-hold 100 300 esc lctrl)
+	lce (tap-hold-press 100 300 esc lctrl)
 	;; ecc (tap-hold-press 100 300 esc lctrl)
 
 	;; Shift
@@ -124,6 +119,7 @@
 	rm; (tap-hold 100 300 ; lmet)
 	mPr (tap-hold 100 300 prev lmet)
 	rdm (tap-hold 100 200 pgdn lmet)
+	rbm (tap-hold 100 300 bspc lmet)
 
 	;; Alt
 	las (tap-hold 100 300 s lalt)
@@ -178,39 +174,25 @@
 	lmf(tap-hold 100 300 - f11)
 	lef(tap-hold 100 300 = f12))
 
-;;  (deflayer base
-;;            grv      F1/1          F2/2                F3/3               F4/4
-;;            tab      Menu/q         AltGr/w            Navigation Layer/e r
-;;            Ctrl/Esc Alt/a          Super/s            Shift/d            Control/f
-;;            Shift    Mouse Layer/z  Navigation Layer/x Numbers Layer/c    Symbols Layer/v
-;;            Control  Super          Alt/Backspace      Shift/Space        AltGr/Return)
 (deflayer base
-  grv  @l1f @l2f @l3f @l4f @l5f @l6f @l7f @l8f @l9f @l0f @lmf @lef bspc
-  tab @lmq @law @lne @lsr t    y    @rsu @rni @rao @rmp [    ] (tap-hold-press 100 300 \ lsft)
-  caps @lma @las @lsd @lcf g    h    @rcj @rsk @ral @rm; '    @rar
-  lsft @lmz @lnx @lnc v    b    n    m    @rn, @rn. @rm/ (tap-hold-press 100 300 tab rsft)
-  (tap-hold-press 100 300 esc lctrl) lmet @lab           @lsn           @rar lmet rctl
+  grv  @l1f @l2f @l3f @l4f @l5f @l6f @l7f @l8f @l9f @l0f @lmf @lef @rbm
+  tab  @lmq @law @lne @lsr t    y    @rsu @rni @rao @rmp [     ]   \
+  (tap-hold 100 200 esc @nav) @lma @las @lsd @lcf g    h    @rcj @rsk @ral @rm; '    @rar
+  lsft @lmz @lnx @lnc v    b    n    m    @rn, @rn. @rm/ lsft
+  lctl lmet lalt           @ssc           ralt lmet rctl
   🖰1 🖰2 🖰3 @mbn @mfs)
 
 (deflayer navigation
 	 _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  @num
-	 _    pgup home up   end  _    \    prev volu vold next f12  _    _
-	 _    pgdn left down rght caps [    lctl lsft lalt lmet ]    _
-	 _    ins  bspc del  menu ralt ralt pp   brup brdn mute _
+	 lrld pgup home up   end  _    \    prev volu vold next f12  _    _
+	 esc  pgdn left down rght caps [    lctl lsft lalt lmet ]    _
+	 _    ins  bspc del  menu ralt ]    pp   brup brdn mute _
 	 _    _    _              _              _     _    _
-	 _  _  _  _  _ )
-
-(deflayer game
-	 grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-	 tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-	 lctl a    s    d    f    g    h    j    k    l    ;    '    ret
-	 lsft z    x    c    v    b    n    m    ,    .    /    rsft
-	 lctl lmet lalt           spc            rmet  @bas rctl
 	 _  _  _  _  _ )
 
 (deflayer numbers
 	 _    _    _    _    _    _    esc  nlck kp/  kp*  kp-  bspc _    _
-	 @gam f1   f2   f3   f4   esc  tab  kp7  kp8  kp9  kp+  kprt _    _
+	 _    f1   f2   f3   f4   esc  tab  kp7  kp8  kp9  kp+  kprt _    _
 	 _    f5   f6   f7   f8   tab  del  kp4  kp5  kp6  ,    =    ret
 	 _    f9   f10  f11  f12  RA-, _    kp1  kp2  kp3  kp.  _
 	 _    _    _              kp0           lalt  _    _
