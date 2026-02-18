@@ -6,7 +6,8 @@ return {
 	config = function()
 		-- require("fzf-lua").register_ui_select()
 		require("fzf-lua").setup({
-			"ivy",
+			-- "ivy",
+			-- "borderless",
 		})
 	end,
 	keys = {
