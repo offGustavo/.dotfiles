@@ -24,7 +24,7 @@ vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from System" })
 vim.keymap.set({ "n", "v" }, "<C-s-v>", '"+p', { desc = "Paste from System" })
 vim.keymap.set({ "n", "v" }, "<C-S-c>", '"+y', { desc = "Yank from System" })
 vim.keymap.set({ "n", "v" }, "<D-c>", '"+y', { desc = "Yank from System" })
-vim.keymap.set({ "n" }, "<C-S-c><C-S-c>", '"+yy', { desc = "Yank from System" })
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to System" })
+vim.keymap.set({ "n" }, "<C-S-c><C-S-c>", '"+yy', { desc = "Yank from System" })
 
 -- vim.o.clipboard = "unnamed,unnamedplus"
