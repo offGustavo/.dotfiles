@@ -39,6 +39,13 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   end,
 })
 
+-- vim.api.nvim_create_autocmd("OptionSet", {
+--   pattern = "background",
+--   desc = "Auto switch colorscheme on background change",
+--   callback = function()
+--   end
+-- })
+
 -- Checar o arquivo a cada 2 segundos (2000 ms)
 vim.fn.timer_start(2000, function()
   load_theme()

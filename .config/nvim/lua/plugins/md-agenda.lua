@@ -1,6 +1,6 @@
 return {
-	"zenarvus/md-agenda.nvim",
-	-- dir = "~/Projects/md-agenda.nvim/",
+	-- "zenarvus/md-agenda.nvim",
+	dir = "~/Projects/md-agenda.nvim/",
 	-- dev = true,
 	event = "VeryLazy",
 	lazy = true,

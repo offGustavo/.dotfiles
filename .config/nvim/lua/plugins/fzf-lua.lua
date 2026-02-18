@@ -1,9 +1,10 @@
+-- if true then return {} end
 return {
 	"ibhagwan/fzf-lua",
 	cmd = "FzfLua",
 	enabled = true,
 	config = function()
-		require("fzf-lua").register_ui_select()
+		-- require("fzf-lua").register_ui_select()
 		require("fzf-lua").setup({
 			"ivy",
 		})

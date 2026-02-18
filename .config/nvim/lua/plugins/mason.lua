@@ -7,6 +7,6 @@ return {
 	},
 	dependencies = {
 		{ "mason-org/mason.nvim", opts = {}, lazy = true, event = "VeryLazy" },
-		"neovim/nvim-lspconfig",
-	},
+		-- "neovim/nvim-lspconfig", 
+  },
 }

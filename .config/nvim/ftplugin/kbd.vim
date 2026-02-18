@@ -87,5 +87,5 @@ highlight link kanataKeyword LispFunc
 setl lisp
 setl define=^\\s*(def\\k*
 
-
 let b:current_syntax = "kanata"
+

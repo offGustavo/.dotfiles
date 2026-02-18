@@ -1,44 +1,103 @@
+if true then return {} end
 
--- -- if true then return {} end
--- local ivy_like = {
---             preview = false,
---             layout = {
---               box = "vertical",
---               backdrop = false,
---               row = -1,
---               width = 0,
---               height = 0.4,
---               border = "top",
---               title = " {title} {live} {flags}",
---               title_pos = "left",
---               {
---                 box = "horizontal",
---                 { win = "list", border = "none" },
---                 { win = "preview", width = 0.6, border = "rounded" },
---               },
---               { win = "input", height = 1, border = "none" },
---             },
---           }
+local ivy_like_2  = {
+            preview = false,
+            layout = {
+              box = "vertical",
+              backdrop = false,
+              row = -1,
+              width = 0,
+              height = 0.4,
+              border = "top",
+              title = " {title} {live} {flags}",
+              title_pos = "left",
+              {
+                box = "horizontal",
+                { win = "list", border = "none" },
+                { win = "preview", width = 0.6, border = "rounded" },
+              },
+              { win = "input", height = 1, border = "none" },
+            },
+          }
 
 -- TODO: improve and fix the layouts
 local ivy_like = {
-  preview = "main",
-  layout = {
-    box = "vertical",
-    backdrop = false,
-    width = 0,
-    height = 0.4,
-    position = "bottom",
-    border = "top",
-    title = " {title} {live} {flags}",
-    title_pos = "left",
-    { win = "preview", title = "{preview}", width = 0.6, border = "none" },
-    { win = "input", height = 1, border = "none" },
-    {
-      box = "horizontal",
-      { win = "list", border = "none" },
-    },
-  },
+	preview = "main",
+	layout = {
+		box = "vertical",
+		backdrop = false,
+		width = 0,
+		height = 0.4,
+		position = "bottom",
+		border = "top",
+		title = " {title} {live} {flags}",
+		title_pos = "left",
+		{ win = "preview", title = "{preview}", width = 0.6, border = "none" },
+		{ win = "input", height = 1, border = "none" },
+		{
+			box = "horizontal",
+			{ win = "list", border = "none" },
+		},
+	},
+}
+
+local picker_config = {
+	sources = {
+		grep = { hidden = true, layout = ivy_like },
+		git_log = { hidden = true, layout = ivy_like },
+		buffers = { hidden = true, layout = ivy_like },
+		recent = { hidden = true, layout = ivy_like },
+		explorer = {
+			-- layout = {
+			--   preset = "ivy",
+			-- },
+			hidden = true,
+			follow_file = true,
+			auto_close = true,
+			actions = {
+				explorer_up_and_collapse = function(picker)
+					picker:set_cwd(vim.fs.dirname(picker:cwd()))
+					picker:find()
+					require("snacks.explorer.tree"):close_all(picker:cwd())
+				end,
+				explorer_focus_or_confirm = function(picker, item, action)
+					if item.dir then
+						picker:set_cwd(item._path)
+						picker:find()
+					else
+						require("snacks.explorer.actions").actions.confirm(picker, item, action)
+					end
+				end,
+				explorer_collapse_and_close = function(picker)
+					require("snacks.explorer.tree"):close_all(picker:cwd())
+					picker:norm(function()
+						picker:close()
+					end)
+				end,
+			},
+			win = {
+				list = {
+					keys = {
+						--    ["h"] = "explorer_up_and_collapse",
+						["<BS>"] = "explorer_up_and_collapse",
+						["-"] = "explorer_up_and_collapse",
+						--   ["l"] = "explorer_focus_or_confirm",
+						["<CR>"] = "explorer_focus_or_confirm",
+						--  ["q"] = "explorer_collapse_and_close",
+					},
+				},
+			},
+		},
+		smart = {
+			hidden = true,
+			layout = ivy_like,
+		},
+		files = {
+			hidden = true,
+			layout = ivy_like,
+		},
+	},
+	layout = ivy_like,
 }
 
 local devil_header = [[
@@ -51,14 +110,13 @@ local devil_header = [[
  ███░░████████░░██████   ░░█████    █████ █████
 ░░░  ░░░░░░░░  ░░░░░░     ░░░░░    ░░░░░ ░░░░░ ]]
 
-
 local dashboard_config = {
-  enabled = true,
-  preset = {
-    -- pick = function(cmd, opts)
-    --   return LazyVim.pick(cmd, opts)()
-    -- end,
-    header = devil_header,
+	enabled = true,
+	preset = {
+		-- pick = function(cmd, opts)
+		--   return LazyVim.pick(cmd, opts)()
+		-- end,
+		header = devil_header,
     -- stylua: ignore
     ---@type snacks.dashboard.Item[]
     keys = {
@@ -73,55 +131,55 @@ local dashboard_config = {
       -- { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
       -- { icon = " ", key = "q", desc = "Quit", action = ":qa" },
     },
-  },
-  sections = {
-    { section = "header" },
-    -- {
-    --   -- pane = 2,
-    --   section = "terminal",
-    --   cmd = "pokeget --hide-name gengar",
-    --   -- cmd = "pokeget --hide-name bulbasaur",
-    --   -- cmd = "colorscript -e square",
-    --   -- cmd = "colorscript -e pacman",
-    --   -- cmd = "chafa ~/Pictures/Wallpapers/my/gengara.jpg --format symbols --symbols vhalf --size 60x11 --stretch",
-    --   -- cmd = "fzf",
-    --   height = 20,
-    --   padding = { 0, 0 },
-    --   -- indent = 10,
-    -- },
-    {
-      -- pane = 2,
-      section = "startup",
-      padding = { 1, 0 },
-    },
-    -- {
-    --   pane = 2,
-    --   icon = " ",
-    --   desc = "Browse Repo",
-    --   padding = 1,
-    --   key = "b",
-    --   action = function()
-    --     Snacks.gitbrowse()
-    --   end,
-    -- },
-    -- { section = "keys", gap = 1, padding = 1 },
-    -- { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-    -- { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
-    -- {
-    --   pane = 2,
-    --   icon = " ",
-    --   title = "Git Status",
-    --   section = "terminal",
-    --   enabled = function()
-    --     return Snacks.git.get_root() ~= nil
-    --   end,
-    --   cmd = "git status --short --branch --renames",
-    --   height = 5,
-    --   padding = 1,
-    --   ttl = 5 * 60,
-    --   indent = 3,
-    -- },
-  },
+	},
+	sections = {
+		{ section = "header" },
+		-- {
+		--   -- pane = 2,
+		--   section = "terminal",
+		--   cmd = "pokeget --hide-name gengar",
+		--   -- cmd = "pokeget --hide-name bulbasaur",
+		--   -- cmd = "colorscript -e square",
+		--   -- cmd = "colorscript -e pacman",
+		--   -- cmd = "chafa ~/Pictures/Wallpapers/my/gengara.jpg --format symbols --symbols vhalf --size 60x11 --stretch",
+		--   -- cmd = "fzf",
+		--   height = 20,
+		--   padding = { 0, 0 },
+		--   -- indent = 10,
+		-- },
+		{
+			-- pane = 2,
+			section = "startup",
+			padding = { 1, 0 },
+		},
+		-- {
+		--   pane = 2,
+		--   icon = " ",
+		--   desc = "Browse Repo",
+		--   padding = 1,
+		--   key = "b",
+		--   action = function()
+		--     Snacks.gitbrowse()
+		--   end,
+		-- },
+		-- { section = "keys", gap = 1, padding = 1 },
+		-- { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+		-- { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+		-- {
+		--   pane = 2,
+		--   icon = " ",
+		--   title = "Git Status",
+		--   section = "terminal",
+		--   enabled = function()
+		--     return Snacks.git.get_root() ~= nil
+		--   end,
+		--   cmd = "git status --short --branch --renames",
+		--   height = 5,
+		--   padding = 1,
+		--   ttl = 5 * 60,
+		--   indent = 3,
+		-- },
+	},
 }
 
 local init_config = function()
@@ -511,21 +569,21 @@ local snacks_keys = {
 	},
 	-- LSP
 	{
-		"gd",
+		"<leader>cd",
 		function()
 			Snacks.picker.lsp_definitions()
 		end,
 		desc = "Goto Definition",
 	},
 	{
-		"gD",
+		"<leader>cD",
 		function()
 			Snacks.picker.lsp_declarations()
 		end,
 		desc = "Goto Declaration",
 	},
 	{
-		"gr",
+		"<leader>cr",
 		function()
 			Snacks.picker.lsp_references()
 		end,
@@ -533,28 +591,28 @@ local snacks_keys = {
 		desc = "References",
 	},
 	{
-		"gI",
+		"<leader>cI",
 		function()
 			Snacks.picker.lsp_implementations()
 		end,
 		desc = "Goto Implementation",
 	},
 	{
-		"gy",
+		"<leader>cy",
 		function()
 			Snacks.picker.lsp_type_definitions()
 		end,
 		desc = "Goto T[y]pe Definition",
 	},
 	{
-		"gai",
+		"<leader>cai",
 		function()
 			Snacks.picker.lsp_incoming_calls()
 		end,
 		desc = "C[a]lls Incoming",
 	},
 	{
-		"gao",
+		"<leader>cao",
 		function()
 			Snacks.picker.lsp_outgoing_calls()
 		end,
@@ -712,18 +770,19 @@ return {
 			enabled = false,
 			timeout = 3000,
 		},
-		picker = { enabled = false },
+		picker = { enabled = true, layout = "ivy_split" },
 		quickfile = { enabled = true },
 		scope = { enabled = true },
 		scroll = { enabled = false },
 		statuscolumn = { enabled = true },
 		words = { enabled = true },
+		image = { enabled = true },
 		styles = {
 			notification = {
 				-- wo = { wrap = true } -- Wrap notifications
 			},
 		},
 	},
-	-- keys = snacks_keys,
+	keys = snacks_keys,
 	init = init_config,
 }

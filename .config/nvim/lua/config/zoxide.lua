@@ -95,6 +95,7 @@ end, { nargs = "?", complete = zoxide_complete })
 vim.keymap.set("n", "<space>z", function()
   zoxide_select("Zoxide (cd):", "cd")
 end, { desc = "Zoxide picker (cd)" })
+
 vim.keymap.set("n", "<space>Z", function()
   zoxide_select("Zoxide (tcd):", "tcd")
 end, { desc = "Zoxide picker(tcb)" })

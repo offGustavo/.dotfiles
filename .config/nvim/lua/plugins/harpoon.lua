@@ -1,3 +1,4 @@
+-- if true then return {} end
 return {
   "ThePrimeagen/harpoon",
   branch = "harpoon2",
@@ -12,14 +13,14 @@ return {
   keys = function()
     local keys = {
       {
-        "<leader>he",
+        "<leader>ha",
         function()
           require("harpoon"):list():add()
         end,
         desc = "Harpoon File",
       },
       {
-        "<leader>ha",
+        "<leader>he",
         function()
           local harpoon = require("harpoon")
           harpoon.ui:toggle_quick_menu(harpoon:list())
@@ -36,6 +37,14 @@ return {
         end,
         desc = "Harpoon to File " .. i,
       })
+      table.insert(keys, {
+        "<leader>h" .. i,
+        function()
+          require("harpoon"):list():add(i)
+        end,
+        desc = "Harpoon to File " .. i,
+      })
+
     end
     return keys
   end,

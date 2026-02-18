@@ -18,7 +18,7 @@ vim.o.splitbelow = true
 vim.o.spell = false
 vim.o.list = false
 vim.o.inccommand = "split"
-vim.o.cursorline = true
+vim.o.cursorline = false
 vim.o.confirm = true
 vim.o.wrap = false
 vim.o.tabstop = 2 -- A TAB character looks like 4 spaces
@@ -39,52 +39,51 @@ vim.o.swapfile = false
 -- ]])
 vim.o.termguicolors = true
 
+-- Mini Max
+vim.o.shortmess = "CFOSWaco" -- Disable some built-in completion messages
+vim.o.virtualedit = "block" -- Allow going past end of line in blockwise mode
+vim.o.spelloptions = "camel" -- Treat camelCase word parts as separate words
+
+-- vim.o.cursorlineopt  = 'screenline,number' -- Show cursor line per screen line
+
+-- Special UI symbols. More is set via 'mini.basics' later.
+-- vim.o.list = true
+vim.o.fillchars = "eob:$,fold:-"
+-- vim.o.listchars = "extends:…,nbsp:␣,precedes:…,tab:	,eol:$"
 
 vim.schedule(function()
-	vim.o.clipboard = "unnamed,unnamedplus"
+	-- [Neovim native, built-in, LSP autocomplete · Tomas Vik](https://blog.viktomas.com/graph/neovim-native-built-in-lsp-autocomplete/)
+	-- prevent the built-in vim.lsp.completion autotrigger from selecting the first item
+	-- vim.o.autocomplete = true
+	-- vim.opt.completeopt = { 'menuone', 'noselect', 'popup' }
 
--- [Neovim native, built-in, LSP autocomplete · Tomas Vik](https://blog.viktomas.com/graph/neovim-native-built-in-lsp-autocomplete/)
--- prevent the built-in vim.lsp.completion autotrigger from selecting the first item
--- vim.o.autocomplete = true
--- vim.opt.completeopt = { 'menuone', 'noselect', 'popup' }
+	-- vim.o.acd = true
+	-- vim.g.netrw_keepdir = 0
+	-- vim.cmd([[
+	-- autocmd BufEnter * lcd %:p:h
+	-- ]])
 
--- vim.o.acd = true
--- vim.g.netrw_keepdir = 0
--- vim.cmd([[
--- autocmd BufEnter * lcd %:p:h
--- ]])
 
--- require("vim._core.ui2").enable({
--- 	enable = true, -- Whether to enable or disable the UI.
--- 	msg = { -- Options related to the message module.
--- 		---@type 'cmd'|'msg' Where to place regular messages, either in the
--- 		---cmdline or in a separate ephemeral message window.
--- 		target = "msg",
--- 		timeout = 2000, -- Time a message is visible in the message window.
--- 	},
--- })
+	-- Better Grep and Find with ripgrep
+	if vim.fn.executable("rg") then
+		vim.o.grepprg = "rg"
 
--- Better Grep and Find with ripgrep
-if vim.fn.executable("rg") then
-	vim.o.grepprg = "rg"
-
-	-- [Native Fuzzy Finder in Neovim With Lua and Cool Bindings :: Cherry's Blog](https://cherryramatis.xyz/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/)
-	function _G.RgFindFiles(cmdarg, _cmdcomplete)
-		local fnames = vim.fn.systemlist("rg --files --hidden --color=never ")
-		if #cmdarg == 0 then
-			return fnames
-		else
-			return vim.fn.matchfuzzy(fnames, cmdarg)
+		-- [Native Fuzzy Finder in Neovim With Lua and Cool Bindings :: Cherry's Blog](https://cherryramatis.xyz/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/)
+		function _G.RgFindFiles(cmdarg, _cmdcomplete)
+			local fnames = vim.fn.systemlist("rg --files --hidden --color=never ")
+			if #cmdarg == 0 then
+				return fnames
+			else
+				return vim.fn.matchfuzzy(fnames, cmdarg)
+			end
 		end
+
+		vim.o.findfunc = "v:lua.RgFindFiles"
 	end
 
-	vim.o.findfunc = "v:lua.RgFindFiles"
-end
-
-vim.filetype.add({
-	extension = {
-		kbd = "kbd", -- maps *.kbd → filetype=kbd
-	},
-})
-
+	vim.filetype.add({
+		extension = {
+			kbd = "kbd", -- maps *.kbd → filetype=kbd
+		},
+	})
 end)

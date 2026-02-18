@@ -109,10 +109,10 @@ vim.keymap.set("n", "<leader><tab>c", "<Cmd>tabclose<CR>")
 -- end, { silent = true, desc = 'Quickfix to args' })
 
 --- {{{ Windows
-vim.keymap.set({'n', 'i', 't'}, '<M-S-j>', function ()
-  vim.cmd.wincmd("w")
+vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "Windows" })
+vim.keymap.set({'x', 'n', 'i', 't'}, '<M-S-j>', function () vim.cmd.wincmd("w")
 end)
-vim.keymap.set({'n', 'i', 't'}, '<M-S-k>', function ()
+vim.keymap.set({'x', 'n', 'i', 't'}, '<M-S-k>', function ()
   vim.cmd.wincmd("W")
 end)
   --- }}}
@@ -121,27 +121,17 @@ end)
 
 
 vim.keymap.set({"i", "c", "n", "v", "x" }, '<C-c>', "<Esc>", { desc = 'Fix <C-c>', silent = true })
--- vim.keymap.set("n", "<C-s-c>", function ()
---   print("oi")
--- end)
 vim.keymap.set('t', '<M-;>', '<C-\\><C-n>', { silent = true, desc = 'Go To Normal Mode in Terminal', nowait = true })
+vim.keymap.set('t', '<S-Esc>', '<C-\\><C-n>', { silent = true, desc = 'Go To Normal Mode in Terminal', nowait = true })
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { silent = true, desc = 'Go To Normal Mode in Terminal', nowait = true })
 vim.keymap.set('n', '<leader>tn', ':term ')
 vim.keymap.set('n', '<leader>tn', ':term ')
 vim.keymap.set('n', '<leader>tn', ':term ')
 -- vim.keymap.set('n', '<leader>cc', ':hor term ')
 -- vim.keymap.set('n', '<A-c>', ':hor term rg')
-
-
-vim.keymap.set('n', '<leader>cc', ':hor term ')
-vim.keymap.set('n', '<A-c>', ':hor term ')
-
-vim.keymap.set('n', '<leader>cc', ':hor term ')
-vim.keymap.set('n', '<A-c>', ':hor term ')
-
-
-vim.keymap.set('n', '<leader>tn', ':term ')
-vim.keymap.set('n', '<leader>cc', ':hor term ')
-vim.keymap.set('n', '<A-c>', ':hor term ')
+-- vim.keymap.set('n', '<leader>cc', ':hor term ')
+-- vim.keymap.set('n', '<A-c>', ':hor term ')
+-- vim.keymap.set('n', '<leader>tn', ':term ')
 
 -- vim.o.timeout = false
 -- local tmux_prefix = "<A-p>"
