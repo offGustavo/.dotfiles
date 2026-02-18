@@ -38,6 +38,13 @@ vim.o.swapfile = false
 --   set wildignore=*.o,*.obj,**/node_modules/**,/
 -- ]])
 vim.o.termguicolors = true
+vim.o.spelllang = "pt_br,en_us,es"
+if vim.uv.os_uname().sysname == "Windows_NT" then
+  vim.o.shell = "pwsh.exe"
+  vim.o.shellcmdflag =
+    "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+end
+
 
 -- Mini Max
 vim.o.shortmess = "CFOSWaco" -- Disable some built-in completion messages
@@ -64,26 +71,26 @@ vim.schedule(function()
 	-- ]])
 
 
-	-- Better Grep and Find with ripgrep
-	if vim.fn.executable("rg") then
-		vim.o.grepprg = "rg"
-
-		-- [Native Fuzzy Finder in Neovim With Lua and Cool Bindings :: Cherry's Blog](https://cherryramatis.xyz/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/)
-		function _G.RgFindFiles(cmdarg, _cmdcomplete)
-			local fnames = vim.fn.systemlist("rg --files --hidden --color=never ")
-			if #cmdarg == 0 then
-				return fnames
-			else
-				return vim.fn.matchfuzzy(fnames, cmdarg)
-			end
-		end
-
-		vim.o.findfunc = "v:lua.RgFindFiles"
-	end
-
-	vim.filetype.add({
-		extension = {
-			kbd = "kbd", -- maps *.kbd → filetype=kbd
-		},
-	})
+	-- -- Better Grep and Find with ripgrep
+	-- if vim.fn.executable("rg") then
+	-- 	vim.o.grepprg = "rg"
+	--
+	-- 	-- [Native Fuzzy Finder in Neovim With Lua and Cool Bindings :: Cherry's Blog](https://cherryramatis.xyz/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/)
+	-- 	function _G.RgFindFiles(cmdarg, _cmdcomplete)
+	-- 		local fnames = vim.fn.systemlist("rg --files --hidden --color=never ")
+	-- 		if #cmdarg == 0 then
+	-- 			return fnames
+	-- 		else
+	-- 			return vim.fn.matchfuzzy(fnames, cmdarg)
+	-- 		end
+	-- 	end
+	--
+	-- 	vim.o.findfunc = "v:lua.RgFindFiles"
+	-- end
+	--
+	-- vim.filetype.add({
+	-- 	extension = {
+	-- 		kbd = "kbd", -- maps *.kbd → filetype=kbd
+	-- 	},
+	-- })
 end)
